@@ -77,7 +77,7 @@ export default function Home() {
   };
 
   return (
-    <AuroraBackground className="justify-start md:justify-center min-h-0 md:min-h-screen">
+    <AuroraBackground className="justify-start md:justify-center">
       {/* Fixed Navigation Bar - Top Left */}
       <motion.nav
         initial={{ opacity: 0, y: -20 }}
@@ -101,7 +101,7 @@ export default function Home() {
       </motion.nav>
 
       {/* Main Content - Center Aligned */}
-      <div className="relative z-10 flex flex-col items-center justify-start md:justify-center min-h-0 md:min-h-screen px-4 text-center pt-3 pb-0 md:pt-32 md:pb-0">
+      <div className="relative z-10 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pt-3 pb-8 md:pt-32 md:pb-0">
         {/* Main Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
