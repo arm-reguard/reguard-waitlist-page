@@ -95,7 +95,7 @@ export default function Home() {
               className="w-[70px] h-[70px] sm:w-[100px] sm:h-[100px] md:w-[140px] md:h-[140px]"
               style={{ marginRight: 'clamp(-16px, -2vw, -32px)' }}
             />
-            <span className="hidden md:inline text-2xl sm:text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
+            <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
           </Link>
         </div>
       </motion.nav>
