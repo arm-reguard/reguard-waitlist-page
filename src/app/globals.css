@@ -134,6 +134,13 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+  @media (max-width: 768px) {
+    html, body {
+      overflow-y: auto;
+      height: auto;
+    }
   }
   
   @keyframes aurora {
