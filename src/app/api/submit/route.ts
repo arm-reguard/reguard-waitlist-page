@@ -45,6 +45,12 @@ export async function POST(request: NextRequest) {
         success: true,
         serialNumber: googleResult.serialNumber 
       });
+    } else if (googleResult.error === 'duplicate') {
+      // Email already exists in waitlist
+      return NextResponse.json(
+        { error: 'This email is already on the waitlist' },
+        { status: 409 } // 409 Conflict
+      );
     } else {
       console.error('Google Sheets error:', googleResult);
       return NextResponse.json(

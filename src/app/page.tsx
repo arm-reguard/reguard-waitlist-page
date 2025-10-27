@@ -34,7 +34,13 @@ export default function Home() {
         setIsSubmitted(true);
         setEmail('');
       } else {
-        alert('Something went wrong. Please try again.');
+        const data = await response.json();
+        if (response.status === 409) {
+          // Duplicate email
+          alert('This email is already on the waitlist! 🎉');
+        } else {
+          alert(data.error || 'Something went wrong. Please try again.');
+        }
       }
     } catch (error) {
       console.error('Error:', error);
