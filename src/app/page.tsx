@@ -21,13 +21,15 @@ export default function Home() {
     
     setIsLoading(true);
     setSubmittedEmail(email);
-    
-    // Show success IMMEDIATELY (optimistic UI)
-    setIsSubmitted(true);
-    setIsDuplicate(false);
     const submittedEmailCopy = email;
-    setEmail('');
-    setIsLoading(false);
+    
+    // Wait 1 second before showing result (feels more natural)
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsSubmitted(true);
+      setIsDuplicate(false);
+      setEmail('');
+    }, 1000);
     
     // Handle submission in background
     try {
@@ -46,22 +48,31 @@ export default function Home() {
       if (!response.ok) {
         if (response.status === 409) {
           // Duplicate email detected - update to show duplicate message
-          setIsSubmitted(false);
-          setIsDuplicate(true);
+          setTimeout(() => {
+            setIsSubmitted(false);
+            setIsDuplicate(true);
+            setIsLoading(false);
+          }, 1000);
         } else {
           // Revert and show error
-          setIsSubmitted(false);
-          setEmail(submittedEmailCopy);
-          alert(data.error || 'Something went wrong. Please try again.');
+          setTimeout(() => {
+            setIsSubmitted(false);
+            setEmail(submittedEmailCopy);
+            setIsLoading(false);
+            alert(data.error || 'Something went wrong. Please try again.');
+          }, 1000);
         }
       }
-      // If response.ok, keep showing success (already displayed)
+      // If response.ok, success is already shown after 1 second
     } catch (error) {
       console.error('Error:', error);
       // Revert and show error
-      setIsSubmitted(false);
-      setEmail(submittedEmailCopy);
-      alert('Something went wrong. Please try again.');
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setEmail(submittedEmailCopy);
+        setIsLoading(false);
+        alert('Something went wrong. Please try again.');
+      }, 1000);
     }
   };
 
