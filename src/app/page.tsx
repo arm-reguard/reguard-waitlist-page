@@ -53,15 +53,15 @@ export default function Home() {
         transition={{ duration: 0.5 }}
         className="fixed top-0 left-0 z-50 w-full"
       >
-        <div className="pl-2 pr-4 py-3 sm:p-6">
+        <div className="px-4 py-2 sm:p-6">
           <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity" style={{ gap: '0px' }}>
             <Image 
               src="/reguard-logo.svg" 
               alt="reGuard Logo" 
               width={140} 
               height={140}
-              className="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] md:w-[140px] md:h-[140px]"
-              style={{ marginRight: 'clamp(-20px, -2vw, -32px)' }}
+              className="w-[70px] h-[70px] sm:w-[100px] sm:h-[100px] md:w-[140px] md:h-[140px]"
+              style={{ marginRight: 'clamp(-16px, -2vw, -32px)' }}
             />
             <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
           </Link>
@@ -69,7 +69,7 @@ export default function Home() {
       </motion.nav>
 
       {/* Main Content - Center Aligned */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center pt-32 sm:pt-24 md:pt-0">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center pt-24 sm:pt-24 md:pt-0">
         {/* Main Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -92,10 +92,10 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-10 sm:mb-16 max-w-3xl w-full"
+          className="mb-10 sm:mb-16 max-w-3xl w-full flex justify-center sm:hidden"
         >
-          {/* Mobile: Vertical stack - Left aligned */}
-          <div className="flex flex-col items-start gap-3 text-sm text-zinc-400 sm:hidden" style={{ fontFamily: 'var(--font-spectral)' }}>
+          {/* Mobile: Vertical stack - Centered container with left-aligned items */}
+          <div className="flex flex-col items-start gap-3 text-sm text-zinc-400" style={{ fontFamily: 'var(--font-spectral)' }}>
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
               <span>Real-time Monitoring</span>
@@ -117,9 +117,17 @@ export default function Home() {
               <span>3D Cost Visualization</span>
             </div>
           </div>
-          
+        </motion.div>
+        
+        {/* Desktop Features */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mb-10 sm:mb-16 max-w-3xl w-full hidden sm:block"
+        >
           {/* Desktop: 3 top, 2 bottom layout */}
-          <div className="hidden sm:flex flex-col items-center gap-4 text-sm text-zinc-400" style={{ fontFamily: 'var(--font-spectral)' }}>
+          <div className="flex flex-col items-center gap-4 text-sm text-zinc-400" style={{ fontFamily: 'var(--font-spectral)' }}>
             {/* First row - 3 items */}
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
               <div className="flex items-center gap-2 whitespace-nowrap">
