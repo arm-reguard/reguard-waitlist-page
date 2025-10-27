@@ -77,7 +77,7 @@ export default function Home() {
   };
 
   return (
-    <AuroraBackground>
+    <AuroraBackground className="justify-start md:justify-center">
       {/* Fixed Navigation Bar - Top Left */}
       <motion.nav
         initial={{ opacity: 0, y: -20 }}
@@ -85,7 +85,7 @@ export default function Home() {
         transition={{ duration: 0.5 }}
         className="relative md:fixed top-0 left-0 z-50 w-full"
       >
-        <div className="px-1 pt-0 pb-0 md:px-6 md:py-4">
+        <div className="pl-4 pr-1 pt-0 pb-0 md:px-6 md:py-4">
           <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity" style={{ gap: '0px' }}>
             <Image 
               src="/reguard-logo.svg" 
