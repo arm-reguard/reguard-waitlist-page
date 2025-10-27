@@ -95,7 +95,7 @@ export default function Home() {
           className="mb-10 sm:mb-16 max-w-3xl w-full flex justify-center sm:hidden"
         >
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
-          <div className="flex flex-col items-start gap-3 text-sm text-zinc-300/85">
+          <div className="flex flex-col items-start gap-3 text-sm text-zinc-300/90">
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
               <span>Real-time Monitoring</span>
@@ -127,7 +127,7 @@ export default function Home() {
           className="mb-10 sm:mb-16 max-w-3xl w-full hidden sm:block"
         >
           {/* Desktop: 3 top, 2 bottom layout */}
-          <div className="flex flex-col items-center gap-4 text-sm text-zinc-300/85">
+          <div className="flex flex-col items-center gap-4 text-sm text-zinc-300/90">
             {/* First row - 3 items */}
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
               <div className="flex items-center gap-2 whitespace-nowrap">
@@ -229,17 +229,17 @@ export default function Home() {
         >
           <div className="flex flex-col items-center">
             <div className="text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">300+</div>
-            <div className="text-xs sm:text-sm text-zinc-300/85 mt-2">On Waitlist</div>
+            <div className="text-xs sm:text-sm text-zinc-300/90 mt-2">On Waitlist</div>
           </div>
           <div className="flex flex-col items-center">
             <div className="text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">2mins</div>
-            <div className="text-xs sm:text-sm text-zinc-300/85 mt-2">Setup Time</div>
+            <div className="text-xs sm:text-sm text-zinc-300/90 mt-2">Setup Time</div>
           </div>
           <div className="flex flex-col items-center">
             <div className="text-white h-[40px] flex items-center justify-center">
               <Infinity className="h-8 w-8 sm:h-10 sm:w-10" />
             </div>
-            <div className="text-xs sm:text-sm text-zinc-300/85 mt-2">API Tracking</div>
+            <div className="text-xs sm:text-sm text-zinc-300/90 mt-2">API Tracking</div>
           </div>
         </motion.div>
 
