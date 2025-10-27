@@ -85,7 +85,7 @@ export default function Home() {
         transition={{ duration: 0.5 }}
         className="relative md:fixed top-0 left-0 z-50 w-full"
       >
-        <div className="pl-[5px] pr-1 pt-0 pb-2 md:px-6 md:py-4">
+        <div className="pl-[3px] pr-1 pt-0 pb-2 md:px-6 md:py-4">
           <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity" style={{ gap: '0px' }}>
             <Image 
               src="/reguard-logo.svg" 
