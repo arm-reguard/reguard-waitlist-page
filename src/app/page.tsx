@@ -23,13 +23,13 @@ export default function Home() {
     setSubmittedEmail(email);
     const submittedEmailCopy = email;
     
-    // Wait 1 second before showing result (feels more natural)
+    // Wait 0.75 seconds before showing result (feels more natural)
     setTimeout(() => {
       setIsLoading(false);
       setIsSubmitted(true);
       setIsDuplicate(false);
       setEmail('');
-    }, 1000);
+    }, 750);
     
     // Handle submission in background
     try {
@@ -52,7 +52,7 @@ export default function Home() {
             setIsSubmitted(false);
             setIsDuplicate(true);
             setIsLoading(false);
-          }, 1000);
+          }, 750);
         } else {
           // Revert and show error
           setTimeout(() => {
@@ -60,7 +60,7 @@ export default function Home() {
             setEmail(submittedEmailCopy);
             setIsLoading(false);
             alert(data.error || 'Something went wrong. Please try again.');
-          }, 1000);
+          }, 750);
         }
       }
       // If response.ok, success is already shown after 1 second
@@ -72,7 +72,7 @@ export default function Home() {
         setEmail(submittedEmailCopy);
         setIsLoading(false);
         alert('Something went wrong. Please try again.');
-      }, 1000);
+      }, 750);
     }
   };
 

@@ -136,6 +136,18 @@ export const ReGuardButton = ({
             color: #ffffff;
             transition: color 0.4s, text-shadow 0.4s, opacity 0.4s, filter 0.4s;
           }
+          
+          /* Mobile optimizations - disable heavy effects */
+          @media (max-width: 768px) {
+            .reguard-button-${id} .wrap::before,
+            .reguard-button-${id} .wrap::after {
+              display: none;
+            }
+            
+            .reguard-button-${id}::after {
+              display: none;
+            }
+          }
         `
       }} />
 
