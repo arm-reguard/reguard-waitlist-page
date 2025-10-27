@@ -77,7 +77,7 @@ export default function Home() {
   };
 
   return (
-    <AuroraBackground className="justify-start md:justify-center">
+    <AuroraBackground className="justify-start md:justify-center min-h-0 md:min-h-screen">
       {/* Fixed Navigation Bar - Top Left */}
       <motion.nav
         initial={{ opacity: 0, y: -20 }}
@@ -85,7 +85,7 @@ export default function Home() {
         transition={{ duration: 0.5 }}
         className="relative md:fixed top-0 left-0 z-50 w-full"
       >
-        <div className="pl-0.5 pr-1 pt-0 pb-2 md:px-6 md:py-4">
+        <div className="pl-[5px] pr-1 pt-0 pb-2 md:px-6 md:py-4">
           <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity" style={{ gap: '0px' }}>
             <Image 
               src="/reguard-logo.svg" 
@@ -101,7 +101,7 @@ export default function Home() {
       </motion.nav>
 
       {/* Main Content - Center Aligned */}
-      <div className="relative z-10 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pt-3 pb-2 md:pt-32 md:pb-0">
+      <div className="relative z-10 flex flex-col items-center justify-start md:justify-center min-h-0 md:min-h-screen px-4 text-center pt-3 pb-0 md:pt-32 md:pb-0">
         {/* Main Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
