@@ -25,6 +25,8 @@ export async function POST(request: NextRequest) {
     });
 
     const googleResult = await googleResponse.json();
+    console.log('Google Sheets response status:', googleResponse.status);
+    console.log('Google Sheets result:', googleResult);
 
     // 2. Submit to Web3Forms (email notifications)
     const web3FormData = new FormData();

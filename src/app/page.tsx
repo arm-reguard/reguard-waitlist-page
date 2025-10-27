@@ -30,11 +30,14 @@ export default function Home() {
         body: JSON.stringify({ email }),
       });
 
+      const data = await response.json();
+      console.log('Response status:', response.status);
+      console.log('Response data:', data);
+
       if (response.ok) {
         setIsSubmitted(true);
         setEmail('');
       } else {
-        const data = await response.json();
         if (response.status === 409) {
           // Duplicate email
           alert('This email is already on the waitlist! 🎉');
