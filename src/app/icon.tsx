@@ -2,8 +2,8 @@ import { ImageResponse } from 'next/og'
 
 // Image metadata
 export const size = {
-  width: 64,
-  height: 64,
+  width: 128,
+  height: 128,
 }
 export const contentType = 'image/png'
 
@@ -18,13 +18,14 @@ export default function Icon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'transparent',
+          background: 'linear-gradient(135deg, #1a0033 0%, #2d0052 50%, #1a0033 100%)',
+          padding: '12px',
         }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="64"
-          height="64"
+          width="104"
+          height="104"
           viewBox="0 0 1024 1024"
           style={{
             width: '100%',
