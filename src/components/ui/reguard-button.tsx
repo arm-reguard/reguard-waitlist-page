@@ -123,7 +123,6 @@ export const ReGuardButton = ({
           
           .reguard-button-${id}:active .letter-${id} {
             text-shadow: 0 0 1px rgba(167, 139, 250, 0.9);
-            animation: none;
           }
           
           .reguard-button-${id}:disabled {
@@ -131,42 +130,12 @@ export const ReGuardButton = ({
             cursor: not-allowed;
           }
           
-          /* Letter animation */
+          /* Letter styling */
           .letter-${id} {
             display: inline-block;
-            color: rgba(255, 255, 255, 0.7);
-            animation: letter-shimmer-${id} 3s ease-in-out infinite;
+            color: #ffffff;
             transition: color 0.4s, text-shadow 0.4s, opacity 0.4s, filter 0.4s;
           }
-          
-          @keyframes letter-shimmer-${id} {
-            0%, 100% {
-              color: rgba(255, 255, 255, 0.7);
-              text-shadow: 0 0 0px transparent;
-              filter: brightness(1);
-            }
-            50% {
-              color: #ffffff;
-              text-shadow: 0 0 8px rgba(167, 139, 250, 0.8), 0 0 4px rgba(255, 255, 255, 0.6);
-              filter: brightness(1.3);
-            }
-          }
-          
-          .letter-${id}:nth-child(1) { animation-delay: 0s; }
-          .letter-${id}:nth-child(2) { animation-delay: 0.08s; }
-          .letter-${id}:nth-child(3) { animation-delay: 0.16s; }
-          .letter-${id}:nth-child(4) { animation-delay: 0.24s; }
-          .letter-${id}:nth-child(5) { animation-delay: 0.32s; }
-          .letter-${id}:nth-child(6) { animation-delay: 0.4s; }
-          .letter-${id}:nth-child(7) { animation-delay: 0.48s; }
-          .letter-${id}:nth-child(8) { animation-delay: 0.56s; }
-          .letter-${id}:nth-child(9) { animation-delay: 0.64s; }
-          .letter-${id}:nth-child(10) { animation-delay: 0.72s; }
-          .letter-${id}:nth-child(11) { animation-delay: 0.8s; }
-          .letter-${id}:nth-child(12) { animation-delay: 0.88s; }
-          .letter-${id}:nth-child(13) { animation-delay: 0.96s; }
-          .letter-${id}:nth-child(14) { animation-delay: 1.04s; }
-          .letter-${id}:nth-child(15) { animation-delay: 1.12s; }
         `
       }} />
 
