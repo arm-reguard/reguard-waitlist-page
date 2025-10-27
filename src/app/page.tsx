@@ -82,7 +82,7 @@ export default function Home() {
                   Never worry about API costs again
                 </span>
               </h2>
-          <p className="text-base text-zinc-300 sm:text-lg md:text-xl" style={{ fontFamily: 'var(--font-spectral)' }}>
+          <p className="text-base text-zinc-300 sm:text-lg md:text-xl">
             Smart monitoring and controls to prevent unexpected API bills
           </p>
         </motion.div>
@@ -95,7 +95,7 @@ export default function Home() {
           className="mb-10 sm:mb-16 max-w-3xl w-full flex justify-center sm:hidden"
         >
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
-          <div className="flex flex-col items-start gap-3 text-sm text-zinc-400" style={{ fontFamily: 'var(--font-spectral)' }}>
+          <div className="flex flex-col items-start gap-3 text-sm text-zinc-400">
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
               <span>Real-time Monitoring</span>
@@ -127,7 +127,7 @@ export default function Home() {
           className="mb-10 sm:mb-16 max-w-3xl w-full hidden sm:block"
         >
           {/* Desktop: 3 top, 2 bottom layout */}
-          <div className="flex flex-col items-center gap-4 text-sm text-zinc-400" style={{ fontFamily: 'var(--font-spectral)' }}>
+          <div className="flex flex-col items-center gap-4 text-sm text-zinc-400">
             {/* First row - 3 items */}
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
               <div className="flex items-center gap-2 whitespace-nowrap">
@@ -199,7 +199,7 @@ export default function Home() {
                   {isLoading ? "Joining..." : "Join Waitlist"}
                 </ReGuardButton>
               </div>
-              <p className="text-xs text-zinc-500" style={{ fontFamily: 'var(--font-spectral)' }}>
+              <p className="text-xs text-zinc-500">
                 Be the first to know when we launch. No spam, ever.
               </p>
             </form>
@@ -211,9 +211,9 @@ export default function Home() {
             >
               <div className="flex items-center justify-center gap-2 mb-2">
                 <span className="text-3xl">🎉</span>
-                <h3 className="text-xl font-semibold text-white" style={{ fontFamily: 'var(--font-spectral)' }}>You're on the waitlist!</h3>
+                <h3 className="text-xl font-semibold text-white">You're on the waitlist!</h3>
               </div>
-              <p className="text-zinc-300" style={{ fontFamily: 'var(--font-spectral)' }}>
+              <p className="text-zinc-300">
                 We'll notify you at <span className="font-medium text-white">{submittedEmail}</span> when reGuard launches.
               </p>
             </motion.div>
@@ -226,7 +226,6 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-8 sm:mt-20 flex justify-center gap-8 sm:gap-12"
-          style={{ fontFamily: 'var(--font-spectral)' }}
         >
           <div className="flex flex-col items-center">
             <div className="text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">300+</div>
@@ -265,7 +264,6 @@ export default function Home() {
               background: "rgba(139, 92, 246, 0.15)",
               border: "1px solid rgba(167, 139, 250, 0.3)",
               boxShadow: "0 0 20px rgba(167, 139, 250, 0.2)",
-              fontFamily: 'var(--font-spectral)',
             }}
           >
             Launching Soon
