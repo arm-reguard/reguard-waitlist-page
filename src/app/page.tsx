@@ -53,7 +53,7 @@ export default function Home() {
         transition={{ duration: 0.5 }}
         className="fixed top-0 left-0 z-50 w-full"
       >
-        <div className="px-2 py-1 md:px-6 md:py-10">
+        <div className="px-2 py-0.5 md:px-6 md:py-12">
           <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity" style={{ gap: '0px' }}>
             <Image 
               src="/reguard-logo.svg" 
@@ -69,7 +69,7 @@ export default function Home() {
       </motion.nav>
 
       {/* Main Content - Center Aligned */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center pt-12 md:pt-0">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center pt-[72px] md:pt-0">
         {/* Main Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
