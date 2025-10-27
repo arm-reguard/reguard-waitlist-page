@@ -63,7 +63,7 @@ export default function Home() {
               className="w-[140px] h-[140px]"
               style={{ marginRight: '-16px' }}
             />
-            <span className="text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-agile)' }}>reGuard</span>
+            <span className="text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
           </Link>
         </div>
       </motion.nav>
