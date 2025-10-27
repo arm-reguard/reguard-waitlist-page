@@ -92,10 +92,10 @@ export default function Home() {
               alt="reGuard Logo" 
               width={140} 
               height={140}
-              className="w-[70px] h-[70px] sm:w-[100px] sm:h-[100px] md:w-[140px] md:h-[140px]"
+              className="w-[85px] h-[85px] sm:w-[100px] sm:h-[100px] md:w-[140px] md:h-[140px]"
               style={{ marginRight: 'clamp(-16px, -2vw, -32px)' }}
             />
-            <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
+            <span className="text-3xl sm:text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
           </Link>
         </div>
       </motion.nav>
@@ -107,9 +107,9 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-8 md:mb-10 max-w-5xl"
+          className="mb-9 md:mb-10 max-w-5xl"
         >
-              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl mb-2 md:mb-6 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
+              <h2 className="text-[26px] font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl mb-2 md:mb-6 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
                 <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
                   Never worry about API costs again
                 </span>
@@ -124,7 +124,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-7 md:mb-16 max-w-3xl w-full flex justify-center sm:hidden"
+          className="mb-8 md:mb-16 max-w-3xl w-full flex justify-center sm:hidden"
         >
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
           <div className="flex flex-col items-start gap-3 text-sm text-zinc-300/90">
