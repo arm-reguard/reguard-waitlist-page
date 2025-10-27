@@ -130,7 +130,7 @@ export default function Home() {
           <div className="flex flex-col items-start gap-3 text-sm text-zinc-300/90">
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span>Real-Time Cost Monitoring</span>
+              <span>Live Cost Monitoring</span>
             </div>
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
@@ -138,7 +138,7 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span>Multi-Provider LLM Tracking</span>
+              <span>3D Cost Visualization</span>
             </div>
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
@@ -146,7 +146,7 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span>3D Cost Visualization</span>
+              <span>Multi-Provider LLM Tracking</span>
             </div>
           </div>
         </motion.div>
@@ -164,7 +164,7 @@ export default function Home() {
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
               <div className="flex items-center gap-2 whitespace-nowrap">
                 <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span>Real-Time Cost Monitoring</span>
+                <span>Live Cost Monitoring</span>
               </div>
               <div className="flex items-center gap-2 whitespace-nowrap">
                 <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
@@ -172,7 +172,7 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-2 whitespace-nowrap">
                 <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span>Multi-Provider LLM Tracking</span>
+                <span>3D Cost Visualization</span>
               </div>
             </div>
             {/* Second row - 2 items */}
@@ -183,7 +183,7 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-2 whitespace-nowrap">
                 <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span>3D Cost Visualization</span>
+                <span>Multi-Provider LLM Tracking</span>
               </div>
             </div>
           </div>
