@@ -53,7 +53,7 @@ export default function Home() {
         transition={{ duration: 0.5 }}
         className="fixed top-0 left-0 z-50 w-full"
       >
-        <div className="px-3 py-2 sm:px-4 sm:py-8 md:px-6 md:py-6">
+        <div className="px-2 py-1 md:px-6 md:py-10">
           <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity" style={{ gap: '0px' }}>
             <Image 
               src="/reguard-logo.svg" 
@@ -69,15 +69,15 @@ export default function Home() {
       </motion.nav>
 
       {/* Main Content - Center Aligned */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center pt-16 sm:pt-20 md:pt-0">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center pt-12 md:pt-0">
         {/* Main Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-4 sm:mb-6 md:mb-8 max-w-5xl"
+          className="mb-3 md:mb-10 max-w-5xl"
         >
-              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 md:mb-6 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
+              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl mb-2 md:mb-6 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
                 <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
                   Never worry about API costs again
                 </span>
@@ -92,7 +92,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-6 sm:mb-12 md:mb-14 max-w-3xl w-full flex justify-center sm:hidden"
+          className="mb-4 md:mb-16 max-w-3xl w-full flex justify-center sm:hidden"
         >
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
           <div className="flex flex-col items-start gap-3 text-sm text-zinc-300/90">
@@ -124,7 +124,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-6 sm:mb-12 md:mb-14 max-w-3xl w-full hidden sm:block"
+          className="mb-4 md:mb-16 max-w-3xl w-full hidden sm:block"
         >
           {/* Desktop: 3 top, 2 bottom layout */}
           <div className="flex flex-col items-center gap-4 text-sm text-zinc-300/90">
@@ -225,7 +225,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-5 sm:mt-12 md:mt-16 flex justify-center gap-8 sm:gap-12"
+          className="mt-4 md:mt-20 flex justify-center gap-8 sm:gap-12"
         >
           <div className="flex flex-col items-center">
             <div className="text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">300+</div>
@@ -248,7 +248,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-4 sm:mt-6 md:mt-8 mb-4 sm:mb-6"
+          className="mt-3 md:mt-10 mb-2 md:mb-8"
         >
           <motion.div
             animate={{
