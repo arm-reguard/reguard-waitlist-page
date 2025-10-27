@@ -53,7 +53,7 @@ export default function Home() {
         transition={{ duration: 0.5 }}
         className="fixed top-0 left-0 z-50 w-full"
       >
-        <div className="p-4 sm:p-6">
+        <div className="pl-2 pr-4 py-3 sm:p-6">
           <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity" style={{ gap: '0px' }}>
             <Image 
               src="/reguard-logo.svg" 
@@ -75,9 +75,9 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-8 max-w-5xl"
+          className="mb-5 sm:mb-8 max-w-5xl"
         >
-              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl mb-6 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
+              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
                 <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
                   Never worry about API costs again
                 </span>
@@ -92,10 +92,10 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-16 max-w-3xl"
+          className="mb-10 sm:mb-16 max-w-3xl w-full"
         >
-          {/* Mobile: Vertical stack */}
-          <div className="flex flex-col items-center gap-4 text-sm text-zinc-400 sm:hidden" style={{ fontFamily: 'var(--font-spectral)' }}>
+          {/* Mobile: Vertical stack - Left aligned */}
+          <div className="flex flex-col items-start gap-3 text-sm text-zinc-400 sm:hidden" style={{ fontFamily: 'var(--font-spectral)' }}>
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
               <span>Real-time Monitoring</span>
@@ -217,7 +217,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 sm:mt-20 flex justify-center gap-8 sm:gap-12"
+          className="mt-8 sm:mt-20 flex justify-center gap-8 sm:gap-12"
           style={{ fontFamily: 'var(--font-spectral)' }}
         >
           <div className="flex flex-col items-center">
@@ -241,7 +241,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-8"
+          className="mt-6 sm:mt-8 mb-8"
         >
           <motion.div
             animate={{
