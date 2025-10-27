@@ -76,7 +76,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`dark ${agileFont.variable} ${glastoneFont.variable} ${merivaFont.variable} ${mooxyFont.variable} ${sugarFont.variable} ${merriweatherSansFont.variable} ${sourceSans3Font.variable} ${openSansFont.variable} ${playfairDisplayFont.variable} ${spectralFont.variable}`}>
-      <body className="antialiased" style={{ fontFamily: 'var(--font-source-sans-3)' }}>
+      <body className="antialiased" style={{ fontFamily: 'var(--font-open-sans)' }}>
         <ErrorReporter />
         <Script
           src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts//route-messenger.js"
