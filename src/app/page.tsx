@@ -85,7 +85,7 @@ export default function Home() {
         transition={{ duration: 0.5 }}
         className="relative md:fixed top-0 left-0 z-50 w-full"
       >
-        <div className="px-2 pt-0 pb-0 md:px-6 md:py-4">
+        <div className="px-1 pt-0 pb-0 md:px-6 md:py-4">
           <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity" style={{ gap: '0px' }}>
             <Image 
               src="/reguard-logo.svg" 
@@ -109,7 +109,7 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="mb-9 md:mb-10 max-w-5xl"
         >
-              <h2 className="text-[26px] font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl mb-2 md:mb-6 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
+              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl mb-2 md:mb-6 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
                 <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
                   Never worry about API costs again
                 </span>

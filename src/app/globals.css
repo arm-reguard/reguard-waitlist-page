@@ -140,6 +140,8 @@
     html, body {
       overflow-y: auto;
       height: auto;
+      margin: 0;
+      padding: 0;
     }
   }
   
