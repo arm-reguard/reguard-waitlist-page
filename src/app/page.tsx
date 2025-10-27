@@ -85,7 +85,7 @@ export default function Home() {
         transition={{ duration: 0.5 }}
         className="relative md:fixed top-0 left-0 z-50 w-full"
       >
-        <div className="px-2 py-2 md:px-6 md:py-4">
+        <div className="px-2 pt-1 pb-0 md:px-6 md:py-4">
           <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity" style={{ gap: '0px' }}>
             <Image 
               src="/reguard-logo.svg" 
@@ -101,7 +101,7 @@ export default function Home() {
       </motion.nav>
 
       {/* Main Content - Center Aligned */}
-      <div className="relative z-10 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pt-0 pb-8 md:pt-32 md:pb-0">
+      <div className="relative z-10 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pt-0 pb-4 md:pt-32 md:pb-0">
         {/* Main Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -294,7 +294,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-10 md:mt-10 mb-2 md:mb-8"
+          className="mt-10 md:mt-10 mb-0 md:mb-8"
         >
           <motion.div
             animate={{
