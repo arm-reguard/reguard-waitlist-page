@@ -61,6 +61,11 @@ const spectralFont = localFont({
 export const metadata: Metadata = {
   title: "reGuard - Budget Protection for LLM APIs",
   description: "Protect your LLM API budget with intelligent monitoring and controls",
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({
