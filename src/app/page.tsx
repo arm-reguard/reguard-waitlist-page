@@ -83,7 +83,7 @@ export default function Home() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="hidden md:fixed top-0 left-0 z-50 w-full md:block"
+        className="relative md:fixed top-0 left-0 z-50 w-full"
       >
         <div className="px-2 pt-1 pb-0 md:px-6 md:py-4">
           <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity" style={{ gap: '0px' }}>
@@ -95,7 +95,7 @@ export default function Home() {
               className="w-[70px] h-[70px] sm:w-[100px] sm:h-[100px] md:w-[140px] md:h-[140px]"
               style={{ marginRight: 'clamp(-16px, -2vw, -32px)' }}
             />
-            <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
+            <span className="hidden md:inline text-2xl sm:text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
           </Link>
         </div>
       </motion.nav>
