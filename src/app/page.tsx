@@ -12,6 +12,7 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [submittedEmail, setSubmittedEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isDuplicate, setIsDuplicate] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -36,11 +37,13 @@ export default function Home() {
 
       if (response.ok) {
         setIsSubmitted(true);
+        setIsDuplicate(false);
         setEmail('');
       } else {
         if (response.status === 409) {
-          // Duplicate email
-          alert('This email is already on the waitlist! 🎉');
+          // Duplicate email - show on screen
+          setIsDuplicate(true);
+          setIsSubmitted(false);
         } else {
           alert(data.error || 'Something went wrong. Please try again.');
         }
@@ -173,7 +176,7 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="w-full max-w-2xl"
         >
-          {!isSubmitted ? (
+          {!isSubmitted && !isDuplicate ? (
             <form 
               onSubmit={handleSubmit}
               className="space-y-3"
@@ -212,6 +215,20 @@ export default function Home() {
                 Be the first to know when we launch. No spam, ever.
               </p>
             </form>
+          ) : isDuplicate ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="rounded-lg bg-purple-600/10 backdrop-blur-sm border border-purple-500/30 p-6"
+            >
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <span className="text-3xl">✨</span>
+                <h3 className="text-xl font-semibold text-white">Already on the list!</h3>
+              </div>
+              <p className="text-zinc-300">
+                <span className="font-medium text-white">{submittedEmail}</span> is already signed up for the waitlist.
+              </p>
+            </motion.div>
           ) : (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
