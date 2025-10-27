@@ -83,7 +83,7 @@ export default function Home() {
                 </span>
               </h2>
           <p className="text-base text-zinc-300 sm:text-lg md:text-xl" style={{ fontFamily: 'var(--font-spectral)' }}>
-            Smart monitoring and controls to prevent unexpected API costs
+            Smart monitoring and controls to prevent unexpected API bills
           </p>
         </motion.div>
 
