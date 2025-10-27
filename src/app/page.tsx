@@ -22,37 +22,46 @@ export default function Home() {
     setIsLoading(true);
     setSubmittedEmail(email);
     
+    // Show success IMMEDIATELY (optimistic UI)
+    setIsSubmitted(true);
+    setIsDuplicate(false);
+    const submittedEmailCopy = email;
+    setEmail('');
+    setIsLoading(false);
+    
+    // Handle submission in background
     try {
       const response = await fetch('/api/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email: submittedEmailCopy }),
       });
 
       const data = await response.json();
       console.log('Response status:', response.status);
       console.log('Response data:', data);
 
-      if (response.ok) {
-        setIsSubmitted(true);
-        setIsDuplicate(false);
-        setEmail('');
-      } else {
+      if (!response.ok) {
         if (response.status === 409) {
-          // Duplicate email - show on screen
-          setIsDuplicate(true);
+          // Duplicate email detected - update to show duplicate message
           setIsSubmitted(false);
+          setIsDuplicate(true);
         } else {
+          // Revert and show error
+          setIsSubmitted(false);
+          setEmail(submittedEmailCopy);
           alert(data.error || 'Something went wrong. Please try again.');
         }
       }
+      // If response.ok, keep showing success (already displayed)
     } catch (error) {
       console.error('Error:', error);
+      // Revert and show error
+      setIsSubmitted(false);
+      setEmail(submittedEmailCopy);
       alert('Something went wrong. Please try again.');
-    } finally {
-      setIsLoading(false);
     }
   };
 
