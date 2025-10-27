@@ -61,7 +61,7 @@ export default function Home() {
               width={140} 
               height={140}
               className="w-[140px] h-[140px]"
-              style={{ marginRight: '-20px' }}
+              style={{ marginRight: '-32px' }}
             />
             <span className="text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
           </Link>
