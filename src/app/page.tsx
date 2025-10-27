@@ -69,7 +69,7 @@ export default function Home() {
       </motion.nav>
 
       {/* Main Content - Center Aligned */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center pt-[72px] md:pt-0">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center pt-[72px] md:pt-48">
         {/* Main Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
