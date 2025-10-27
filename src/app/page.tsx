@@ -53,23 +53,23 @@ export default function Home() {
         transition={{ duration: 0.5 }}
         className="fixed top-0 left-0 z-50 w-full"
       >
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity" style={{ gap: '0px' }}>
             <Image 
               src="/reguard-logo.svg" 
               alt="reGuard Logo" 
               width={140} 
               height={140}
-              className="w-[140px] h-[140px]"
-              style={{ marginRight: '-32px' }}
+              className="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] md:w-[140px] md:h-[140px]"
+              style={{ marginRight: 'clamp(-20px, -2vw, -32px)' }}
             />
-            <span className="text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
+            <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
           </Link>
         </div>
       </motion.nav>
 
       {/* Main Content - Center Aligned */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center pt-32 sm:pt-24 md:pt-0">
         {/* Main Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -77,7 +77,7 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="mb-8 max-w-5xl"
         >
-              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl mb-6 whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
+              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl mb-6 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
                 <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
                   Never worry about API costs again
                 </span>
@@ -87,14 +87,39 @@ export default function Home() {
           </p>
         </motion.div>
 
-        {/* Features - 3 top, 2 bottom */}
+        {/* Features - Mobile: 1 column, Desktop: 3 top, 2 bottom */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mb-16 max-w-3xl"
         >
-          <div className="flex flex-col items-center gap-4 text-sm text-zinc-400" style={{ fontFamily: 'var(--font-spectral)' }}>
+          {/* Mobile: Vertical stack */}
+          <div className="flex flex-col items-center gap-4 text-sm text-zinc-400 sm:hidden" style={{ fontFamily: 'var(--font-spectral)' }}>
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span>Real-time Monitoring</span>
+            </div>
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span>Instant Alerts</span>
+            </div>
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span>Multi-Provider Tracking</span>
+            </div>
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span>Request Caching</span>
+            </div>
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span>3D Cost Visualization</span>
+            </div>
+          </div>
+          
+          {/* Desktop: 3 top, 2 bottom layout */}
+          <div className="hidden sm:flex flex-col items-center gap-4 text-sm text-zinc-400" style={{ fontFamily: 'var(--font-spectral)' }}>
             {/* First row - 3 items */}
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
               <div className="flex items-center gap-2 whitespace-nowrap">
@@ -192,22 +217,22 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-20 flex justify-center gap-12"
+          className="mt-12 sm:mt-20 flex justify-center gap-8 sm:gap-12"
           style={{ fontFamily: 'var(--font-spectral)' }}
         >
           <div className="flex flex-col items-center">
-            <div className="text-3xl font-bold text-white h-[40px] flex items-center justify-center">300+</div>
-            <div className="text-sm text-zinc-400 mt-2">On Waitlist</div>
+            <div className="text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">300+</div>
+            <div className="text-xs sm:text-sm text-zinc-400 mt-2">On Waitlist</div>
           </div>
           <div className="flex flex-col items-center">
-            <div className="text-3xl font-bold text-white h-[40px] flex items-center justify-center">2mins</div>
-            <div className="text-sm text-zinc-400 mt-2">Setup Time</div>
+            <div className="text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">2mins</div>
+            <div className="text-xs sm:text-sm text-zinc-400 mt-2">Setup Time</div>
           </div>
           <div className="flex flex-col items-center">
             <div className="text-white h-[40px] flex items-center justify-center">
-              <Infinity className="h-10 w-10" />
+              <Infinity className="h-8 w-8 sm:h-10 sm:w-10" />
             </div>
-            <div className="text-sm text-zinc-400 mt-2">API Tracking</div>
+            <div className="text-xs sm:text-sm text-zinc-400 mt-2">API Tracking</div>
           </div>
         </motion.div>
 
