@@ -5,6 +5,7 @@ import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
 import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 // Load custom fonts
 const agileFont = localFont({
@@ -90,6 +91,7 @@ export default function RootLayout({
         {children}
         <VisualEditsMessenger />
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
