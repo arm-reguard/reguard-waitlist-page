@@ -269,7 +269,7 @@ export default function Home() {
             <div className="text-xs sm:text-sm text-zinc-300/90 mt-2">Setup Time</div>
           </div>
           <div className="flex flex-col items-center">
-            <div className="text-white h-[40px] flex items-center justify-center">
+            <div className="text-white font-bold h-[40px] flex items-center justify-center">
               <Infinity className="h-8 w-8 sm:h-10 sm:w-10" />
             </div>
             <div className="text-xs sm:text-sm text-zinc-300/90 mt-2">API Tracking</div>
