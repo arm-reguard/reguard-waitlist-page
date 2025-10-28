@@ -23,12 +23,18 @@ export const ReGuardButton = ({
     <>
       <style dangerouslySetInnerHTML={{
         __html: `
+          .reguard-button-${id} .wrap {
+            position: relative;
+          }
+          
           .reguard-button-${id} .wrap::before,
           .reguard-button-${id} .wrap::after {
             content: "";
             position: absolute;
             transition: all 0.3s ease;
             pointer-events: none;
+            display: block;
+            z-index: 0;
           }
           
           .reguard-button-${id} .wrap::before {
@@ -55,6 +61,11 @@ export const ReGuardButton = ({
             );
           }
           
+          .reguard-button-${id} .wrap p {
+            position: relative;
+            z-index: 1;
+          }
+          
           .reguard-button-${id} .wrap p .star-icon:nth-child(2) {
             display: none;
           }
@@ -73,6 +84,8 @@ export const ReGuardButton = ({
             inset: 0;
             border-radius: inherit;
             pointer-events: none;
+            display: block;
+            z-index: 1;
             background-image: linear-gradient(0deg, rgba(167, 139, 250, 0.9), rgba(139, 92, 246, 1), rgba(167, 139, 250, 0.6) 8%, transparent);
             background-position: 0 0;
             opacity: 0;
@@ -137,17 +150,6 @@ export const ReGuardButton = ({
             transition: color 0.4s, text-shadow 0.4s, opacity 0.4s, filter 0.4s;
           }
           
-          /* Mobile optimizations - disable heavy effects */
-          @media (max-width: 768px) {
-            .reguard-button-${id} .wrap::before,
-            .reguard-button-${id} .wrap::after {
-              display: none;
-            }
-            
-            .reguard-button-${id}::after {
-              display: none;
-            }
-          }
         `
       }} />
 
@@ -163,6 +165,7 @@ export const ReGuardButton = ({
             borderRadius: '9999px',
             backgroundColor: '#0a0a0a',
             transition: 'all 0.2s ease',
+            overflow: 'visible',
             boxShadow: `
               inset 0 0.3rem 0.9rem rgba(167, 139, 250, 0.3),
               inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),

@@ -208,20 +208,7 @@ export default function Home() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
                   required
-                  className="w-full rounded-full text-white placeholder-gray-500 focus:outline-none transition-all text-base md:text-lg px-6 py-3"
-                  style={{
-                    background: "rgba(0, 0, 0, 0.5)",
-                    border: "1px solid rgba(167, 139, 250, 0.3)",
-                    boxShadow: "0 0 20px rgba(167, 139, 250, 0.1)",
-                  }}
-                  onFocus={(e) => {
-                    e.currentTarget.style.border = "1px solid rgba(167, 139, 250, 0.5)";
-                    e.currentTarget.style.boxShadow = "0 0 20px rgba(167, 139, 250, 0.2)";
-                  }}
-                  onBlur={(e) => {
-                    e.currentTarget.style.border = "1px solid rgba(167, 139, 250, 0.3)";
-                    e.currentTarget.style.boxShadow = "0 0 20px rgba(167, 139, 250, 0.1)";
-                  }}
+                  className="email-input w-full rounded-full text-white placeholder-gray-500 focus:outline-none text-base md:text-lg px-6 py-3"
                 />
                 <ReGuardButton 
                   type="submit" 

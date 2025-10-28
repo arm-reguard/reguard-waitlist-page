@@ -164,6 +164,19 @@
   }
 }
 
+/* Email input styles - hardware-accelerated for smooth performance */
+.email-input {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  box-shadow: 0 0 20px rgba(167, 139, 250, 0.1);
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.email-input:focus {
+  border: 1px solid rgba(167, 139, 250, 0.5);
+  box-shadow: 0 0 20px rgba(167, 139, 250, 0.2);
+}
+
 /* Hide Next.js error overlay portal */
 nextjs-portal {
   display: none !important;
