@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2, Infinity } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { CostCalculator } from "@/components/calculator/CostCalculator";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -77,39 +78,40 @@ export default function Home() {
   };
 
   return (
-    <AuroraBackground className="justify-start md:justify-center">
-      {/* Fixed Navigation Bar - Top Left */}
-      <motion.nav
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="relative md:fixed top-0 left-0 z-50 w-full"
-      >
-        <div className="pl-[3px] pr-1 pt-0 pb-2 md:px-6 md:py-4">
-          <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity" style={{ gap: '0px' }}>
-            <Image 
-              src="/reguard-logo.svg" 
-              alt="reGuard Logo" 
-              width={140} 
-              height={140}
-              className="w-[85px] h-[85px] sm:w-[100px] sm:h-[100px] md:w-[140px] md:h-[140px]"
-              style={{ marginRight: 'clamp(-16px, -2vw, -32px)' }}
-            />
-            <span className="text-3xl sm:text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
-          </Link>
-        </div>
-      </motion.nav>
+    <>
+      <AuroraBackground className="justify-start md:justify-center">
+        {/* Header */}
+        <motion.header
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="relative z-10 pt-4 sm:pt-6"
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 sm:py-2">
+            <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity -ml-3 sm:-ml-5" style={{ gap: '0px' }}>
+              <Image 
+                src="/reguard-logo.svg" 
+                alt="reGuard Logo" 
+                width={140} 
+                height={140}
+                className="w-[70px] h-[70px] sm:w-[85px] sm:h-[85px] md:w-[100px] md:h-[100px]"
+                style={{ marginRight: 'clamp(-16px, -2vw, -24px)' }}
+              />
+              <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
+            </Link>
+          </div>
+        </motion.header>
 
-      {/* Main Content - Center Aligned */}
-      <div className="relative z-10 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pt-3 pb-8 md:pt-32 md:pb-0">
+        {/* Main Content - Center Aligned */}
+        <div className="relative z-10 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 -mt-16 sm:-mt-20">
         {/* Main Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-9 md:mb-10 max-w-5xl"
+          className="mb-7 md:mb-9 max-w-5xl"
         >
-              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl mb-2 md:mb-6 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
+              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl mb-3 md:mb-5 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
                 <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
                   Never worry about API costs again
                 </span>
@@ -156,10 +158,10 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-4 md:mb-16 max-w-3xl w-full hidden sm:block"
+          className="mb-5 md:mb-11 max-w-3xl w-full hidden sm:block"
         >
           {/* Desktop: 3 top, 2 bottom layout */}
-          <div className="flex flex-col items-center gap-4 text-sm text-zinc-300/90">
+          <div className="flex flex-col items-center gap-5 text-sm text-zinc-300/90">
             {/* First row - 3 items */}
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
               <div className="flex items-center gap-2 whitespace-nowrap">
@@ -199,9 +201,9 @@ export default function Home() {
           {!isSubmitted && !isDuplicate ? (
             <form 
               onSubmit={handleSubmit}
-              className="space-y-3"
+              className="space-y-4"
             >
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-4">
                 <input
                   type="email"
                   value={email}
@@ -221,6 +223,13 @@ export default function Home() {
               <p className="text-xs text-zinc-500">
                 Be the first to know when we launch. No spam, ever.
               </p>
+              <button
+                type="button"
+                onClick={() => document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-sm text-purple-400 hover:text-purple-300 transition-colors mt-2 font-bold cursor-pointer"
+              >
+                Try our FREE API Cost Calculator
+              </button>
             </form>
           ) : isDuplicate ? (
             <motion.div
@@ -258,7 +267,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-8 md:mt-20 flex justify-center gap-8 sm:gap-12"
+          className="mt-7 md:mt-14 flex justify-center gap-8 sm:gap-12"
         >
           <div className="flex flex-col items-center">
             <div className="text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">300+</div>
@@ -281,7 +290,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-6 md:mt-10 mb-0 md:mb-8"
+          className="mt-6 md:mt-10 mb-0"
         >
           <motion.div
             animate={{
@@ -303,6 +312,12 @@ export default function Home() {
           </motion.div>
         </motion.div>
       </div>
-    </AuroraBackground>
+
+      {/* Calculator Section */}
+      <section id="calculator" className="-mt-4 pb-20 px-4">
+        <CostCalculator />
+      </section>
+      </AuroraBackground>
+    </>
   );
 }
