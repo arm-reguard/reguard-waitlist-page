@@ -6,6 +6,7 @@ import { calculateCost, CalculationInputs, formatCurrency } from "@/lib/calculat
 import { ComparisonTable } from "./ComparisonTable";
 import { InsightsPanel } from "./InsightsPanel";
 import { CostChart } from "./CostChart";
+import { CostVisualization3DModal } from "./CostVisualization3DModal";
 import { ReGuardButton } from "@/components/ui/reguard-button";
 import { CheckCircle2 } from "lucide-react";
 
@@ -23,6 +24,7 @@ export function CostCalculator() {
   const [outputTokens, setOutputTokens] = useState(1500);
   const [selectedProviders, setSelectedProviders] = useState<Set<string>>(new Set());
   const [selectedModels, setSelectedModels] = useState<ProviderModelSelection[]>([]);
+  const [show3DModal, setShow3DModal] = useState(false);
 
   // Update inputs when use case changes
   const handleUseCaseChange = useCallback((newUseCase: UseCase) => {
@@ -447,10 +449,35 @@ export function CostCalculator() {
       {calculatedModels.length > 0 && (
         <div className="mb-8">
           <div className="rounded-lg border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95 p-6">
-            <h3 className="text-2xl font-bold text-white mb-2">Visual Comparison</h3>
-            <p className="text-sm text-zinc-400 mb-6">
-              Quick visual comparison showing the cost difference between providers for your usage ({callsPerMonth.toLocaleString()} calls/month)
-            </p>
+            <div className="flex items-start justify-between mb-4 gap-4">
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-2">Visual Comparison</h3>
+                <p className="text-sm text-zinc-400">
+                  Quick visual comparison showing the cost difference between providers for your usage ({callsPerMonth.toLocaleString()} calls/month)
+                </p>
+              </div>
+              
+              <button
+                onClick={() => setShow3DModal(true)}
+                className="view-3d-button relative group flex items-center gap-2 px-5 py-2.5 bg-zinc-900 border border-purple-500/30 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50 flex-shrink-0 cursor-pointer animate-pulse-subtle"
+              >
+                {/* Gradient hover effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-40 group-hover:opacity-80 blur transition-opacity duration-500" />
+                
+                {/* Content */}
+                <div className="relative flex items-center gap-2">
+                  {/* Star icon with hover animation */}
+                  <span className="text-white text-base">
+                    <span className="inline-block group-hover:hidden">✧</span>
+                    <span className="hidden group-hover:inline-block">✦</span>
+                  </span>
+                  <span className="font-bold text-white text-base whitespace-nowrap" style={{ fontFamily: 'var(--font-source-sans-3)' }}>View in 3D</span>
+                  <span className="text-[10px] font-medium bg-white/20 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                    Preview
+                  </span>
+                </div>
+              </button>
+            </div>
             <div className="rounded-lg border border-zinc-800/50 bg-[#1A1A1D] p-6">
               <CostChart models={calculatedModels} maxModels={8} />
             </div>
@@ -487,19 +514,19 @@ export function CostCalculator() {
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-10 text-sm sm:text-base text-zinc-300/90">
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-            <span>Multi-provider LLM tracking</span>
+            <span>Multi-Provider LLM Tracking</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-            <span>Flat pricing model</span>
+            <span>Flat Pricing Model</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-            <span>Unlimited API call tracking</span>
+            <span>Unlimited API Call Tracking</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-            <span>Smart caching (save 30-50%)</span>
+            <span>Smart Caching (Save 30-50%)</span>
           </div>
         </div>
         
@@ -520,6 +547,13 @@ export function CostCalculator() {
         </p>
       </div>
 
+      {/* 3D Visualization Modal */}
+      <CostVisualization3DModal
+        open={show3DModal}
+        onOpenChange={setShow3DModal}
+        data={calculatedModels}
+      />
+
       {/* Slider Custom Styles */}
       <style jsx>{`
         .slider-purple::-webkit-slider-thumb {
@@ -539,6 +573,11 @@ export function CostCalculator() {
           background: #a855f7;
           cursor: pointer;
           border: 2px solid #fff;
+        }
+
+        /* Stop pulse animation on hover */
+        .view-3d-button:hover {
+          animation: none !important;
         }
       `}</style>
     </div>
