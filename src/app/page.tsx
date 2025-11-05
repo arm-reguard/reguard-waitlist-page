@@ -129,7 +129,7 @@ export default function Home() {
           className="mb-8 md:mb-16 max-w-3xl w-full flex justify-center sm:hidden"
         >
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
-          <div className="flex flex-col items-start gap-3 text-sm text-zinc-300/90">
+          <div className="flex flex-col items-start gap-3 text-sm sm:text-base text-zinc-300/90">
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
               <span>Live Cost Monitoring</span>
@@ -161,7 +161,7 @@ export default function Home() {
           className="mb-5 md:mb-11 max-w-3xl w-full hidden sm:block"
         >
           {/* Desktop: 3 top, 2 bottom layout */}
-          <div className="flex flex-col items-center gap-5 text-sm text-zinc-300/90">
+          <div className="flex flex-col items-center gap-5 text-sm sm:text-base text-zinc-300/90">
             {/* First row - 3 items */}
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
               <div className="flex items-center gap-2 whitespace-nowrap">

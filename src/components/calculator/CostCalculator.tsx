@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
-import { pricingData, useCaseDefaults } from "@/lib/pricing-data";
-import { calculateCost, CalculationInputs, formatCurrency } from "@/lib/calculator-utils";
+import { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import { pricingData, useCaseDefaults, useCaseQualityMap } from "@/lib/pricing-data";
+import { calculateCost, CalculationInputs, formatCurrency, getSmartRecommendations, getProviderRecommendations } from "@/lib/calculator-utils";
 import { ComparisonTable } from "./ComparisonTable";
 import { InsightsPanel } from "./InsightsPanel";
 import { CostChart } from "./CostChart";
 import { CostVisualization3DModal } from "./CostVisualization3DModal";
 import { ReGuardButton } from "@/components/ui/reguard-button";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, ChevronDown, ChevronUp } from "lucide-react";
 
 type UseCase = keyof typeof useCaseDefaults;
 
@@ -25,6 +25,27 @@ export function CostCalculator() {
   const [selectedProviders, setSelectedProviders] = useState<Set<string>>(new Set());
   const [selectedModels, setSelectedModels] = useState<ProviderModelSelection[]>([]);
   const [show3DModal, setShow3DModal] = useState(false);
+  const [showAllProviders, setShowAllProviders] = useState(false);
+  const [showDetailedBreakdown, setShowDetailedBreakdown] = useState(false);
+  
+  // Ref to preserve scroll position when toggling sections
+  const breakdownButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Handler to toggle breakdown while preserving scroll position
+  const handleToggleBreakdown = useCallback(() => {
+    // Capture current scroll position
+    const currentScrollY = window.scrollY || window.pageYOffset;
+    
+    // Toggle the state
+    setShowDetailedBreakdown(prev => !prev);
+
+    // Restore scroll position immediately after render completes
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo(0, currentScrollY);
+      });
+    });
+  }, []);
 
   // Update inputs when use case changes
   const handleUseCaseChange = useCallback((newUseCase: UseCase) => {
@@ -49,6 +70,11 @@ export function CostCalculator() {
     []
   );
 
+  // Top providers to show by default (rest hidden behind "Show More")
+  const topProviders = ['OpenAI', 'Anthropic', 'Google', 'Mistral'];
+  const otherProviders = allProviders.filter(p => !topProviders.includes(p));
+  const visibleProviders = showAllProviders ? allProviders : topProviders.filter(p => allProviders.includes(p));
+
   // Filter and calculate costs
   const calculatedModels = useMemo(() => {
     const inputs: CalculationInputs = {
@@ -69,6 +95,31 @@ export function CostCalculator() {
       .map((model) => calculateCost(model, inputs))
       .sort((a, b) => a.totalCost - b.totalCost);
   }, [inputTokens, outputTokens, callsPerMonth, selectedProviders]);
+
+  // Best budget model for the current use case (only when no providers selected)
+  const bestBudgetModel = useMemo(() => {
+    if (selectedProviders.size > 0) {
+      return calculatedModels[0]; // Use cheapest from selected providers
+    }
+
+    // When no providers selected, find best budget model for this use case
+    const inputs: CalculationInputs = {
+      inputTokensPerCall: inputTokens,
+      outputTokensPerCall: outputTokens,
+      callsPerMonth,
+    };
+
+    const qualityTiers = useCaseQualityMap[useCase] || useCaseQualityMap['general'];
+    const budgetModelIds = qualityTiers.budget;
+    
+    // Filter to only budget-tier models for this use case
+    const budgetModels = pricingData
+      .filter((m) => budgetModelIds.includes(m.id))
+      .map((model) => calculateCost(model, inputs))
+      .sort((a, b) => a.totalCost - b.totalCost);
+
+    return budgetModels[0] || calculatedModels[0]; // Fallback to cheapest overall
+  }, [inputTokens, outputTokens, callsPerMonth, selectedProviders, useCase, calculatedModels]);
 
   // Toggle provider filter
   const toggleProvider = (provider: string) => {
@@ -161,9 +212,9 @@ export function CostCalculator() {
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4">
+    <div className="w-full max-w-7xl mx-auto px-4">
       {/* Section Header */}
-      <div className="text-center mb-12">
+      <div className="text-center mb-8">
         <h2
           className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl mb-4"
           style={{ fontFamily: 'var(--font-meriva)' }}
@@ -172,38 +223,37 @@ export function CostCalculator() {
             Calculate your LLM API costs
           </span>
         </h2>
-        <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
+        <p className="text-lg text-zinc-300 max-w-2xl mx-auto">
           Adjust parameters to see real-time cost comparisons across providers
         </p>
       </div>
 
-      {/* Calculator Card */}
-      <div className="rounded-xl p-6 sm:p-8 border border-zinc-800/50 bg-[#1A1A1D] mb-8">
-        {/* Input Form */}
-        <div className="space-y-6 mb-8">
-          {/* Use Case Dropdown */}
-          <div>
-            <label className="block text-sm font-medium text-zinc-300 mb-2">
-              Use Case
-            </label>
-            <select
-              value={useCase}
-              onChange={(e) => handleUseCaseChange(e.target.value as UseCase)}
-              className="w-full px-4 py-3 rounded-lg bg-[#0A0A0B] border border-zinc-700 text-white focus:outline-none focus:border-purple-500 transition-colors"
-            >
-              {Object.entries(useCaseDefaults).map(([key, value]) => (
-                <option key={key} value={key}>
-                  {key.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} - {value.description}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Number Inputs Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {/* Monthly API Calls */}
+      {/* Sidebar + Main Content Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6 mb-8">
+        {/* SIDEBAR - Input Controls */}
+        <div className="rounded-xl p-5 border border-zinc-800/50 bg-zinc-900/95 h-fit lg:sticky lg:top-4">
+          <div className="space-y-4">
+            {/* Use Case Dropdown */}
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
+              <label className="block text-xs font-medium text-zinc-300 mb-1.5">
+                Use Case
+              </label>
+              <select
+                value={useCase}
+                onChange={(e) => handleUseCaseChange(e.target.value as UseCase)}
+                className="w-full pl-3 pr-9 py-2 text-sm rounded-lg bg-[#0A0A0B] border border-zinc-700 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg%20xmlns%3d%22http%3a%2f%2fwww.w3.org%2f2000%2fsvg%22%20viewBox%3d%220%200%2020%2020%22%20fill%3d%22none%22%3e%3cpath%20d%3d%22M7%207l3%203%203-3%22%20stroke%3d%22%239CA3AF%22%20stroke-width%3d%221.5%22%20stroke-linecap%3d%22round%22%20stroke-linejoin%3d%22round%22%2f%3e%3c%2fsvg%3e')] bg-[length:1.25rem] bg-[center_right_0.5rem] bg-no-repeat"
+              >
+                {Object.entries(useCaseDefaults).map(([key, value]) => (
+                  <option key={key} value={key}>
+                    {key.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Monthly Calls Input */}
+            <div>
+              <label className="block text-xs font-medium text-zinc-300 mb-1.5">
                 Monthly API Calls
               </label>
               <input
@@ -212,287 +262,323 @@ export function CostCalculator() {
                 onChange={(e) => setCallsPerMonth(Math.max(1, parseInt(e.target.value) || 1))}
                 min="1"
                 max="10000000"
-                className="w-full px-4 py-3 rounded-lg bg-[#0A0A0B] border border-zinc-700 text-white focus:outline-none focus:border-purple-500 transition-colors"
+                className="w-full px-3 py-2 text-sm rounded-lg bg-[#0A0A0B] border border-zinc-700 text-white focus:outline-none focus:border-purple-500 transition-colors"
               />
             </div>
 
-            {/* Input Tokens */}
+            {/* Tokens Per Call */}
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label className="block text-xs font-medium text-zinc-300 mb-1.5">
+                  Input Tokens
+                </label>
+                <input
+                  type="number"
+                  value={inputTokens}
+                  onChange={(e) => setInputTokens(Math.max(1, parseInt(e.target.value) || 1))}
+                  min="1"
+                  max="100000"
+                  className="w-full px-3 py-2 text-sm rounded-lg bg-[#0A0A0B] border border-zinc-700 text-white focus:outline-none focus:border-purple-500 transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-zinc-300 mb-1.5">
+                  Output Tokens
+                </label>
+                <input
+                  type="number"
+                  value={outputTokens}
+                  onChange={(e) => setOutputTokens(Math.max(1, parseInt(e.target.value) || 1))}
+                  min="1"
+                  max="100000"
+                  className="w-full px-3 py-2 text-sm rounded-lg bg-[#0A0A0B] border border-zinc-700 text-white focus:outline-none focus:border-purple-500 transition-colors"
+                />
+              </div>
+            </div>
+
+            {/* Compact Slider */}
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
-                Input Tokens / Call
+              <label className="block text-xs font-medium text-zinc-300 mb-1.5">
+                {callsPerMonth.toLocaleString()} calls/mo
               </label>
               <input
-                type="number"
-                value={inputTokens}
-                onChange={(e) => setInputTokens(Math.max(1, parseInt(e.target.value) || 1))}
-                min="1"
-                max="100000"
-                className="w-full px-4 py-3 rounded-lg bg-[#0A0A0B] border border-zinc-700 text-white focus:outline-none focus:border-purple-500 transition-colors"
+                type="range"
+                min="1000"
+                max="500000"
+                step="1000"
+                value={callsPerMonth}
+                onChange={(e) => setCallsPerMonth(parseInt(e.target.value))}
+                className="w-full h-1.5 bg-zinc-700 rounded-lg appearance-none cursor-pointer slider-purple"
               />
+              <div className="flex justify-between text-[10px] text-zinc-300 mt-0.5">
+                <span>1K</span>
+                <span>500K</span>
+              </div>
             </div>
 
-            {/* Output Tokens */}
-            <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
-                Output Tokens / Call
+            {/* Provider Selection */}
+            <div className="pt-3 border-t border-zinc-800/50">
+              <label className="block text-xs font-medium text-zinc-300 mb-2">
+                Providers
               </label>
-              <input
-                type="number"
-                value={outputTokens}
-                onChange={(e) => setOutputTokens(Math.max(1, parseInt(e.target.value) || 1))}
-                min="1"
-                max="100000"
-                className="w-full px-4 py-3 rounded-lg bg-[#0A0A0B] border border-zinc-700 text-white focus:outline-none focus:border-purple-500 transition-colors"
-              />
-            </div>
-          </div>
-
-          {/* Calls Per Month Slider */}
-          <div>
-            <label className="block text-sm font-medium text-zinc-300 mb-2">
-              Adjust Monthly Calls: {callsPerMonth.toLocaleString()}
-            </label>
-            <input
-              type="range"
-              min="1000"
-              max="500000"
-              step="1000"
-              value={callsPerMonth}
-              onChange={(e) => setCallsPerMonth(parseInt(e.target.value))}
-              className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer slider-purple"
-            />
-            <div className="flex justify-between text-xs text-zinc-500 mt-1">
-              <span>1K</span>
-              <span>500K</span>
-            </div>
-          </div>
-
-          {/* Provider Filter with Model Selection */}
-          <div>
-            <label className="block text-sm font-medium text-zinc-300 mb-3">
-              Select Providers & Models (for multi-provider comparison)
-            </label>
-            <div className="space-y-3">
-              {allProviders.map((provider) => {
-                const isSelected = selectedProviders.has(provider);
-                const providerModels = pricingData.filter((m) => m.provider === provider);
-                const providerColor = providerModels[0]?.color;
-                const selectedModel = selectedModels.find((m) => m.provider === provider);
-                
-                return (
-                  <div key={provider} className="border border-zinc-700/50 rounded-lg p-3 bg-zinc-900/30">
-                    <label className="flex items-center gap-3 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={isSelected}
-                        onChange={() => toggleProvider(provider)}
-                        className="w-4 h-4 rounded border-zinc-600 text-purple-600 focus:ring-purple-500 focus:ring-offset-0 bg-zinc-800"
-                      />
-                      <div className="flex items-center gap-2 flex-1">
+              <div className="space-y-2">
+                {visibleProviders.map((provider) => {
+                  const isSelected = selectedProviders.has(provider);
+                  const providerModels = pricingData.filter((m) => m.provider === provider);
+                  const providerColor = providerModels[0]?.color;
+                  const selectedModel = selectedModels.find((m) => m.provider === provider);
+                  
+                  return (
+                    <div key={provider} className="space-y-1">
+                      <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={isSelected}
+                          onChange={() => toggleProvider(provider)}
+                          className="w-3.5 h-3.5 rounded border-zinc-600 text-purple-600 focus:ring-purple-500 focus:ring-offset-0 bg-zinc-800"
+                        />
                         <div
-                          className="w-3 h-3 rounded-full"
+                          className="w-2.5 h-2.5 rounded-full"
                           style={{ backgroundColor: providerColor }}
                         />
-                        <span className="font-medium text-white">{provider}</span>
-                        <span className="text-xs text-zinc-500">({providerModels.length} models)</span>
-                      </div>
-                    </label>
-                    
-                    {/* Model Selection Dropdown - Only show when provider is selected */}
-                    {isSelected && (
-                      <div className="mt-3 ml-7">
-                        <label className="block text-xs text-zinc-400 mb-2">
-                          Currently using:
-                        </label>
-                        <select
-                          value={selectedModel?.modelId || ''}
-                          onChange={(e) => handleModelSelection(provider, e.target.value)}
-                          className="w-full px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700 text-white text-sm focus:outline-none focus:border-purple-500 transition-colors"
-                        >
-                          {providerModels.map((model) => (
-                            <option key={model.id} value={model.id}>
-                              {model.name} - ${model.inputCostPerMillion}/M in, ${model.outputCostPerMillion}/M out
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+                        <span className="text-sm text-white">{provider}</span>
+                      </label>
+                      
+                      {/* Inline Model Dropdown */}
+                      {isSelected && (
+                        <div className="ml-6 pl-2 border-l-2 border-zinc-700/50">
+                          <select
+                            value={selectedModel?.modelId || ''}
+                            onChange={(e) => handleModelSelection(provider, e.target.value)}
+                            className="w-full pl-2 pr-8 py-1.5 text-xs rounded bg-zinc-800/50 border border-zinc-700/50 text-zinc-300 focus:outline-none focus:border-purple-500 transition-colors appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg%20xmlns%3d%22http%3a%2f%2fwww.w3.org%2f2000%2fsvg%22%20viewBox%3d%220%200%2020%2020%22%20fill%3d%22none%22%3e%3cpath%20d%3d%22M7%207l3%203%203-3%22%20stroke%3d%22%239CA3AF%22%20stroke-width%3d%221.5%22%20stroke-linecap%3d%22round%22%20stroke-linejoin%3d%22round%22%2f%3e%3c%2fsvg%3e')] bg-[length:1rem] bg-[center_right_0.375rem] bg-no-repeat"
+                          >
+                            {providerModels.map((model) => (
+                              <option key={model.id} value={model.id}>
+                                {model.name}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
 
-          {/* Pricing Note */}
-          <div className="pt-4 border-t border-zinc-800/50 space-y-1">
-            <p className="text-xs text-zinc-500">
-              * Anthropic Sonnet 4.5 pricing shown for ≤200K context. Prices are $6.00 input / $22.50 output for &gt;200K context.
-            </p>
-            <p className="text-xs text-zinc-500">
-              * More providers coming soon: Hugging Face, LiteLLM (103+ providers), Replicate, and more!
-            </p>
+              {/* Show More/Less Button */}
+              {otherProviders.length > 0 && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowAllProviders(!showAllProviders);
+                  }}
+                  className="w-full mt-3 px-3 py-1.5 text-xs font-medium text-purple-300 hover:text-purple-200 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/20 rounded-lg transition-colors flex items-center justify-center gap-1 cursor-pointer"
+                >
+                  {showAllProviders ? (
+                    <>
+                      <ChevronUp className="w-3 h-3" />
+                      Show Less
+                    </>
+                  ) : (
+                    <>
+                      <ChevronDown className="w-3 h-3" />
+                      Show {otherProviders.length} More
+                    </>
+                  )}
+                </button>
+              )}
+            </div>
+
+            {/* Compact Note */}
+            <div className="pt-3 border-t border-zinc-800/50">
+              <p className="text-[10px] text-zinc-300 leading-relaxed">
+                * More providers coming soon
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Current Setup Summary */}
-      {calculatedModels.length > 0 && (
-        <div className="mb-8">
-          <div className="rounded-xl border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95 p-6">
-            <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
-              {selectedProviders.size >= 2 ? 'Your Multi-Provider Setup' : 'Your Current Setup'}
-            </h3>
-            <p className="text-sm text-zinc-400 mb-4">
-              {selectedProviders.size >= 2
-                ? 'Current configuration and monthly costs for your selected providers'
-                : 'Your current configuration and estimated monthly costs'}
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div>
-                <div className="text-xs text-zinc-400 mb-1">Use Case</div>
-                <div className="text-white font-semibold">
-                  {useCase.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
+        {/* MAIN CONTENT - Bento Grid */}
+        <div className="space-y-5">
+          {/* ROW 1: Setup Summary (Full Width) */}
+          {calculatedModels.length > 0 && (
+            <div className="rounded-xl border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95 p-5">
+              <h3 className="text-xl font-bold text-white mb-2">
+                {selectedProviders.size >= 2 
+                  ? 'Your Multi-Provider Setup' 
+                  : selectedProviders.size === 1 
+                    ? 'Your Current Setup' 
+                    : 'Best Budget Setup'}
+              </h3>
+              <p className="text-sm text-zinc-300 mb-4">
+                {selectedProviders.size >= 2
+                  ? 'Current configuration and monthly costs for your selected providers'
+                  : selectedProviders.size === 1
+                    ? 'Your current configuration and estimated monthly costs'
+                    : 'Most cost-effective option for your use case'}
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div>
+                  <div className="text-xs text-zinc-300 mb-1">Use Case</div>
+                  <div className="text-base text-white font-semibold">
+                    {useCase.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs text-zinc-300 mb-1">Monthly Volume</div>
+                  <div className="text-base text-white font-semibold">
+                    {callsPerMonth.toLocaleString()} calls
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs text-zinc-300 mb-1">Avg Tokens/Call</div>
+                  <div className="text-base text-white font-semibold">
+                    {inputTokens} in / {outputTokens} out
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs text-zinc-300 mb-1">
+                    {selectedProviders.size > 0 ? 'Selected Providers' : 'All Providers'}
+                  </div>
+                  <div className="text-base text-white font-semibold">
+                    {selectedProviders.size > 0 
+                      ? `${selectedProviders.size} selected`
+                      : `${calculatedModels.length} models`}
+                  </div>
                 </div>
               </div>
-              <div>
-                <div className="text-xs text-zinc-400 mb-1">Monthly Volume</div>
-                <div className="text-white font-semibold">
-                  {callsPerMonth.toLocaleString()} calls
-                </div>
-              </div>
-              <div>
-                <div className="text-xs text-zinc-400 mb-1">Avg Tokens/Call</div>
-                <div className="text-white font-semibold">
-                  {inputTokens} in / {outputTokens} out
-                </div>
-              </div>
-              <div>
-                <div className="text-xs text-zinc-400 mb-1">
-                  {selectedProviders.size > 0 ? 'Selected Providers' : 'All Providers'}
-                </div>
-                <div className="text-white font-semibold">
-                  {selectedProviders.size > 0 
-                    ? `${selectedProviders.size} selected`
-                    : `${calculatedModels.length} models`}
-                </div>
-              </div>
-            </div>
 
-            {/* Multi-Provider Cost Breakdown */}
-            {multiProviderTotalCost && multiProviderTotalCost.breakdown.length > 0 ? (
-              <div className="mt-6 pt-6 border-t border-zinc-700/50">
-                <div className="text-xs text-zinc-400 mb-3">Multi-Provider Cost Breakdown:</div>
-                <div className="space-y-2 mb-4">
-                  {multiProviderTotalCost.breakdown.map((item, idx) => (
-                    <div key={idx} className="flex justify-between items-center text-sm">
-                      <span className="text-zinc-300">
-                        {item.provider} {item.model}
-                      </span>
-                      <span className="text-white font-semibold">
-                        {formatCurrency(item.cost)}/mo
-                      </span>
+              {/* Cost Summary */}
+              {multiProviderTotalCost && multiProviderTotalCost.breakdown.length > 0 ? (
+                <div className="mt-5 pt-5 border-t border-zinc-700/50">
+                  <div className="text-xs text-zinc-300 mb-3">Multi-Provider Cost Breakdown:</div>
+                  <div className="space-y-2 mb-4">
+                    {multiProviderTotalCost.breakdown.map((item, idx) => (
+                      <div key={idx} className="flex justify-between items-center text-sm">
+                        <span className="text-zinc-300">
+                          {item.provider} {item.model}
+                        </span>
+                        <span className="text-white font-semibold">
+                          {formatCurrency(item.cost)}/mo
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="h-px bg-zinc-700 my-3" />
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <div className="text-xs text-zinc-300 mb-1">Total Monthly Cost</div>
+                      <div className="text-3xl font-bold text-purple-400">
+                        {formatCurrency(multiProviderTotalCost.total)}
+                      </div>
                     </div>
-                  ))}
+                    <div className="text-right">
+                      <div className="text-xs text-zinc-300 mb-1">Estimated Yearly</div>
+                      <div className="text-2xl font-bold text-white">
+                        {formatCurrency(multiProviderTotalCost.total * 12)}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="h-px bg-zinc-700 my-3" />
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              ) : (
+                <div className="mt-5 pt-5 border-t border-zinc-700/50 flex justify-between items-center">
                   <div>
-                    <div className="text-xs text-zinc-400 mb-1">Total Monthly Cost</div>
-                    <div className="text-3xl font-bold text-purple-400">
-                      {formatCurrency(multiProviderTotalCost.total)}
+                    <div className="text-xs text-zinc-300 mb-1">Best Monthly Cost</div>
+                    <div className="text-3xl font-bold text-green-400">
+                      {formatCurrency(bestBudgetModel?.totalCost || 0)}
+                    </div>
+                    <div className="text-xs text-zinc-300 mt-1">
+                      with {bestBudgetModel?.provider} {bestBudgetModel?.name}
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-xs text-zinc-400 mb-1">Estimated Yearly</div>
+                    <div className="text-xs text-zinc-300 mb-1">Estimated Yearly</div>
                     <div className="text-2xl font-bold text-white">
-                      {formatCurrency(multiProviderTotalCost.total * 12)}
+                      {formatCurrency((bestBudgetModel?.totalCost || 0) * 12)}
                     </div>
                   </div>
                 </div>
-              </div>
-            ) : (
-              <div className="mt-6 pt-6 border-t border-zinc-700/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              )}
+            </div>
+          )}
+
+          {/* Use InsightsPanel for now - will render sections inline in bento grid */}
+          <InsightsPanel
+            models={calculatedModels}
+            inputs={{ inputTokensPerCall: inputTokens, outputTokensPerCall: outputTokens, callsPerMonth }}
+            useCase={useCase}
+            selectedProviders={Array.from(selectedProviders)}
+            selectedModels={selectedModels}
+            multiProviderTotalCost={multiProviderTotalCost}
+          />
+
+          {/* ROW: Visual Comparison (Full Width) */}
+          {calculatedModels.length > 0 && (
+            <div className="rounded-lg border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95 p-5">
+              <div className="flex items-start justify-between mb-3 gap-4">
                 <div>
-                  <div className="text-xs text-zinc-400 mb-1">Best Monthly Cost</div>
-                  <div className="text-3xl font-bold text-green-400">
-                    {formatCurrency(calculatedModels[0]?.totalCost || 0)}
-                  </div>
-                  <div className="text-xs text-zinc-400 mt-1">
-                    with {calculatedModels[0]?.provider} {calculatedModels[0]?.name}
-                  </div>
+                  <h3 className="text-lg font-bold text-white mb-1">Visual Comparison</h3>
+                  <p className="text-xs text-zinc-300">
+                    Cost difference between providers for your usage ({callsPerMonth.toLocaleString()} calls/month)
+                  </p>
                 </div>
-                <div className="text-right">
-                  <div className="text-xs text-zinc-400 mb-1">Estimated Yearly</div>
-                  <div className="text-2xl font-bold text-white">
-                    {formatCurrency((calculatedModels[0]?.totalCost || 0) * 12)}
+                
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShow3DModal(true);
+                  }}
+                  className="view-3d-button relative group flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-purple-500/30 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50 flex-shrink-0 cursor-pointer animate-pulse-subtle"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-40 group-hover:opacity-80 blur transition-opacity duration-500" />
+                  <div className="relative flex items-center gap-1.5">
+                    <span className="text-white text-sm">
+                      <span className="inline-block group-hover:hidden">✧</span>
+                      <span className="hidden group-hover:inline-block">✦</span>
+                    </span>
+                    <span className="font-bold text-white text-sm whitespace-nowrap" style={{ fontFamily: 'var(--font-source-sans-3)' }}>View in 3D</span>
+                    <span className="text-[9px] font-medium bg-white/20 px-1.5 py-0.5 rounded-full uppercase tracking-wider">
+                      Preview
+                    </span>
                   </div>
-                </div>
+                </button>
+              </div>
+              <div className="rounded-lg border border-zinc-800/50 bg-[#1A1A1D] p-4">
+                <CostChart models={calculatedModels} maxModels={8} />
+              </div>
+            </div>
+          )}
+
+          {/* ROW: Detailed Breakdown (Collapsible) */}
+          <div className="rounded-lg border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95">
+            <button
+              ref={breakdownButtonRef}
+              type="button"
+              onClick={handleToggleBreakdown}
+              className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-zinc-900/50 transition-colors rounded-lg cursor-pointer"
+            >
+              <div>
+                <h3 className="text-lg font-bold text-white mb-0.5 flex items-center gap-2">
+                  Detailed Breakdown
+                  {showDetailedBreakdown ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                </h3>
+                <p className="text-xs text-zinc-300">
+                  Full breakdown of monthly costs for all {calculatedModels.length} models
+                </p>
+              </div>
+              <span className="text-xs font-medium text-purple-300">
+                {showDetailedBreakdown ? 'Hide' : 'Show'}
+              </span>
+            </button>
+            
+            {showDetailedBreakdown && (
+              <div className="px-5 pb-5">
+                <ComparisonTable models={calculatedModels} />
               </div>
             )}
           </div>
-        </div>
-      )}
-
-      {/* Insights Panel */}
-      <div className="mb-8">
-        <InsightsPanel
-          models={calculatedModels}
-          inputs={{ inputTokensPerCall: inputTokens, outputTokensPerCall: outputTokens, callsPerMonth }}
-          useCase={useCase}
-          selectedProviders={Array.from(selectedProviders)}
-          selectedModels={selectedModels}
-          multiProviderTotalCost={multiProviderTotalCost}
-        />
-      </div>
-
-      {/* Cost Chart */}
-      {calculatedModels.length > 0 && (
-        <div className="mb-8">
-          <div className="rounded-lg border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95 p-6">
-            <div className="flex items-start justify-between mb-4 gap-4">
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-2">Visual Comparison</h3>
-                <p className="text-sm text-zinc-400">
-                  Quick visual comparison showing the cost difference between providers for your usage ({callsPerMonth.toLocaleString()} calls/month)
-                </p>
-              </div>
-              
-              <button
-                onClick={() => setShow3DModal(true)}
-                className="view-3d-button relative group flex items-center gap-2 px-5 py-2.5 bg-zinc-900 border border-purple-500/30 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50 flex-shrink-0 cursor-pointer animate-pulse-subtle"
-              >
-                {/* Gradient hover effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-40 group-hover:opacity-80 blur transition-opacity duration-500" />
-                
-                {/* Content */}
-                <div className="relative flex items-center gap-2">
-                  {/* Star icon with hover animation */}
-                  <span className="text-white text-base">
-                    <span className="inline-block group-hover:hidden">✧</span>
-                    <span className="hidden group-hover:inline-block">✦</span>
-                  </span>
-                  <span className="font-bold text-white text-base whitespace-nowrap" style={{ fontFamily: 'var(--font-source-sans-3)' }}>View in 3D</span>
-                  <span className="text-[10px] font-medium bg-white/20 px-2 py-0.5 rounded-full uppercase tracking-wider">
-                    Preview
-                  </span>
-                </div>
-              </button>
-            </div>
-            <div className="rounded-lg border border-zinc-800/50 bg-[#1A1A1D] p-6">
-              <CostChart models={calculatedModels} maxModels={8} />
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Results Table */}
-      <div className="mb-8">
-        <div className="rounded-lg border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95 p-6">
-          <h3 className="text-2xl font-bold text-white mb-2">Detailed Breakdown</h3>
-          <p className="text-sm text-zinc-400 mb-6">
-            Full breakdown of monthly costs for all provider models matching your usage
-          </p>
-          <ComparisonTable models={calculatedModels} />
         </div>
       </div>
 
@@ -558,8 +644,8 @@ export function CostCalculator() {
       <style jsx>{`
         .slider-purple::-webkit-slider-thumb {
           appearance: none;
-          width: 20px;
-          height: 20px;
+          width: 16px;
+          height: 16px;
           border-radius: 50%;
           background: #a855f7;
           cursor: pointer;
@@ -567,8 +653,8 @@ export function CostCalculator() {
         }
 
         .slider-purple::-moz-range-thumb {
-          width: 20px;
-          height: 20px;
+          width: 16px;
+          height: 16px;
           border-radius: 50%;
           background: #a855f7;
           cursor: pointer;

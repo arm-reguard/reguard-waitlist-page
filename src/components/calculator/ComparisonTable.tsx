@@ -34,16 +34,16 @@ export function ComparisonTable({ models }: ComparisonTableProps) {
           <table className="w-full">
             <thead className="bg-[#1A1A1D] border-b border-zinc-800/50 sticky top-0 z-10">
               <tr>
-                <th className="text-left py-4 px-4 sm:px-6 text-sm font-semibold text-zinc-400">
+                <th className="text-left py-4 px-4 sm:px-6 text-sm font-semibold text-zinc-300">
                   Provider & Model
                 </th>
-                <th className="text-right py-4 px-3 sm:px-4 text-sm font-semibold text-zinc-400">
+                <th className="text-right py-4 px-3 sm:px-4 text-sm font-semibold text-zinc-300">
                   Input Cost
                 </th>
-                <th className="text-right py-4 px-3 sm:px-4 text-sm font-semibold text-zinc-400">
+                <th className="text-right py-4 px-3 sm:px-4 text-sm font-semibold text-zinc-300">
                   Output Cost
                 </th>
-                <th className="text-right py-4 px-4 sm:px-6 text-sm font-semibold text-zinc-400">
+                <th className="text-right py-4 px-4 sm:px-6 text-sm font-semibold text-zinc-300">
                   Total/Month
                 </th>
               </tr>
@@ -73,14 +73,14 @@ export function ComparisonTable({ models }: ComparisonTableProps) {
                               </span>
                             )}
                           </div>
-                          <div className="text-sm text-zinc-400 truncate">{model.name}</div>
+                          <div className="text-sm text-zinc-300 truncate">{model.name}</div>
                         </div>
                       </div>
                     </td>
-                    <td className="py-4 px-3 sm:px-4 text-right text-sm text-zinc-400 whitespace-nowrap">
+                    <td className="py-4 px-3 sm:px-4 text-right text-sm text-zinc-300 whitespace-nowrap">
                       {formatCurrency(model.inputCost)}
                     </td>
-                    <td className="py-4 px-3 sm:px-4 text-right text-sm text-zinc-400 whitespace-nowrap">
+                    <td className="py-4 px-3 sm:px-4 text-right text-sm text-zinc-300 whitespace-nowrap">
                       {formatCurrency(model.outputCost)}
                     </td>
                     <td className="py-4 px-4 sm:px-6 text-right text-base sm:text-lg font-bold text-white whitespace-nowrap">
