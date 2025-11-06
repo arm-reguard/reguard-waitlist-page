@@ -511,6 +511,7 @@ export function CostCalculator() {
             selectedProviders={Array.from(selectedProviders)}
             selectedModels={selectedModels}
             multiProviderTotalCost={multiProviderTotalCost}
+            bestBudgetModel={bestBudgetModel}
           />
 
           {/* ROW: Visual Comparison (Full Width) */}

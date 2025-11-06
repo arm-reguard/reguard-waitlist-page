@@ -16,15 +16,19 @@ interface InsightsPanelProps {
   selectedProviders: string[];
   selectedModels?: ProviderModelSelection[];
   multiProviderTotalCost?: { total: number; breakdown: { provider: string; model: string; cost: number }[] } | null;
+  bestBudgetModel?: CalculatedModel; // Best budget model for the use case (when no providers selected)
 }
 
-export function InsightsPanel({ models, inputs, useCase, selectedProviders, selectedModels = [], multiProviderTotalCost }: InsightsPanelProps) {
+export function InsightsPanel({ models, inputs, useCase, selectedProviders, selectedModels = [], multiProviderTotalCost, bestBudgetModel }: InsightsPanelProps) {
   if (models.length === 0) return null;
 
   const cheapestModel = models[0];
   const mostExpensiveModel = models[models.length - 1];
-  const yearlyProjection = cheapestModel.totalCost * 12;
-  const totalMonthlyCost = multiProviderTotalCost?.total || cheapestModel.totalCost;
+  
+  // Use bestBudgetModel for annual projection when no providers selected, otherwise use cheapestModel
+  const displayModel = selectedProviders.length === 0 && bestBudgetModel ? bestBudgetModel : cheapestModel;
+  const yearlyProjection = displayModel.totalCost * 12;
+  const totalMonthlyCost = multiProviderTotalCost?.total || displayModel.totalCost;
 
   // Get smart recommendations (compare against user's current cost, not most expensive model)
   const smartRecommendations = getSmartRecommendations(useCase, models, inputs, totalMonthlyCost);
@@ -447,7 +451,7 @@ export function InsightsPanel({ models, inputs, useCase, selectedProviders, sele
               <p className="text-xs text-zinc-300 truncate">
                 {multiProviderTotalCost 
                   ? 'Multi-provider setup'
-                  : `${cheapestModel.provider} ${cheapestModel.name}`
+                  : `${displayModel.provider} ${displayModel.name}`
                 }
               </p>
             </div>
