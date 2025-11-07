@@ -216,14 +216,14 @@ export function CostCalculator() {
       {/* Section Header */}
       <div className="text-center mb-8">
         <h2
-          className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl mb-4"
+          className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-4"
           style={{ fontFamily: 'var(--font-meriva)' }}
         >
           <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
             Calculate your LLM API costs
           </span>
         </h2>
-        <p className="text-lg text-zinc-300 max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg md:text-lg text-zinc-300 max-w-2xl mx-auto">
           Adjust parameters to see real-time cost comparisons across providers
         </p>
       </div>

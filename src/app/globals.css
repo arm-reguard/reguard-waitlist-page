@@ -132,9 +132,22 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    /* Prevent zoom-related inconsistencies */
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Enable smooth scrolling performance */
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
     overflow-x: hidden;
+    /* Ensure consistent font rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Optimize scrolling performance */
+    -webkit-overflow-scrolling: touch;
   }
   @media (max-width: 768px) {
     html, body {
@@ -142,6 +155,12 @@
       height: auto;
       margin: 0;
       padding: 0;
+    }
+  }
+  /* Ensure consistent layout on all desktop sizes */
+  @media (min-width: 1280px) {
+    body {
+      font-size: 16px;
     }
   }
   
@@ -195,4 +214,14 @@
 /* Hide Next.js error overlay portal */
 nextjs-portal {
   display: none !important;
+}
+
+/* Remove focus outlines from charts and non-interactive SVG elements */
+.recharts-wrapper,
+.recharts-surface {
+  outline: none !important;
+}
+
+.recharts-wrapper svg {
+  outline: none !important;
 }

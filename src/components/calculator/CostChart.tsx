@@ -116,7 +116,7 @@ export function CostChart({ models, maxModels = 8 }: CostChartProps) {
         ))}
       </div>
 
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="100%" className="focus:outline-none [&_svg]:focus:outline-none [&_svg]:outline-none">
         <BarChart
           data={chartData}
           layout="vertical"

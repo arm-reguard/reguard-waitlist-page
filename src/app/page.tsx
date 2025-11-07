@@ -94,29 +94,29 @@ export default function Home() {
                 alt="reGuard Logo" 
                 width={140} 
                 height={140}
-                className="w-[70px] h-[70px] sm:w-[85px] sm:h-[85px] md:w-[100px] md:h-[100px]"
-                style={{ marginRight: 'clamp(-16px, -2vw, -24px)' }}
+                className="w-[70px] h-[70px] sm:w-[90px] sm:h-[90px] md:w-[90px] md:h-[90px]"
+                style={{ marginRight: '-18px' }}
               />
-              <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
+              <span className="text-2xl sm:text-3xl md:text-3xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
             </Link>
           </div>
         </motion.header>
 
-        {/* Main Content - Center Aligned */}
-        <div className="relative z-10 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 -mt-16 sm:-mt-20">
+        {/* Main Content - Center Aligned with Consistent Container */}
+        <div className="relative z-10 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 -mt-24 sm:-mt-28">
         {/* Main Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-7 md:mb-9 max-w-5xl"
+          className="mb-10 max-w-5xl w-full"
         >
-              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl mb-3 md:mb-5 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
+              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
                 <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
                   Never worry about API costs again
                 </span>
               </h2>
-          <p className="text-base text-zinc-300 sm:text-lg md:text-xl">
+          <p className="text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg">
             Smart monitoring and controls to prevent unexpected API bills
           </p>
         </motion.div>
@@ -126,7 +126,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-8 md:mb-16 max-w-3xl w-full flex justify-center sm:hidden"
+          className="mb-12 max-w-3xl w-full flex justify-center sm:hidden"
         >
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
           <div className="flex flex-col items-start gap-3 text-sm sm:text-base text-zinc-300/90">
@@ -158,7 +158,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-5 md:mb-11 max-w-3xl w-full hidden sm:block"
+          className="mb-10 max-w-3xl w-full hidden sm:block"
         >
           {/* Desktop: 3 top, 2 bottom layout */}
           <div className="flex flex-col items-center gap-5 text-sm sm:text-base text-zinc-300/90">
@@ -267,7 +267,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-7 md:mt-14 flex justify-center gap-8 sm:gap-12"
+          className="mt-12 flex justify-center gap-8 sm:gap-12"
         >
           <div className="flex flex-col items-center">
             <div className="text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">300+</div>
@@ -290,7 +290,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-6 md:mt-10 mb-0"
+          className="mt-10 mb-0"
         >
           <motion.div
             animate={{

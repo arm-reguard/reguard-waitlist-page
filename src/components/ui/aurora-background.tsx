@@ -38,6 +38,8 @@ export const AuroraBackground = ({
             `,
             backgroundSize: "300% 100%",
             filter: "blur(80px)",
+            willChange: "background-position",
+            transform: "translateZ(0)",
           }}
           animate={{
             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
@@ -68,6 +70,8 @@ export const AuroraBackground = ({
             backgroundSize: "200%, 100%",
             backgroundPosition: "50% 50%, 50% 50%",
             mixBlendMode: "difference",
+            willChange: "background-position",
+            transform: "translateZ(0)",
           }}
           animate={{
             backgroundPosition: [
