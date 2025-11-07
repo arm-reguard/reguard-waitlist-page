@@ -94,16 +94,16 @@ export default function Home() {
                 alt="reGuard Logo" 
                 width={140} 
                 height={140}
-                className="w-[70px] h-[70px] sm:w-[90px] sm:h-[90px] md:w-[90px] md:h-[90px]"
-                style={{ marginRight: '-18px' }}
+                className="w-[75px] h-[75px] sm:w-[100px] sm:h-[100px] md:w-[110px] md:h-[110px]"
+                style={{ marginRight: '-20px' }}
               />
-              <span className="text-2xl sm:text-3xl md:text-3xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
+              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
             </Link>
           </div>
         </motion.header>
 
         {/* Main Content - Center Aligned with Consistent Container */}
-        <div className="relative z-10 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 -mt-24 sm:-mt-28">
+        <div className="relative z-10 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 -mt-20 sm:-mt-24">
         {/* Main Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
