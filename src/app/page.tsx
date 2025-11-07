@@ -88,22 +88,20 @@ export default function Home() {
           className="relative z-10 pt-4 sm:pt-6"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 sm:py-2">
-            <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity -ml-3 sm:-ml-5" style={{ gap: '0px' }}>
+            <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity -ml-3 sm:-ml-5">
               <Image 
-                src="/reguard-logo.svg" 
+                src="/logos/Group 4.svg" 
                 alt="reGuard Logo" 
-                width={140} 
-                height={140}
-                className="w-[75px] h-[75px] sm:w-[100px] sm:h-[100px] md:w-[110px] md:h-[110px]"
-                style={{ marginRight: '-20px' }}
+                width={2071} 
+                height={438}
+                className="h-[30px] w-auto sm:h-[38px] md:h-[50px]"
               />
-              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-meriva)' }}>reGuard</span>
             </Link>
           </div>
         </motion.header>
 
         {/* Main Content - Center Aligned with Consistent Container */}
-        <div className="relative z-10 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 -mt-20 sm:-mt-24">
+        <div className="relative z-10 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 -mt-12 sm:-mt-16">
         {/* Main Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -129,7 +127,7 @@ export default function Home() {
           className="mb-12 max-w-3xl w-full flex justify-center sm:hidden"
         >
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
-          <div className="flex flex-col items-start gap-3 text-sm sm:text-base text-zinc-300/90">
+          <div className="flex flex-col items-start gap-4 text-sm sm:text-base text-zinc-300/90">
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
               <span>Live Cost Monitoring</span>
@@ -158,10 +156,10 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-10 max-w-3xl w-full hidden sm:block"
+          className="mb-11 max-w-3xl w-full hidden sm:block"
         >
           {/* Desktop: 3 top, 2 bottom layout */}
-          <div className="flex flex-col items-center gap-5 text-sm sm:text-base text-zinc-300/90">
+          <div className="flex flex-col items-center gap-6 text-sm sm:text-base text-zinc-300/90">
             {/* First row - 3 items */}
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
               <div className="flex items-center gap-2 whitespace-nowrap">
@@ -290,7 +288,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-10 mb-0"
+          className="mt-14 mb-6"
         >
           <motion.div
             animate={{
@@ -314,7 +312,7 @@ export default function Home() {
       </div>
 
       {/* Calculator Section */}
-      <section id="calculator" className="-mt-4 pb-20 px-4">
+      <section id="calculator" className="mt-4 pb-20 px-4">
         <CostCalculator />
       </section>
       </AuroraBackground>
