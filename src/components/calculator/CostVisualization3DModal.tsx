@@ -60,23 +60,23 @@ export function CostVisualization3DModal({
         {/* Close Button */}
         <button
           onClick={() => onOpenChange(false)}
-          className="absolute top-4 right-4 rounded-lg bg-zinc-900/80 p-2 border border-zinc-700 hover:bg-zinc-800 transition-colors z-50 cursor-pointer"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 rounded-lg bg-zinc-900/80 p-2 border border-zinc-700 hover:bg-zinc-800 transition-colors z-50 cursor-pointer"
         >
-          <X className="h-5 w-5 text-gray-400" />
+          <X className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
         </button>
 
-        <div className="flex flex-col h-full w-full p-6 gap-3">
+        <div className="flex flex-col h-full w-full p-3 sm:p-6 gap-2 sm:gap-3">
           {/* Header - Main heading, larger size */}
           <div className="text-center flex-shrink-0">
             <h3 
-              className="text-2xl sm:text-3xl font-bold tracking-tight mb-1"
+              className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight mb-1"
               style={{ fontFamily: 'var(--font-meriva)' }}
             >
               <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
                 3D Cost Universe
               </span>
             </h3>
-            <p className="text-gray-400 text-xs">
+            <p className="text-gray-400 text-[10px] sm:text-xs">
               Your {data.length} models visualized in 3D space
             </p>
           </div>

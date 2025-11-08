@@ -335,20 +335,20 @@ export function CostVisualization3D({ data }: CostVisualization3DProps) {
       )}
 
       {/* Provider Legend - Simple style matching Visual Comparison */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-3 z-10">
+      <div className="absolute top-2 sm:top-4 left-1/2 -translate-x-1/2 flex flex-wrap items-center justify-center gap-1.5 sm:gap-3 z-10 max-w-[95%] sm:max-w-none">
         {Object.entries(PROVIDER_COLORS).map(([provider, color]) => (
-          <div key={provider} className="flex items-center gap-1.5">
+          <div key={provider} className="flex items-center gap-1">
             <div
-              className="w-2.5 h-2.5 rounded-full"
+              className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full"
               style={{ backgroundColor: color }}
             />
-            <span className="text-[11px] text-zinc-300">{provider}</span>
+            <span className="text-[9px] sm:text-[11px] text-zinc-300 whitespace-nowrap">{provider}</span>
           </div>
         ))}
       </div>
 
       {/* Instructions Overlay - Bottom Left, minimal styling */}
-      <div className="absolute bottom-2 left-2 text-[10px] text-gray-500 z-10">
+      <div className="absolute bottom-2 left-2 text-[8px] sm:text-[10px] text-gray-500 z-10 hidden sm:block">
         Left-click: rotate, Mouse-wheel/middle-click: zoom, Right-click: pan
       </div>
 
