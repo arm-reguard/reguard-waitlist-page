@@ -101,7 +101,7 @@ export default function Home() {
         </motion.header>
 
         {/* Main Content - Center Aligned with Consistent Container */}
-        <div className="relative z-10 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 -mt-16">
+        <div className="relative z-10 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 mt-8 md:-mt-16">
         {/* Main Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
