@@ -94,7 +94,7 @@ export default function Home() {
                 alt="reGuard Logo" 
                 width={2071} 
                 height={438}
-                className="h-[30px] w-auto sm:h-[38px] md:h-[50px]"
+                className="h-[24px] sm:h-[38px] md:h-[50px] w-auto"
               />
             </Link>
           </div>
@@ -107,7 +107,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-10 max-w-5xl w-full"
+          className="mb-6 md:mb-10 max-w-5xl w-full"
         >
               <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
                 <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
@@ -124,10 +124,10 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-12 max-w-3xl w-full flex justify-center sm:hidden"
+          className="mb-8 sm:mb-12 max-w-3xl w-full flex justify-center sm:hidden"
         >
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
-          <div className="flex flex-col items-start gap-4 text-sm sm:text-base text-zinc-300/90">
+          <div className="flex flex-col items-start gap-3 text-sm sm:text-base text-zinc-300/90">
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
               <span>Live Cost Monitoring</span>
@@ -265,7 +265,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 flex justify-center gap-8 sm:gap-12"
+          className="mt-8 md:mt-12 flex justify-center gap-8 sm:gap-12"
         >
           <div className="flex flex-col items-center">
             <div className="text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">300+</div>
@@ -288,7 +288,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-14 mb-6"
+          className="mt-10 md:mt-14 mb-6"
         >
           <motion.div
             animate={{
