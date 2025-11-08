@@ -334,8 +334,8 @@ export function CostVisualization3D({ data }: CostVisualization3DProps) {
         </div>
       )}
 
-      {/* Provider Legend - Simple style matching Visual Comparison */}
-      <div className="absolute top-2 sm:top-4 left-1/2 -translate-x-1/2 flex flex-wrap items-center justify-center gap-1.5 sm:gap-3 z-10 max-w-[95%] sm:max-w-none">
+      {/* Provider Legend - Mobile: Top right, Desktop: Top center */}
+      <div className="absolute top-2 right-2 sm:top-4 sm:left-1/2 sm:-translate-x-1/2 sm:right-auto flex flex-wrap items-start sm:items-center justify-end sm:justify-center gap-1.5 sm:gap-3 z-10 max-w-[45%] sm:max-w-none">
         {Object.entries(PROVIDER_COLORS).map(([provider, color]) => (
           <div key={provider} className="flex items-center gap-1">
             <div

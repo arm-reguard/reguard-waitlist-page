@@ -62,10 +62,10 @@ export function CostChart({ models, maxModels = 8 }: CostChartProps) {
 
   // Mobile-specific responsive config
   const chartMargins = isMobile 
-    ? { top: 10, right: 5, left: 70, bottom: 10 }
+    ? { top: 10, right: 5, left: 60, bottom: 10 }
     : { top: 10, right: 30, left: 120, bottom: 10 };
   
-  const yAxisWidth = isMobile ? 65 : 110;
+  const yAxisWidth = isMobile ? 55 : 110;
 
   // Custom Y-axis tick that shows provider dot + model name
   const CustomYAxisTick = (props: any) => {
@@ -76,8 +76,8 @@ export function CostChart({ models, maxModels = 8 }: CostChartProps) {
 
     // Mobile responsive sizes
     const circleRadius = isMobile ? 3 : 4;
-    const xOffset = isMobile ? -12 : -18;
-    const circleX = isMobile ? -6 : -10;
+    const xOffset = isMobile ? -10 : -18;
+    const circleX = isMobile ? -5 : -10;
 
     return (
       <g transform={`translate(${x},${y})`}>

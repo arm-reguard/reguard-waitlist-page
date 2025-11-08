@@ -519,10 +519,11 @@ export function CostCalculator() {
             <div className="rounded-lg border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95 p-4 sm:p-5">
               {/* Mobile: Stack vertically, Desktop: Side by side */}
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 gap-3 sm:gap-4">
-                <div className="text-center sm:text-left">
+                <div className="text-left">
                   <h3 className="text-base sm:text-lg font-bold text-white mb-1">Visual Comparison</h3>
                   <p className="text-xs text-zinc-300">
-                    Cost difference between providers for your usage ({callsPerMonth.toLocaleString()} calls/month)
+                    <span className="sm:hidden">Cost difference between providers for your usage</span>
+                    <span className="hidden sm:inline">Cost difference between providers for your usage ({callsPerMonth.toLocaleString()} calls/month)</span>
                   </p>
                 </div>
                 
@@ -532,7 +533,7 @@ export function CostCalculator() {
                     e.preventDefault();
                     setShow3DModal(true);
                   }}
-                  className="view-3d-button relative group flex items-center gap-2 px-3 sm:px-4 py-2 bg-zinc-900 border border-purple-500/30 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50 flex-shrink-0 cursor-pointer animate-pulse-subtle mx-auto sm:mx-0 w-fit"
+                  className="view-3d-button relative group flex items-center gap-2 px-3 sm:px-4 py-2 bg-zinc-900 border border-purple-500/30 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50 flex-shrink-0 cursor-pointer animate-pulse-subtle w-fit"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-40 group-hover:opacity-80 blur transition-opacity duration-500" />
                   <div className="relative flex items-center gap-1.5">
@@ -547,7 +548,7 @@ export function CostCalculator() {
                   </div>
                 </button>
               </div>
-              <div className="rounded-lg border border-zinc-800/50 bg-[#1A1A1D] p-4">
+              <div className="rounded-lg border border-zinc-800/50 bg-[#1A1A1D] p-2 sm:p-4">
                 <CostChart models={calculatedModels} maxModels={8} />
               </div>
             </div>
@@ -587,10 +588,10 @@ export function CostCalculator() {
       {/* CTA Section */}
       <div className="text-center py-12 px-4">
         <h2
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 sm:whitespace-nowrap"
           style={{ fontFamily: 'var(--font-meriva)' }}
         >
-          <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap">
+          <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
             reGuard tracks all this automatically
           </span>
         </h2>
@@ -599,10 +600,10 @@ export function CostCalculator() {
           Real-time insights, instant alerts, and automated savings - all on autopilot
         </p>
         
-        {/* Mobile: Centered column, Desktop: Flex wrap */}
+        {/* Mobile: Left-aligned in centered container like first fold, Desktop: Flex wrap */}
         <div className="mb-10 max-w-xs sm:max-w-none mx-auto">
-          {/* Mobile layout: Centered single column */}
-          <div className="flex flex-col items-center gap-3 sm:hidden text-sm text-zinc-300/90">
+          {/* Mobile layout: Left-aligned single column in centered container */}
+          <div className="flex flex-col items-start gap-3 sm:hidden text-sm text-zinc-300/90">
             <div className="flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
               <span>Multi-Provider LLM Tracking</span>
