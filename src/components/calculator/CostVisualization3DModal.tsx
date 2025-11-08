@@ -89,7 +89,7 @@ export function CostVisualization3DModal({
           {/* CTA Section - Generous spacing for readability */}
           <div className="flex-shrink-0 pt-4 text-center">
             <h4 
-              className="text-xl sm:text-2xl font-bold tracking-tight mb-6"
+              className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight mb-5"
               style={{ fontFamily: 'var(--font-meriva)' }}
             >
               <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
@@ -97,30 +97,62 @@ export function CostVisualization3DModal({
               </span>
             </h4>
             
-            <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-7 text-sm text-zinc-300/90">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span>Real-Time Tracking</span>
+            {/* Mobile: 2 column grid (3-3), Desktop: Flex wrap */}
+            <div className="mb-6 max-w-md mx-auto">
+              {/* Mobile layout: 2 columns, 3 rows */}
+              <div className="grid grid-cols-2 gap-x-4 gap-y-3 sm:hidden text-xs text-zinc-300/90">
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-purple-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-left leading-tight">Real-Time Tracking</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-purple-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-left leading-tight">Intelligent Clustering</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-purple-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-left leading-tight">Anomaly Detection</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-purple-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-left leading-tight">Heat Zones</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-purple-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-left leading-tight">AI-Powered Insights</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-purple-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-left leading-tight">AI Cost Recommendations</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span>Intelligent Clustering</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span>Anomaly Detection</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span>Heat Zones</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span>AI-Powered Insights</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span>AI Cost Recommendations</span>
+              
+              {/* Desktop layout: Horizontal flex wrap */}
+              <div className="hidden sm:flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-zinc-300/90">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+                  <span>Real-Time Tracking</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+                  <span>Intelligent Clustering</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+                  <span>Anomaly Detection</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+                  <span>Heat Zones</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+                  <span>AI-Powered Insights</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+                  <span>AI Cost Recommendations</span>
+                </div>
               </div>
             </div>
             

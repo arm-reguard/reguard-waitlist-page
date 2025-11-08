@@ -584,9 +584,9 @@ export function CostCalculator() {
       </div>
 
       {/* CTA Section */}
-      <div className="text-center py-12">
+      <div className="text-center py-12 px-4">
         <h2
-          className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl mb-4"
+          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight text-white mb-4 leading-tight"
           style={{ fontFamily: 'var(--font-meriva)' }}
         >
           <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
@@ -594,26 +594,50 @@ export function CostCalculator() {
           </span>
         </h2>
         
-        <p className="text-lg sm:text-xl text-zinc-300 mb-8 mx-auto whitespace-nowrap">
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-zinc-300 mb-8 mx-auto px-2">
           Real-time insights, instant alerts, and automated savings - all on autopilot
         </p>
         
-        <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-10 text-sm sm:text-base text-zinc-300/90">
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-            <span>Multi-Provider LLM Tracking</span>
+        {/* Mobile: Single column, Desktop: Flex wrap */}
+        <div className="mb-10 max-w-xs sm:max-w-none mx-auto">
+          {/* Mobile layout: Single column */}
+          <div className="flex flex-col items-start gap-3 sm:hidden text-sm text-zinc-300/90">
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span>Multi-Provider LLM Tracking</span>
+            </div>
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span>Flat Pricing Model</span>
+            </div>
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span>Unlimited API Call Tracking</span>
+            </div>
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span>Smart Caching (Save 30-50%)</span>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-            <span>Flat Pricing Model</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-            <span>Unlimited API Call Tracking</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-            <span>Smart Caching (Save 30-50%)</span>
+          
+          {/* Desktop layout: Horizontal flex wrap */}
+          <div className="hidden sm:flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm sm:text-base text-zinc-300/90">
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span>Multi-Provider LLM Tracking</span>
+            </div>
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span>Flat Pricing Model</span>
+            </div>
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span>Unlimited API Call Tracking</span>
+            </div>
+            <div className="flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span>Smart Caching (Save 30-50%)</span>
+            </div>
           </div>
         </div>
         

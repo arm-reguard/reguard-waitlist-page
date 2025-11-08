@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { CalculatedModel, formatCurrency } from "@/lib/calculator-utils";
 import {
   BarChart,
@@ -19,6 +20,22 @@ interface CostChartProps {
 }
 
 export function CostChart({ models, maxModels = 8 }: CostChartProps) {
+  // Detect mobile screen size
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Initial check
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640); // sm breakpoint
+    };
+    
+    checkMobile();
+    
+    // Add resize listener
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // Take top N models
   const displayModels = models.slice(0, maxModels);
 
@@ -43,6 +60,13 @@ export function CostChart({ models, maxModels = 8 }: CostChartProps) {
     isCheapest: model.id === models[0]?.id,
   }));
 
+  // Mobile-specific responsive config
+  const chartMargins = isMobile 
+    ? { top: 10, right: 8, left: 85, bottom: 10 }
+    : { top: 10, right: 30, left: 120, bottom: 10 };
+  
+  const yAxisWidth = isMobile ? 75 : 110;
+
   // Custom Y-axis tick that shows provider dot + model name
   const CustomYAxisTick = (props: any) => {
     const { x, y, payload } = props;
@@ -50,28 +74,33 @@ export function CostChart({ models, maxModels = 8 }: CostChartProps) {
     
     if (!data) return null;
 
+    // Mobile responsive sizes
+    const circleRadius = isMobile ? 3 : 4;
+    const xOffset = isMobile ? -15 : -18;
+    const circleX = isMobile ? -8 : -10;
+
     return (
       <g transform={`translate(${x},${y})`}>
         {/* Provider color dot */}
-        <circle cx={-10} cy={0} r={4} fill={data.color} />
+        <circle cx={circleX} cy={0} r={circleRadius} fill={data.color} />
         {/* Provider name */}
         <text
-          x={-18}
+          x={xOffset}
           y={-2}
           textAnchor="end"
           fill="#A1A1AA"
-          fontSize={10}
+          fontSize={isMobile ? 7 : 10}
           fontWeight="500"
         >
           {data.provider}
         </text>
         {/* Model name */}
         <text
-          x={-18}
-          y={10}
+          x={xOffset}
+          y={isMobile ? 8 : 10}
           textAnchor="end"
           fill="#FFFFFF"
-          fontSize={11}
+          fontSize={isMobile ? 8 : 11}
         >
           {data.shortName}
         </text>
@@ -120,20 +149,20 @@ export function CostChart({ models, maxModels = 8 }: CostChartProps) {
         <BarChart
           data={chartData}
           layout="vertical"
-          margin={{ top: 10, right: 30, left: 120, bottom: 10 }}
+          margin={chartMargins}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#27272A" />
           <XAxis
             type="number"
             stroke="#A1A1AA"
-            tick={{ fill: "#A1A1AA", fontSize: 11 }}
+            tick={{ fill: "#A1A1AA", fontSize: isMobile ? 9 : 11 }}
             tickFormatter={(value) => `$${value}`}
           />
           <YAxis
             type="category"
             dataKey="fullName"
             stroke="#A1A1AA"
-            width={110}
+            width={yAxisWidth}
             tick={<CustomYAxisTick />}
           />
           <Tooltip content={<CustomTooltip />} cursor={{ fill: "#27272A" }} />
