@@ -242,48 +242,39 @@ nextjs-portal {
   position: relative !important;
 }
 
-/* Aurora background animations - Fade in smoothly to hide initial blur computation */
+/* Aurora background animations - Progressive blur for smooth startup */
 @keyframes aurora-1 {
-  0% {
+  0%, 100% {
     background-position: 0% 50%;
-    opacity: 0;
-  }
-  2% {
-    opacity: 1;
   }
   50% {
     background-position: 100% 50%;
-    opacity: 1;
-  }
-  100% {
-    background-position: 0% 50%;
-    opacity: 1;
   }
 }
 
 @keyframes aurora-2 {
-  0% {
+  0%, 100% {
     background-position: 50% 50%, 50% 50%;
-    opacity: 0;
-  }
-  2% {
-    opacity: 1;
   }
   50% {
     background-position: 100% 50%, 150% 50%;
-    opacity: 1;
+  }
+}
+
+@keyframes blur-fade-in {
+  0% {
+    filter: blur(30px);
   }
   100% {
-    background-position: 50% 50%, 50% 50%;
-    opacity: 1;
+    filter: blur(60px);
   }
 }
 
 .aurora-animate-1 {
-  animation: aurora-1 25s ease-in-out infinite;
+  animation: aurora-1 25s ease-in-out infinite, blur-fade-in 1.5s ease-out forwards;
   animation-play-state: running;
-  /* Start invisible - fade in during animation */
-  opacity: 0;
+  /* Start with lighter blur */
+  filter: blur(30px);
   /* Ensure GPU layer from start */
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
@@ -292,8 +283,6 @@ nextjs-portal {
 .aurora-animate-2 {
   animation: aurora-2 30s ease-in-out infinite;
   animation-play-state: running;
-  /* Start invisible - fade in during animation */
-  opacity: 0;
   /* Ensure GPU layer from start */
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);

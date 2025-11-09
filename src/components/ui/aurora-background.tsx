@@ -36,8 +36,7 @@ export const AuroraBackground = ({
                 #3b82f6 30%)
             `,
             backgroundSize: "300% 100%",
-            filter: "blur(60px)",
-            willChange: "background-position",
+            willChange: "background-position, filter",
             transform: "translate3d(0, 0, 0)",
             backfaceVisibility: "hidden" as const,
             WebkitBackfaceVisibility: "hidden" as const,
