@@ -241,3 +241,40 @@ nextjs-portal {
 .recharts-surface {
   position: relative !important;
 }
+
+/* Aurora animations - Pure CSS, starts INSTANTLY with no library initialization */
+@keyframes aurora-slide-1 {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes aurora-slide-2 {
+  0% {
+    background-position: 50% 50%, 50% 50%;
+  }
+  50% {
+    background-position: 100% 50%, 150% 50%;
+  }
+  100% {
+    background-position: 50% 50%, 50% 50%;
+  }
+}
+
+.aurora-layer-1 {
+  animation: aurora-slide-1 50s linear infinite;
+  will-change: background-position;
+  transform: translateZ(0);
+}
+
+.aurora-layer-2 {
+  animation: aurora-slide-2 60s linear infinite;
+  will-change: background-position;
+  transform: translateZ(0);
+}

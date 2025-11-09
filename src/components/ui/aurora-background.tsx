@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import React, { ReactNode } from "react";
-import { motion } from "framer-motion";
 
 interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
   children: ReactNode;
@@ -25,16 +24,8 @@ export const AuroraBackground = ({
     >
       {/* Aurora Gradient Background - DESKTOP ONLY */}
       <div className="absolute inset-0 overflow-hidden opacity-40 pointer-events-none hidden sm:block" aria-hidden="true" style={{ zIndex: 0 }}>
-        <motion.div
-          className="absolute inset-[-100%]"
-          initial={{ backgroundPosition: "0% 50%" }}
-          animate={{ backgroundPosition: "100% 50%" }}
-          transition={{
-            duration: 25,
-            ease: "linear",
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
+        <div
+          className="absolute inset-[-100%] aurora-layer-1"
           style={{
             background: `
               repeating-linear-gradient(100deg, 
@@ -47,20 +38,10 @@ export const AuroraBackground = ({
             backgroundSize: "300% 100%",
             backgroundPosition: "0% 50%",
             filter: "blur(45px)",
-            willChange: "background-position",
-            transform: "translateZ(0)",
           }}
         />
-        <motion.div
-          className="absolute inset-[-10px]"
-          initial={{ backgroundPosition: "50% 50%, 50% 50%" }}
-          animate={{ backgroundPosition: "100% 50%, 150% 50%" }}
-          transition={{
-            duration: 30,
-            ease: "linear",
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
+        <div
+          className="absolute inset-[-10px] aurora-layer-2"
           style={{
             background: `
               repeating-linear-gradient(100deg, 
@@ -79,8 +60,6 @@ export const AuroraBackground = ({
             backgroundSize: "200%, 100%",
             backgroundPosition: "50% 50%, 50% 50%",
             mixBlendMode: "difference",
-            willChange: "background-position",
-            transform: "translateZ(0)",
           }}
         />
       </div>
