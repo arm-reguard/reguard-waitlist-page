@@ -134,7 +134,7 @@ export function CostChart({ models, maxModels = 8 }: CostChartProps) {
   };
 
   return (
-    <div className="w-full h-[450px] md:h-[550px] relative z-10 overflow-visible">
+    <div className="w-full h-[450px] md:h-[550px] relative z-10">
       {/* Provider Legend */}
       <div className="mb-4 flex flex-wrap gap-3 justify-center text-xs">
         {uniqueProviders.map(({ provider, color }) => (
@@ -145,7 +145,7 @@ export function CostChart({ models, maxModels = 8 }: CostChartProps) {
         ))}
       </div>
 
-      <ResponsiveContainer width="100%" height="100%" className="focus:outline-none [&_svg]:focus:outline-none [&_svg]:outline-none relative z-20 overflow-visible">
+      <ResponsiveContainer width="100%" height="100%" className="focus:outline-none [&_svg]:focus:outline-none [&_svg]:outline-none relative z-20">
         <BarChart
           data={chartData}
           layout="vertical"

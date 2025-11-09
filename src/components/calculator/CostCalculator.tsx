@@ -212,9 +212,9 @@ export function CostCalculator() {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4">
+    <div className="relative z-50 w-full max-w-7xl mx-auto px-4">
       {/* Section Header */}
-      <div className="text-center mb-8">
+      <div className="relative z-50 text-center mb-8">
         <h2
           className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-4"
           style={{ fontFamily: 'var(--font-meriva)' }}
@@ -229,9 +229,9 @@ export function CostCalculator() {
       </div>
 
       {/* Sidebar + Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6 mb-8">
+      <div className="relative z-50 grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6 mb-8">
         {/* SIDEBAR - Input Controls */}
-        <div className="rounded-xl p-5 border border-zinc-800/50 bg-zinc-900/95 h-fit lg:sticky lg:top-4">
+        <div className="relative z-50 rounded-xl p-5 border border-zinc-800/50 bg-zinc-900/95 h-fit lg:sticky lg:top-4">
           <div className="space-y-4">
             {/* Use Case Dropdown */}
             <div>
@@ -400,10 +400,10 @@ export function CostCalculator() {
         </div>
 
         {/* MAIN CONTENT - Bento Grid */}
-        <div className="space-y-5">
+        <div className="relative z-50 space-y-5">
           {/* ROW 1: Setup Summary (Full Width) */}
           {calculatedModels.length > 0 && (
-            <div className="rounded-xl border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95 p-5">
+            <div className="relative z-50 rounded-xl border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95 p-5">
               <h3 className="text-xl font-bold text-white mb-2">
                 {selectedProviders.size >= 2 
                   ? 'Your Multi-Provider Setup' 
@@ -516,7 +516,7 @@ export function CostCalculator() {
 
           {/* ROW: Visual Comparison (Full Width) */}
           {calculatedModels.length > 0 && (
-            <div className="rounded-lg border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95 p-4 sm:p-5">
+            <div className="relative z-50 rounded-lg border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95 p-4 sm:p-5">
               {/* Mobile: Heading left, button top-right, Desktop: Side by side */}
               <div className="flex items-start justify-between mb-3 gap-2">
                 <div className="text-left flex-1">
@@ -549,7 +549,7 @@ export function CostCalculator() {
           )}
 
           {/* ROW: Detailed Breakdown (Collapsible) */}
-          <div className="rounded-lg border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95">
+          <div className="relative z-50 rounded-lg border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95">
             <button
               ref={breakdownButtonRef}
               type="button"
@@ -580,7 +580,7 @@ export function CostCalculator() {
       </div>
 
       {/* CTA Section */}
-      <div className="text-center py-12 px-4">
+      <div className="relative z-50 text-center py-12 px-4">
         <h2
           className="text-[19px] sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 whitespace-nowrap overflow-hidden"
           style={{ fontFamily: 'var(--font-meriva)' }}
@@ -645,10 +645,10 @@ export function CostCalculator() {
       </div>
 
       {/* Divider */}
-      <div className="w-full border-t border-zinc-800/30 my-6"></div>
+      <div className="relative z-50 w-full border-t border-zinc-800/30 my-6"></div>
 
       {/* Copyright */}
-      <div className="text-center pt-4">
+      <div className="relative z-50 text-center pt-4 pb-8">
         <p className="text-sm text-zinc-500">
           © 2025 reGuard. All rights reserved.
         </p>
