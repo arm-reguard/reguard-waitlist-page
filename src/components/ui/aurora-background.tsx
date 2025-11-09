@@ -24,7 +24,7 @@ export const AuroraBackground = ({
       {...props}
     >
       {/* Aurora Gradient Background */}
-      <div className="absolute inset-0 overflow-hidden opacity-40 pointer-events-none" aria-hidden="true">
+      <div className="absolute inset-0 overflow-hidden opacity-40 pointer-events-none -z-10" aria-hidden="true">
         <motion.div
           className="absolute inset-[-100%]"
           style={{

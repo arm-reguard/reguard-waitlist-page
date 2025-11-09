@@ -582,7 +582,7 @@ export function CostCalculator() {
       {/* CTA Section */}
       <div className="text-center py-12 px-4">
         <h2
-          className="text-[20px] sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4"
+          className="text-[19px] sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 whitespace-nowrap overflow-hidden"
           style={{ fontFamily: 'var(--font-meriva)' }}
         >
           <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">

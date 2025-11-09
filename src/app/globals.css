@@ -237,3 +237,14 @@ nextjs-portal {
 .recharts-wrapper svg {
   outline: none !important;
 }
+
+/* Ensure chart tooltips appear above chart elements */
+.recharts-tooltip-wrapper {
+  z-index: 9999 !important;
+  position: relative !important;
+}
+
+.recharts-default-tooltip {
+  z-index: 9999 !important;
+  position: relative !important;
+}
