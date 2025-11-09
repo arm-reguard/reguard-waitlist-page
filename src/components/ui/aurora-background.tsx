@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
@@ -15,6 +15,13 @@ export const AuroraBackground = ({
   showRadialGradient = true,
   ...props
 }: AuroraBackgroundProps) => {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    // Force Framer Motion to initialize immediately
+    setIsReady(true);
+  }, []);
+
   return (
     <div
       className={cn(
@@ -25,58 +32,66 @@ export const AuroraBackground = ({
     >
       {/* Aurora Gradient Background - DESKTOP ONLY */}
       <div className="absolute inset-0 overflow-hidden opacity-40 pointer-events-none hidden sm:block" aria-hidden="true" style={{ zIndex: 0 }}>
-        <motion.div
-          className="absolute inset-[-100%]"
-          animate={{
-            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-          }}
-          transition={{
-            duration: 50,
-            ease: "linear",
-            repeat: Infinity,
-          }}
-          style={{
-            background: `
-              repeating-linear-gradient(100deg, 
-                #8b5cf6 10%, 
-                #3b82f6 15%, 
-                #ec4899 20%, 
-                #8b5cf6 25%, 
-                #3b82f6 30%)
-            `,
-            backgroundSize: "300% 100%",
-            filter: "blur(60px)",
-          }}
-        />
-        <motion.div
-          className="absolute inset-[-10px]"
-          animate={{
-            backgroundPosition: ["50% 50%, 50% 50%", "100% 50%, 150% 50%", "50% 50%, 50% 50%"],
-          }}
-          transition={{
-            duration: 60,
-            ease: "linear",
-            repeat: Infinity,
-          }}
-          style={{
-            background: `
-              repeating-linear-gradient(100deg, 
-                rgba(139, 92, 246, 0.1) 0%, 
-                rgba(139, 92, 246, 0.1) 7%, 
-                transparent 10%, 
-                transparent 12%, 
-                rgba(139, 92, 246, 0.1) 16%),
-              repeating-linear-gradient(100deg, 
-                #8b5cf6 10%, 
-                #3b82f6 15%, 
-                #ec4899 20%, 
-                #8b5cf6 25%, 
-                #3b82f6 30%)
-            `,
-            backgroundSize: "200%, 100%",
-            mixBlendMode: "difference",
-          }}
-        />
+        {isReady && (
+          <>
+            <motion.div
+              className="absolute inset-[-100%]"
+              initial={false}
+              animate={{
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              }}
+              transition={{
+                duration: 50,
+                ease: "linear",
+                repeat: Infinity,
+              }}
+              style={{
+                background: `
+                  repeating-linear-gradient(100deg, 
+                    #8b5cf6 10%, 
+                    #3b82f6 15%, 
+                    #ec4899 20%, 
+                    #8b5cf6 25%, 
+                    #3b82f6 30%)
+                `,
+                backgroundSize: "300% 100%",
+                backgroundPosition: "0% 50%",
+                filter: "blur(60px)",
+              }}
+            />
+            <motion.div
+              className="absolute inset-[-10px]"
+              initial={false}
+              animate={{
+                backgroundPosition: ["50% 50%, 50% 50%", "100% 50%, 150% 50%", "50% 50%, 50% 50%"],
+              }}
+              transition={{
+                duration: 60,
+                ease: "linear",
+                repeat: Infinity,
+              }}
+              style={{
+                background: `
+                  repeating-linear-gradient(100deg, 
+                    rgba(139, 92, 246, 0.1) 0%, 
+                    rgba(139, 92, 246, 0.1) 7%, 
+                    transparent 10%, 
+                    transparent 12%, 
+                    rgba(139, 92, 246, 0.1) 16%),
+                  repeating-linear-gradient(100deg, 
+                    #8b5cf6 10%, 
+                    #3b82f6 15%, 
+                    #ec4899 20%, 
+                    #8b5cf6 25%, 
+                    #3b82f6 30%)
+                `,
+                backgroundSize: "200%, 100%",
+                backgroundPosition: "50% 50%, 50% 50%",
+                mixBlendMode: "difference",
+              }}
+            />
+          </>
+        )}
       </div>
 
       {/* Vignette Overlay - DESKTOP ONLY */}
