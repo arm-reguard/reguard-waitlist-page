@@ -278,6 +278,7 @@ nextjs-portal {
 
 .aurora-layer-1 {
   animation: aurora-slide-1 50s linear infinite, blur-grow 0.8s ease-out forwards;
+  animation-fill-mode: both;
   filter: blur(20px);
   will-change: background-position, filter;
   transform: translate3d(0, 0, 0);
@@ -286,6 +287,7 @@ nextjs-portal {
 
 .aurora-layer-2 {
   animation: aurora-slide-2 60s linear infinite;
+  animation-fill-mode: both;
   will-change: background-position;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
