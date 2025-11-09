@@ -33,8 +33,12 @@ export const metadata: Metadata = {
   title: "reGuard - Budget Protection for LLM APIs",
   description: "Protect your LLM API budget with intelligent monitoring and controls",
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
+    icon: [
+      { url: '/favicon.ico', sizes: '16x16', type: 'image/x-icon' },
+      { url: '/icon.svg', sizes: '32x32', type: 'image/svg+xml' },
+      { url: '/favicon.svg', sizes: 'any', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.ico',
     apple: '/favicon.svg',
   },
 };
