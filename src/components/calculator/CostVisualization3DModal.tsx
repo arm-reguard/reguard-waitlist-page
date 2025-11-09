@@ -94,32 +94,27 @@ export function CostVisualization3DModal({
   if (isMobile) {
     if (!open) return null;
 
+    // Center the modal in viewport instead of positioning at chart location
     const fallbackViewportHeight =
       viewportHeight || (typeof window !== 'undefined' ? window.innerHeight : 800);
-    const top = anchorRect ? Math.max(anchorRect.top, 16) : 16;
-    const left = anchorRect ? Math.max(anchorRect.left, 8) : 8;
-    const width = anchorRect
-      ? anchorRect.width
-      : typeof window !== 'undefined'
-      ? Math.min(window.innerWidth - 16, 500)
-      : 320;
-    const height = anchorRect
-      ? Math.min(Math.max(anchorRect.height, 420), fallbackViewportHeight - 24)
-      : Math.min(fallbackViewportHeight - 24, 520);
+    const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 360;
+    
+    // Calculate centered position with padding
+    const modalWidth = Math.min(viewportWidth - 32, 500); // 16px padding on each side
+    const modalHeight = Math.min(fallbackViewportHeight * 0.85, 600); // 85% of viewport height, max 600px
 
     return (
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
         <div
           className="absolute inset-0 bg-black/70"
           onClick={() => onOpenChange(false)}
         />
         <div
-          className="absolute bg-black/95 border border-purple-500/40 rounded-2xl overflow-hidden shadow-xl z-[10000] flex flex-col"
+          className="relative bg-black/95 border border-purple-500/40 rounded-2xl overflow-hidden shadow-xl z-[10000] flex flex-col"
           style={{
-            top,
-            left,
-            width,
-            height,
+            width: modalWidth,
+            height: modalHeight,
+            maxHeight: '85vh',
           }}
         >
           <button
@@ -187,7 +182,7 @@ export function CostVisualization3DModal({
                 </div>
               </div>
 
-              <div className="flex justify-center">
+              <div className="flex justify-center scale-75">
                 <ReGuardButton onClick={scrollToWaitlist}>
                   Join Waitlist - Get Early Access
                 </ReGuardButton>
