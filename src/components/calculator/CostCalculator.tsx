@@ -13,11 +13,6 @@ import { CheckCircle2, ChevronDown, ChevronUp } from "lucide-react";
 // Lazy load the heavy chart component to improve initial page load
 const CostChart = dynamic(() => import("./CostChart").then(mod => ({ default: mod.CostChart })), {
   ssr: false,
-  loading: () => (
-    <div className="w-full h-[450px] md:h-[550px] flex items-center justify-center">
-      <div className="text-zinc-400 text-sm">Loading chart...</div>
-    </div>
-  ),
 });
 
 type UseCase = keyof typeof useCaseDefaults;

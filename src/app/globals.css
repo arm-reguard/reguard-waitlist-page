@@ -238,10 +238,10 @@ nextjs-portal {
   outline: none !important;
 }
 
-/* Ensure chart tooltips appear above chart elements and prevent layout shift */
+/* Ensure chart tooltips appear above chart elements - ABSOLUTE for proper positioning */
 .recharts-tooltip-wrapper {
   z-index: 9999 !important;
-  position: fixed !important;
+  position: absolute !important;
   pointer-events: none !important;
 }
 

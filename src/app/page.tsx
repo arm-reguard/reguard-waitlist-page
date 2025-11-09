@@ -1,13 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { ReGuardButton } from "@/components/ui/reguard-button";
 import { motion } from "framer-motion";
 import { CheckCircle2, Infinity } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { CostCalculator } from "@/components/calculator/CostCalculator";
+
+// Lazy load the calculator (includes Recharts) - not needed on first fold
+const CostCalculator = dynamic(
+  () => import("@/components/calculator/CostCalculator").then((mod) => ({ default: mod.CostCalculator })),
+  { ssr: false }
+);
 
 export default function Home() {
   const [email, setEmail] = useState("");
