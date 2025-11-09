@@ -158,11 +158,15 @@
       /* Prevent white flicker on mobile scroll */
       background: #0a0a0a;
       -webkit-tap-highlight-color: transparent;
+      /* Optimize scrolling performance */
+      overscroll-behavior-y: none;
     }
     * {
       /* Optimize mobile rendering */
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
+      -webkit-perspective: 1000;
+      perspective: 1000;
     }
   }
   /* Ensure consistent layout on all desktop sizes */

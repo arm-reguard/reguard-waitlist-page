@@ -37,7 +37,7 @@ export const AuroraBackground = ({
                 #3b82f6 30%)
             `,
             backgroundSize: "300% 100%",
-            filter: "blur(80px)",
+            filter: "blur(40px)",
             willChange: "background-position",
             transform: "translateZ(0)",
           }}
@@ -51,7 +51,7 @@ export const AuroraBackground = ({
           }}
         />
         <motion.div
-          className="absolute inset-[-10px]"
+          className="absolute inset-[-10px] hidden sm:block"
           style={{
             background: `
               repeating-linear-gradient(100deg, 
