@@ -108,23 +108,23 @@ export function CostChart({ models, maxModels = 8 }: CostChartProps) {
     );
   };
 
-  // Custom tooltip
+  // Custom tooltip - smaller on mobile
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
-        <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-3 shadow-lg">
-          <div className="flex items-center gap-2 mb-2">
+        <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-2 sm:p-3 shadow-lg">
+          <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2">
             <div
-              className="w-3 h-3 rounded-full"
+              className="w-2 h-2 sm:w-3 sm:h-3 rounded-full"
               style={{ backgroundColor: data.color }}
             />
-            <p className="text-white font-semibold text-sm">
+            <p className="text-white font-semibold text-[10px] sm:text-sm">
               {data.provider}
             </p>
           </div>
-          <p className="text-zinc-300 text-xs mb-2">{data.fullName.split(' - ')[1]}</p>
-          <p className="text-purple-400 font-bold text-lg">
+          <p className="text-zinc-300 text-[9px] sm:text-xs mb-1 sm:mb-2">{data.fullName.split(' - ')[1]}</p>
+          <p className="text-purple-400 font-bold text-xs sm:text-lg">
             {formatCurrency(payload[0].value)}/month
           </p>
         </div>
@@ -134,7 +134,7 @@ export function CostChart({ models, maxModels = 8 }: CostChartProps) {
   };
 
   return (
-    <div className="w-full h-[450px] md:h-[550px] relative z-10">
+    <div className="w-full h-[450px] md:h-[550px] relative z-10 overflow-visible">
       {/* Provider Legend */}
       <div className="mb-4 flex flex-wrap gap-3 justify-center text-xs">
         {uniqueProviders.map(({ provider, color }) => (
@@ -145,7 +145,7 @@ export function CostChart({ models, maxModels = 8 }: CostChartProps) {
         ))}
       </div>
 
-      <ResponsiveContainer width="100%" height="100%" className="focus:outline-none [&_svg]:focus:outline-none [&_svg]:outline-none relative z-20">
+      <ResponsiveContainer width="100%" height="100%" className="focus:outline-none [&_svg]:focus:outline-none [&_svg]:outline-none relative z-20 overflow-visible">
         <BarChart
           data={chartData}
           layout="vertical"

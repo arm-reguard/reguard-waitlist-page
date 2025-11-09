@@ -82,10 +82,9 @@ export default function Home() {
       <AuroraBackground className="justify-start md:justify-center">
         {/* Header */}
         <motion.header
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="relative z-10 pt-4 sm:pt-6"
+          className="relative z-50 pt-4 sm:pt-6"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 sm:py-2">
             <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity -ml-3 sm:-ml-5">
@@ -101,12 +100,11 @@ export default function Home() {
         </motion.header>
 
         {/* Main Content - Center Aligned with Consistent Container */}
-        <div className="relative z-10 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 mt-8 md:-mt-16">
+        <div className="relative z-50 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 mt-8 md:-mt-16">
         {/* Main Headline */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
           className="mb-6 md:mb-10 max-w-5xl w-full"
         >
               <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
@@ -121,9 +119,8 @@ export default function Home() {
 
         {/* Features - Mobile: 1 column, Desktop: 3 top, 2 bottom */}
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
           className="mb-8 sm:mb-12 max-w-3xl w-full flex justify-center sm:hidden"
         >
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
@@ -153,9 +150,8 @@ export default function Home() {
         
         {/* Desktop Features */}
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
           className="mb-11 max-w-3xl w-full hidden sm:block"
         >
           {/* Desktop: 3 top, 2 bottom layout */}
@@ -191,9 +187,8 @@ export default function Home() {
 
         {/* Waitlist Form */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 1, scale: 1 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
           className="w-full max-w-2xl"
         >
           {!isSubmitted && !isDuplicate ? (
@@ -231,7 +226,7 @@ export default function Home() {
             </form>
           ) : isDuplicate ? (
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 1, scale: 1 }}
               animate={{ opacity: 1, scale: 1 }}
               className="rounded-lg bg-purple-600/10 backdrop-blur-sm border border-purple-500/30 p-6"
             >
@@ -245,7 +240,7 @@ export default function Home() {
             </motion.div>
           ) : (
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 1, scale: 1 }}
               animate={{ opacity: 1, scale: 1 }}
               className="rounded-lg bg-purple-600/10 backdrop-blur-sm border border-purple-500/30 p-6"
             >
@@ -262,9 +257,8 @@ export default function Home() {
 
         {/* Stats */}
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-8 md:mt-12 flex justify-center gap-8 sm:gap-12"
         >
           <div className="flex flex-col items-center">
@@ -285,19 +279,13 @@ export default function Home() {
 
         {/* Coming Soon Pill */}
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
           className="mt-10 md:mt-14 mb-6"
         >
           <motion.div
             animate={{
-              scale: [1, 1.05, 1],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
+              scale: 1,
             }}
             className="px-6 py-2 rounded-full text-sm font-medium text-purple-300"
             style={{
@@ -312,7 +300,7 @@ export default function Home() {
       </div>
 
       {/* Calculator Section */}
-      <section id="calculator" className="mt-4 pb-20 px-4">
+      <section id="calculator" className="relative z-50 mt-4 pb-20 px-4">
         <CostCalculator />
       </section>
       </AuroraBackground>
