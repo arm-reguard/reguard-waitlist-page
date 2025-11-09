@@ -24,7 +24,7 @@ export const AuroraBackground = ({
       {...props}
     >
       {/* Aurora Gradient Background */}
-      <div className="absolute inset-0 overflow-hidden opacity-40" aria-hidden="true">
+      <div className="absolute inset-0 overflow-hidden opacity-40 pointer-events-none" aria-hidden="true">
         <motion.div
           className="absolute inset-[-100%]"
           style={{
@@ -37,21 +37,23 @@ export const AuroraBackground = ({
                 #3b82f6 30%)
             `,
             backgroundSize: "300% 100%",
-            filter: "blur(80px)",
-            willChange: "background-position",
-            transform: "translateZ(0)",
+            filter: "blur(60px)",
+            willChange: "transform",
+            transform: "translateZ(0) translate3d(0, 0, 0)",
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
           }}
           animate={{
             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
           }}
           transition={{
-            duration: 20,
+            duration: 25,
             repeat: Infinity,
             ease: "linear",
           }}
         />
         <motion.div
-          className="absolute inset-[-10px]"
+          className="absolute inset-[-10px] hidden sm:block"
           style={{
             background: `
               repeating-linear-gradient(100deg, 
@@ -70,8 +72,10 @@ export const AuroraBackground = ({
             backgroundSize: "200%, 100%",
             backgroundPosition: "50% 50%, 50% 50%",
             mixBlendMode: "difference",
-            willChange: "background-position",
-            transform: "translateZ(0)",
+            willChange: "transform",
+            transform: "translateZ(0) translate3d(0, 0, 0)",
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
           }}
           animate={{
             backgroundPosition: [
@@ -81,7 +85,7 @@ export const AuroraBackground = ({
             ],
           }}
           transition={{
-            duration: 15,
+            duration: 30,
             repeat: Infinity,
             ease: "linear",
           }}

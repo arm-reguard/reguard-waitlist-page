@@ -542,7 +542,7 @@ export function CostCalculator() {
                   </div>
                 </button>
               </div>
-              <div className="rounded-lg border border-zinc-800/50 bg-[#1A1A1D] p-2 sm:p-4">
+              <div className="rounded-lg border border-zinc-800/50 bg-[#1A1A1D] p-2 sm:p-4 relative z-10 overflow-visible">
                 <CostChart models={calculatedModels} maxModels={8} />
               </div>
             </div>
@@ -582,7 +582,7 @@ export function CostCalculator() {
       {/* CTA Section */}
       <div className="text-center py-12 px-4">
         <h2
-          className="text-[22px] leading-tight sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 whitespace-nowrap"
+          className="text-[20px] sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4"
           style={{ fontFamily: 'var(--font-meriva)' }}
         >
           <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
