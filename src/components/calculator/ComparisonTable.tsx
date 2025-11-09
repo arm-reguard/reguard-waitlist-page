@@ -37,10 +37,10 @@ export function ComparisonTable({ models }: ComparisonTableProps) {
                 <th className="text-left py-4 px-4 sm:px-6 text-sm font-semibold text-zinc-300">
                   Provider & Model
                 </th>
-                <th className="text-right py-4 px-3 sm:px-4 text-sm font-semibold text-zinc-300">
+                <th className="hidden sm:table-cell text-right py-4 px-3 sm:px-4 text-sm font-semibold text-zinc-300">
                   Input Cost
                 </th>
-                <th className="text-right py-4 px-3 sm:px-4 text-sm font-semibold text-zinc-300">
+                <th className="hidden sm:table-cell text-right py-4 px-3 sm:px-4 text-sm font-semibold text-zinc-300">
                   Output Cost
                 </th>
                 <th className="text-right py-4 px-4 sm:px-6 text-sm font-semibold text-zinc-300">
@@ -77,10 +77,10 @@ export function ComparisonTable({ models }: ComparisonTableProps) {
                         </div>
                       </div>
                     </td>
-                    <td className="py-4 px-3 sm:px-4 text-right text-sm text-zinc-300 whitespace-nowrap">
+                    <td className="hidden sm:table-cell py-4 px-3 sm:px-4 text-right text-sm text-zinc-300 whitespace-nowrap">
                       {formatCurrency(model.inputCost)}
                     </td>
-                    <td className="py-4 px-3 sm:px-4 text-right text-sm text-zinc-300 whitespace-nowrap">
+                    <td className="hidden sm:table-cell py-4 px-3 sm:px-4 text-right text-sm text-zinc-300 whitespace-nowrap">
                       {formatCurrency(model.outputCost)}
                     </td>
                     <td className="py-4 px-4 sm:px-6 text-right text-base sm:text-lg font-bold text-white whitespace-nowrap">
