@@ -36,6 +36,9 @@ export const AuroraBackground = ({
                 #3b82f6 30%)
             `,
             backgroundSize: "300% 100%",
+            backgroundPosition: "0% 50%",
+            filter: "blur(0px)",
+            opacity: 0.8,
           }}
         />
         <div
@@ -56,6 +59,7 @@ export const AuroraBackground = ({
                 #3b82f6 30%)
             `,
             backgroundSize: "200%, 100%",
+            backgroundPosition: "50% 50%, 50% 50%",
             mixBlendMode: "difference",
           }}
         />

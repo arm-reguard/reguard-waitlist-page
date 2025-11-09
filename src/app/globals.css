@@ -269,26 +269,32 @@ nextjs-portal {
 
 @keyframes blur-grow {
   0% {
-    filter: blur(20px);
+    filter: blur(0px);
+    opacity: 0.8;
   }
   100% {
     filter: blur(45px);
+    opacity: 1;
   }
 }
 
 .aurora-layer-1 {
-  animation: aurora-slide-1 50s linear infinite, blur-grow 0.8s ease-out forwards;
+  animation: aurora-slide-1 50s 0s linear infinite, blur-grow 1.2s 0s ease-out forwards;
   animation-fill-mode: both;
-  filter: blur(20px);
-  will-change: background-position, filter;
+  filter: blur(0px);
+  opacity: 0.8;
+  will-change: background-position, filter, opacity;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .aurora-layer-2 {
-  animation: aurora-slide-2 60s linear infinite;
+  animation: aurora-slide-2 60s 0s linear infinite;
   animation-fill-mode: both;
+  animation-delay: 0s;
   will-change: background-position;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
