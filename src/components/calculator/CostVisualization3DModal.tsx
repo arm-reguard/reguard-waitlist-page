@@ -39,10 +39,37 @@ export function CostVisualization3DModal({
   data,
 }: CostVisualization3DModalProps) {
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const checkViewport = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    checkViewport();
+    window.addEventListener('resize', checkViewport);
+    return () => window.removeEventListener('resize', checkViewport);
+  }, [mounted]);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    if (open) {
+      const previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = previousOverflow;
+      };
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isMobile, open]);
 
   // Scroll to waitlist
   const scrollToWaitlist = () => {
@@ -53,6 +80,93 @@ export function CostVisualization3DModal({
   };
 
   if (!mounted) return null;
+
+  if (isMobile) {
+    if (!open) return null;
+
+    return (
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+        <div
+          className="absolute inset-0 bg-black/70"
+          onClick={() => onOpenChange(false)}
+        />
+        <div className="relative w-[96vw] h-[94vh] bg-black/95 border border-purple-500/40 rounded-2xl overflow-hidden shadow-xl z-[10000] flex flex-col">
+          <button
+            onClick={() => onOpenChange(false)}
+            className="absolute top-3 right-3 rounded-lg bg-zinc-900/80 p-2 border border-zinc-700 hover:bg-zinc-800 transition-colors z-50 cursor-pointer"
+          >
+            <X className="h-4 w-4 text-gray-300" />
+          </button>
+
+          <div className="flex flex-col h-full w-full p-4 gap-3">
+            <div className="text-center flex-shrink-0">
+              <h3
+                className="text-xl font-bold tracking-tight mb-1"
+                style={{ fontFamily: 'var(--font-meriva)' }}
+              >
+                <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
+                  3D Cost Universe
+                </span>
+              </h3>
+              <p className="text-gray-400 text-[11px]">
+                Your {data.length} models visualized in 3D space
+              </p>
+            </div>
+
+            <div className="flex-1 w-full rounded-xl border border-zinc-800/50 bg-[#0a0a0a] overflow-hidden">
+              <CostVisualization3D data={data} />
+            </div>
+
+            <div className="flex-shrink-0 pt-4 text-center">
+              <h4
+                className="text-lg font-bold tracking-tight mb-5"
+                style={{ fontFamily: 'var(--font-meriva)' }}
+              >
+                <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
+                  See your actual API requests in 3D
+                </span>
+              </h4>
+
+              <div className="mb-6 max-w-md mx-auto">
+                <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-xs text-zinc-300/90">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-purple-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-left leading-tight">Real-Time Tracking</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-purple-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-left leading-tight">Intelligent Clustering</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-purple-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-left leading-tight">Anomaly Detection</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-purple-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-left leading-tight">Heat Zones</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-purple-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-left leading-tight">AI-Powered Insights</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-purple-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-left leading-tight">AI Cost Recommendations</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-center">
+                <ReGuardButton onClick={scrollToWaitlist}>
+                  Join Waitlist - Get Early Access
+                </ReGuardButton>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
