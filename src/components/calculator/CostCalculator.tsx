@@ -30,11 +30,42 @@ export function CostCalculator() {
   const [selectedProviders, setSelectedProviders] = useState<Set<string>>(new Set());
   const [selectedModels, setSelectedModels] = useState<ProviderModelSelection[]>([]);
   const [show3DModal, setShow3DModal] = useState(false);
+  const [visualizationAnchor, setVisualizationAnchor] = useState<{
+    top: number;
+    left: number;
+    width: number;
+    height: number;
+  } | null>(null);
   const [showAllProviders, setShowAllProviders] = useState(false);
   const [showDetailedBreakdown, setShowDetailedBreakdown] = useState(false);
   
   // Ref to preserve scroll position when toggling sections
   const breakdownButtonRef = useRef<HTMLButtonElement>(null);
+  const visualComparisonRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!show3DModal) return;
+
+    const updateAnchor = () => {
+      if (!visualComparisonRef.current) return;
+      const rect = visualComparisonRef.current.getBoundingClientRect();
+      setVisualizationAnchor({
+        top: rect.top,
+        left: rect.left,
+        width: rect.width,
+        height: rect.height,
+      });
+    };
+
+    updateAnchor();
+    window.addEventListener('resize', updateAnchor);
+    window.addEventListener('scroll', updateAnchor, true);
+
+    return () => {
+      window.removeEventListener('resize', updateAnchor);
+      window.removeEventListener('scroll', updateAnchor, true);
+    };
+  }, [show3DModal]);
 
   // Handler to toggle breakdown while preserving scroll position
   const handleToggleBreakdown = useCallback(() => {
@@ -521,7 +552,10 @@ export function CostCalculator() {
 
           {/* ROW: Visual Comparison (Full Width) */}
           {calculatedModels.length > 0 && (
-            <div className="relative z-50 rounded-lg border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95 p-4 sm:p-5">
+            <div
+              ref={visualComparisonRef}
+              className="relative z-50 rounded-lg border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95 p-4 sm:p-5"
+            >
               {/* Mobile: Heading left, button top-right, Desktop: Side by side */}
               <div className="flex items-start justify-between mb-3 gap-2">
                 <div className="text-left flex-1">
@@ -536,6 +570,17 @@ export function CostCalculator() {
                   type="button"
                   onClick={(e) => {
                     e.preventDefault();
+                    if (visualComparisonRef.current) {
+                      const rect = visualComparisonRef.current.getBoundingClientRect();
+                      setVisualizationAnchor({
+                        top: rect.top,
+                        left: rect.left,
+                        width: rect.width,
+                        height: rect.height,
+                      });
+                    } else {
+                      setVisualizationAnchor(null);
+                    }
                     setShow3DModal(true);
                   }}
                   className="view-3d-button relative group flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-zinc-900 border border-purple-500/30 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50 flex-shrink-0 cursor-pointer animate-pulse-subtle"
@@ -662,8 +707,14 @@ export function CostCalculator() {
       {/* 3D Visualization Modal */}
       <CostVisualization3DModal
         open={show3DModal}
-        onOpenChange={setShow3DModal}
+        onOpenChange={(state) => {
+          setShow3DModal(state);
+          if (!state) {
+            setVisualizationAnchor(null);
+          }
+        }}
         data={calculatedModels}
+        anchorRect={visualizationAnchor}
       />
 
       {/* Slider Custom Styles */}

@@ -31,15 +31,23 @@ interface CostVisualization3DModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   data: CalculatedModel[];
+  anchorRect?: {
+    top: number;
+    left: number;
+    width: number;
+    height: number;
+  } | null;
 }
 
 export function CostVisualization3DModal({
   open,
   onOpenChange,
   data,
+  anchorRect,
 }: CostVisualization3DModalProps) {
   const [mounted, setMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [viewportHeight, setViewportHeight] = useState(0);
 
   useEffect(() => {
     setMounted(true);
@@ -49,7 +57,9 @@ export function CostVisualization3DModal({
     if (!mounted) return;
 
     const checkViewport = () => {
-      setIsMobile(window.innerWidth < 640);
+      const width = window.innerWidth;
+      setIsMobile(width < 640);
+      setViewportHeight(window.innerHeight);
     };
 
     checkViewport();
@@ -84,13 +94,34 @@ export function CostVisualization3DModal({
   if (isMobile) {
     if (!open) return null;
 
+    const fallbackViewportHeight =
+      viewportHeight || (typeof window !== 'undefined' ? window.innerHeight : 800);
+    const top = anchorRect ? Math.max(anchorRect.top, 16) : 16;
+    const left = anchorRect ? Math.max(anchorRect.left, 8) : 8;
+    const width = anchorRect
+      ? anchorRect.width
+      : typeof window !== 'undefined'
+      ? Math.min(window.innerWidth - 16, 500)
+      : 320;
+    const height = anchorRect
+      ? Math.min(Math.max(anchorRect.height, 420), fallbackViewportHeight - 24)
+      : Math.min(fallbackViewportHeight - 24, 520);
+
     return (
       <div className="fixed inset-0 z-[9999] flex items-center justify-center">
         <div
           className="absolute inset-0 bg-black/70"
           onClick={() => onOpenChange(false)}
         />
-        <div className="relative w-[96vw] h-[94vh] bg-black/95 border border-purple-500/40 rounded-2xl overflow-hidden shadow-xl z-[10000] flex flex-col">
+        <div
+          className="absolute bg-black/95 border border-purple-500/40 rounded-2xl overflow-hidden shadow-xl z-[10000] flex flex-col"
+          style={{
+            top,
+            left,
+            width,
+            height,
+          }}
+        >
           <button
             onClick={() => onOpenChange(false)}
             className="absolute top-3 right-3 rounded-lg bg-zinc-900/80 p-2 border border-zinc-700 hover:bg-zinc-800 transition-colors z-50 cursor-pointer"

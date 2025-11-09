@@ -42,6 +42,15 @@ export function CostVisualization3D({ data }: CostVisualization3DProps) {
   const graphRef = useRef<any>(null);
   const [hoveredNode, setHoveredNode] = useState<GraphNode | null>(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Calculate node size (logarithmic scale)
   const calculateNodeSize = useCallback((cost: number, allCosts: number[]) => {
@@ -308,11 +317,22 @@ export function CostVisualization3D({ data }: CostVisualization3DProps) {
       {hoveredNode && (
         <div
           className="fixed bg-zinc-900/95 backdrop-blur-sm border border-purple-500/30 rounded-lg p-3 pointer-events-none shadow-xl z-50"
-          style={{
-            left: tooltipPos.x + 15,
-            top: tooltipPos.y + 15,
-            transform: 'translate(0, -50%)'
-          }}
+          style={
+            isMobile
+              ? {
+                  left: '50%',
+                  right: 'auto',
+                  top: 'auto',
+                  bottom: 16,
+                  transform: 'translate(-50%, 0)',
+                  maxWidth: '85vw',
+                }
+              : {
+                  left: tooltipPos.x + 15,
+                  top: tooltipPos.y + 15,
+                  transform: 'translate(0, -50%)',
+                }
+          }
         >
           <div className="flex items-center gap-2 mb-2">
             <div
