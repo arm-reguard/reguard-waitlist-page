@@ -542,7 +542,7 @@ export function CostCalculator() {
                   </div>
                 </button>
               </div>
-              <div className="rounded-lg border border-zinc-800/50 bg-[#1A1A1D] p-2 sm:p-4 relative z-10 overflow-visible">
+              <div className="rounded-lg border border-zinc-800/50 bg-[#1A1A1D] p-2 sm:p-4 relative z-10">
                 <CostChart models={calculatedModels} maxModels={8} />
               </div>
             </div>

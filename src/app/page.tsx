@@ -105,7 +105,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 1, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-6 md:mb-10 max-w-5xl w-full"
+          className="relative z-50 mb-6 md:mb-10 max-w-5xl w-full"
         >
               <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
                 <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
@@ -121,7 +121,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
-          className="mb-8 sm:mb-12 max-w-3xl w-full flex justify-center sm:hidden"
+          className="relative z-50 mb-8 sm:mb-12 max-w-3xl w-full flex justify-center sm:hidden"
         >
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
           <div className="flex flex-col items-start gap-3 text-sm sm:text-base text-zinc-300/90">
@@ -152,7 +152,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
-          className="mb-11 max-w-3xl w-full hidden sm:block"
+          className="relative z-50 mb-11 max-w-3xl w-full hidden sm:block"
         >
           {/* Desktop: 3 top, 2 bottom layout */}
           <div className="flex flex-col items-center gap-6 text-sm sm:text-base text-zinc-300/90">
@@ -189,7 +189,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 1, scale: 1 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-2xl"
+          className="relative z-50 w-full max-w-2xl"
         >
           {!isSubmitted && !isDuplicate ? (
             <form 
@@ -259,7 +259,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
-          className="mt-8 md:mt-12 flex justify-center gap-8 sm:gap-12"
+          className="relative z-50 mt-8 md:mt-12 flex justify-center gap-8 sm:gap-12"
         >
           <div className="flex flex-col items-center">
             <div className="text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">300+</div>
@@ -281,7 +281,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
-          className="mt-10 md:mt-14 mb-6"
+          className="relative z-50 mt-10 md:mt-14 mb-6"
         >
           <motion.div
             animate={{
