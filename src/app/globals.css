@@ -259,3 +259,30 @@ nextjs-portal {
 .recharts-surface {
   position: relative !important;
 }
+
+/* Aurora background animations - CSS instead of Framer Motion for better performance */
+@keyframes aurora-1 {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes aurora-2 {
+  0%, 100% {
+    background-position: 50% 50%, 50% 50%;
+  }
+  50% {
+    background-position: 100% 50%, 150% 50%;
+  }
+}
+
+.aurora-animate-1 {
+  animation: aurora-1 25s linear infinite;
+}
+
+.aurora-animate-2 {
+  animation: aurora-2 30s linear infinite;
+}

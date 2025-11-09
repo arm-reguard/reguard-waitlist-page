@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import React, { ReactNode } from "react";
-import { motion } from "framer-motion";
 
 interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
   children: ReactNode;
@@ -25,8 +24,8 @@ export const AuroraBackground = ({
     >
       {/* Aurora Gradient Background - DESKTOP ONLY */}
       <div className="absolute inset-0 overflow-hidden opacity-40 pointer-events-none hidden sm:block" aria-hidden="true" style={{ zIndex: 0 }}>
-        <motion.div
-          className="absolute inset-[-100%]"
+        <div
+          className="absolute inset-[-100%] aurora-animate-1"
           style={{
             background: `
               repeating-linear-gradient(100deg, 
@@ -39,17 +38,9 @@ export const AuroraBackground = ({
             backgroundSize: "300% 100%",
             filter: "blur(60px)",
           }}
-          animate={{
-            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
-          }}
         />
-        <motion.div
-          className="absolute inset-[-10px]"
+        <div
+          className="absolute inset-[-10px] aurora-animate-2"
           style={{
             background: `
               repeating-linear-gradient(100deg, 
@@ -68,18 +59,6 @@ export const AuroraBackground = ({
             backgroundSize: "200%, 100%",
             backgroundPosition: "50% 50%, 50% 50%",
             mixBlendMode: "difference",
-          }}
-          animate={{
-            backgroundPosition: [
-              "50% 50%, 50% 50%",
-              "100% 50%, 150% 50%",
-              "50% 50%, 50% 50%",
-            ],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear",
           }}
         />
       </div>
