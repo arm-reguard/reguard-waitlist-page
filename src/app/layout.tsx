@@ -46,6 +46,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`dark ${merivaFont.variable} ${sourceSans3Font.variable} ${openSansFont.variable}`}>
+      <head>
+        {/* Google Search Console Verification */}
+        <meta name="google-site-verification" content="GB8KV6SBWWtnKi4fx6iNnSL7AF-9IKWOpeZ4c3VQ96U" />
+      </head>
       <body className="antialiased" style={{ fontFamily: 'var(--font-open-sans)' }}>
         <ErrorReporter />
         <Script
