@@ -176,24 +176,6 @@
     }
   }
   
-  @keyframes aurora {
-    from {
-      background-position: 50% 50%, 50% 50%;
-    }
-    to {
-      background-position: 350% 50%, 350% 50%;
-    }
-  }
-  
-  @keyframes gradientSpin {
-    0% {
-      background-position: 0% 50%;
-    }
-    100% {
-      background-position: 200% 50%;
-    }
-  }
-  
   @keyframes pulse-subtle {
     0%, 100% {
       opacity: 1;
@@ -260,7 +242,7 @@ nextjs-portal {
   position: relative !important;
 }
 
-/* Aurora background animations - CSS instead of Framer Motion for better performance */
+/* Aurora background animations - Optimized for smooth startup */
 @keyframes aurora-1 {
   0%, 100% {
     background-position: 0% 50%;
@@ -280,9 +262,11 @@ nextjs-portal {
 }
 
 .aurora-animate-1 {
-  animation: aurora-1 25s linear infinite;
+  animation: aurora-1 25s ease-in-out infinite;
+  animation-play-state: running;
 }
 
 .aurora-animate-2 {
-  animation: aurora-2 30s linear infinite;
+  animation: aurora-2 30s ease-in-out infinite;
+  animation-play-state: running;
 }

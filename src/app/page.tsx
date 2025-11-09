@@ -12,7 +12,10 @@ import Image from "next/image";
 // Lazy load the calculator (includes Recharts) - not needed on first fold
 const CostCalculator = dynamic(
   () => import("@/components/calculator/CostCalculator").then((mod) => ({ default: mod.CostCalculator })),
-  { ssr: false }
+  { 
+    ssr: false,
+    loading: () => <div className="min-h-screen w-full" /> // Ensure page is scrollable during load
+  }
 );
 
 export default function Home() {
