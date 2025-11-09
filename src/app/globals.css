@@ -264,9 +264,17 @@ nextjs-portal {
 .aurora-animate-1 {
   animation: aurora-1 25s ease-in-out infinite;
   animation-play-state: running;
+  animation-delay: 0.05s;
+  /* Ensure GPU layer from start */
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
 }
 
 .aurora-animate-2 {
   animation: aurora-2 30s ease-in-out infinite;
   animation-play-state: running;
+  animation-delay: 0.05s;
+  /* Ensure GPU layer from start */
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
 }

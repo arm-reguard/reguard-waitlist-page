@@ -38,6 +38,9 @@ export const AuroraBackground = ({
             backgroundSize: "300% 100%",
             filter: "blur(60px)",
             willChange: "background-position",
+            transform: "translate3d(0, 0, 0)",
+            backfaceVisibility: "hidden" as const,
+            WebkitBackfaceVisibility: "hidden" as const,
           }}
         />
         <div
@@ -61,6 +64,9 @@ export const AuroraBackground = ({
             backgroundPosition: "50% 50%, 50% 50%",
             mixBlendMode: "difference",
             willChange: "background-position",
+            transform: "translate3d(0, 0, 0)",
+            backfaceVisibility: "hidden" as const,
+            WebkitBackfaceVisibility: "hidden" as const,
           }}
         />
       </div>
