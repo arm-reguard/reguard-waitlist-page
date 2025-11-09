@@ -554,24 +554,24 @@ export function CostCalculator() {
               ref={breakdownButtonRef}
               type="button"
               onClick={handleToggleBreakdown}
-              className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-zinc-900/50 transition-colors rounded-lg cursor-pointer"
+              className="relative z-50 w-full px-5 py-4 flex items-center justify-between text-left hover:bg-zinc-900/50 transition-colors rounded-lg cursor-pointer"
             >
-              <div>
-                <h3 className="text-lg font-bold text-white mb-0.5 flex items-center gap-2">
-                  Detailed Breakdown
-                  {showDetailedBreakdown ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              <div className="relative z-50">
+                <h3 className="relative z-50 text-lg font-bold text-white mb-0.5 flex items-center gap-2">
+                  <span className="relative z-50">Detailed Breakdown</span>
+                  {showDetailedBreakdown ? <ChevronUp className="relative z-50 w-4 h-4" /> : <ChevronDown className="relative z-50 w-4 h-4" />}
                 </h3>
-                <p className="text-xs text-zinc-300">
+                <p className="relative z-50 text-xs text-zinc-300">
                   Full breakdown of monthly costs for all {calculatedModels.length} models
                 </p>
               </div>
-              <span className="text-xs font-medium text-purple-300">
+              <span className="relative z-50 text-xs font-medium text-purple-300">
                 {showDetailedBreakdown ? 'Hide' : 'Show'}
               </span>
             </button>
             
             {showDetailedBreakdown && (
-              <div className="px-5 pb-5">
+              <div className="relative z-50 px-5 pb-5">
                 <ComparisonTable models={calculatedModels} />
               </div>
             )}
@@ -582,15 +582,15 @@ export function CostCalculator() {
       {/* CTA Section */}
       <div className="relative z-50 text-center py-12 px-4">
         <h2
-          className="text-[19px] sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 whitespace-nowrap overflow-hidden"
+          className="relative z-50 text-[19px] sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 whitespace-nowrap overflow-hidden"
           style={{ fontFamily: 'var(--font-meriva)' }}
         >
-          <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
+          <span className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
             reGuard tracks all this automatically
           </span>
         </h2>
         
-        <p className="text-base sm:text-lg md:text-lg lg:text-xl text-zinc-300 mb-8 mx-auto">
+        <p className="relative z-50 text-base sm:text-lg md:text-lg lg:text-xl text-zinc-300 mb-8 mx-auto">
           Real-time insights, instant alerts, and automated savings - all on autopilot
         </p>
         
@@ -649,7 +649,7 @@ export function CostCalculator() {
 
       {/* Copyright */}
       <div className="relative z-50 text-center pt-4 pb-8">
-        <p className="text-sm text-zinc-500">
+        <p className="relative z-50 text-sm text-zinc-500">
           © 2025 reGuard. All rights reserved.
         </p>
       </div>

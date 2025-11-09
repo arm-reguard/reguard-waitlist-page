@@ -107,12 +107,12 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           className="relative z-50 mb-6 md:mb-10 max-w-5xl w-full"
         >
-              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
-                <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
+              <h2 className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
+                <span className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
                   Never worry about API costs again
                 </span>
               </h2>
-          <p className="text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg">
+          <p className="relative z-50 text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg">
             Smart monitoring and controls to prevent unexpected API bills
           </p>
         </motion.div>
@@ -124,26 +124,26 @@ export default function Home() {
           className="relative z-50 mb-8 sm:mb-12 max-w-3xl w-full flex justify-center sm:hidden"
         >
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
-          <div className="flex flex-col items-start gap-3 text-sm sm:text-base text-zinc-300/90">
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span>Live Cost Monitoring</span>
+          <div className="relative z-50 flex flex-col items-start gap-3 text-sm sm:text-base text-zinc-300/90">
+            <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span className="relative z-50">Live Cost Monitoring</span>
             </div>
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span>Instant Budget Alerts</span>
+            <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span className="relative z-50">Instant Budget Alerts</span>
             </div>
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span>3D Cost Visualization</span>
+            <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span className="relative z-50">3D Cost Visualization</span>
             </div>
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span>Intelligent Request Caching</span>
+            <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span className="relative z-50">Intelligent Request Caching</span>
             </div>
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span>Multi-Provider LLM Tracking</span>
+            <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span className="relative z-50">Multi-Provider LLM Tracking</span>
             </div>
           </div>
         </motion.div>
@@ -261,19 +261,19 @@ export default function Home() {
           animate={{ opacity: 1 }}
           className="relative z-50 mt-8 md:mt-12 flex justify-center gap-8 sm:gap-12"
         >
-          <div className="flex flex-col items-center">
-            <div className="text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">300+</div>
-            <div className="text-xs sm:text-sm text-zinc-300/90 mt-2">On Waitlist</div>
+          <div className="relative z-50 flex flex-col items-center">
+            <div className="relative z-50 text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">300+</div>
+            <div className="relative z-50 text-xs sm:text-sm text-zinc-300/90 mt-2">On Waitlist</div>
           </div>
-          <div className="flex flex-col items-center">
-            <div className="text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">2mins</div>
-            <div className="text-xs sm:text-sm text-zinc-300/90 mt-2">Setup Time</div>
+          <div className="relative z-50 flex flex-col items-center">
+            <div className="relative z-50 text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">2mins</div>
+            <div className="relative z-50 text-xs sm:text-sm text-zinc-300/90 mt-2">Setup Time</div>
           </div>
-          <div className="flex flex-col items-center">
-            <div className="text-white font-bold h-[40px] flex items-center justify-center">
-              <Infinity className="h-8 w-8 sm:h-10 sm:w-10" />
+          <div className="relative z-50 flex flex-col items-center">
+            <div className="relative z-50 text-white font-bold h-[40px] flex items-center justify-center">
+              <Infinity className="relative z-50 h-8 w-8 sm:h-10 sm:w-10" />
             </div>
-            <div className="text-xs sm:text-sm text-zinc-300/90 mt-2">API Tracking</div>
+            <div className="relative z-50 text-xs sm:text-sm text-zinc-300/90 mt-2">API Tracking</div>
           </div>
         </motion.div>
 
@@ -287,14 +287,14 @@ export default function Home() {
             animate={{
               scale: 1,
             }}
-            className="px-6 py-2 rounded-full text-sm font-medium text-purple-300"
+            className="relative z-50 px-6 py-2 rounded-full text-sm font-medium text-purple-300"
             style={{
               background: "rgba(139, 92, 246, 0.15)",
               border: "1px solid rgba(167, 139, 250, 0.3)",
               boxShadow: "0 0 20px rgba(167, 139, 250, 0.2)",
             }}
           >
-            Launching Soon
+            <span className="relative z-50">Launching Soon</span>
           </motion.div>
         </motion.div>
       </div>
