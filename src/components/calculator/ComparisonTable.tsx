@@ -34,7 +34,7 @@ export function ComparisonTable({ models }: ComparisonTableProps) {
           <table className="w-full">
             <thead className="bg-[#1A1A1D] border-b border-zinc-800/50 sticky top-0 z-10">
               <tr>
-                <th className="text-left py-4 px-4 sm:px-6 text-sm font-semibold text-zinc-300">
+                <th className="text-left py-3 px-3 sm:py-4 sm:px-6 text-xs sm:text-sm font-semibold text-zinc-300">
                   Provider & Model
                 </th>
                 <th className="hidden sm:table-cell text-right py-4 px-3 sm:px-4 text-sm font-semibold text-zinc-300">
@@ -43,7 +43,7 @@ export function ComparisonTable({ models }: ComparisonTableProps) {
                 <th className="hidden sm:table-cell text-right py-4 px-3 sm:px-4 text-sm font-semibold text-zinc-300">
                   Output Cost
                 </th>
-                <th className="text-right py-4 px-4 sm:px-6 text-sm font-semibold text-zinc-300">
+                <th className="text-right py-3 px-2 sm:py-4 sm:px-6 text-xs sm:text-sm font-semibold text-zinc-300 whitespace-nowrap">
                   Total/Month
                 </th>
               </tr>
@@ -58,22 +58,22 @@ export function ComparisonTable({ models }: ComparisonTableProps) {
                       isCheapest ? 'bg-green-950/20' : ''
                     }`}
                   >
-                    <td className="py-4 px-4 sm:px-6">
-                      <div className="flex items-center gap-3">
+                    <td className="py-3 px-3 sm:py-4 sm:px-6">
+                      <div className="flex items-center gap-2 sm:gap-3">
                         <div
-                          className="w-3 h-3 rounded-full flex-shrink-0"
+                          className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full flex-shrink-0"
                           style={{ backgroundColor: model.color }}
                         />
-                        <div className="min-w-0">
-                          <div className="font-semibold text-white flex items-center gap-2 flex-wrap">
+                        <div className="min-w-0 flex-1">
+                          <div className="font-semibold text-white flex items-center gap-1.5 sm:gap-2 flex-wrap text-sm sm:text-base">
                             <span className="truncate">{model.provider}</span>
                             {isCheapest && (
-                              <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-green-500/20 text-green-400 border border-green-500/30 whitespace-nowrap">
+                              <span className="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-bold bg-green-500/20 text-green-400 border border-green-500/30 whitespace-nowrap">
                                 BEST VALUE
                               </span>
                             )}
                           </div>
-                          <div className="text-sm text-zinc-300 truncate">{model.name}</div>
+                          <div className="text-xs sm:text-sm text-zinc-300 truncate">{model.name}</div>
                         </div>
                       </div>
                     </td>
@@ -83,7 +83,7 @@ export function ComparisonTable({ models }: ComparisonTableProps) {
                     <td className="hidden sm:table-cell py-4 px-3 sm:px-4 text-right text-sm text-zinc-300 whitespace-nowrap">
                       {formatCurrency(model.outputCost)}
                     </td>
-                    <td className="py-4 px-4 sm:px-6 text-right text-base sm:text-lg font-bold text-white whitespace-nowrap">
+                    <td className="py-3 px-2 sm:py-4 sm:px-6 text-right text-sm sm:text-base md:text-lg font-bold text-white whitespace-nowrap">
                       {formatCurrency(model.totalCost)}
                     </td>
                   </tr>
