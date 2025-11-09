@@ -20,18 +20,20 @@ interface CostChartProps {
 }
 
 export function CostChart({ models, maxModels = 8 }: CostChartProps) {
-  // Detect mobile screen size
-  const [isMobile, setIsMobile] = useState(false);
+  // Detect mobile screen size - initialize with correct value to avoid re-render delay
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 640;
+    }
+    return false; // Default for SSR
+  });
 
   useEffect(() => {
-    // Initial check
+    // Add resize listener only
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 640); // sm breakpoint
     };
     
-    checkMobile();
-    
-    // Add resize listener
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);

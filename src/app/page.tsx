@@ -81,11 +81,7 @@ export default function Home() {
     <>
       <AuroraBackground className="justify-start md:justify-center">
         {/* Header */}
-        <motion.header
-          initial={{ opacity: 1, y: 0 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative z-50 pt-4 sm:pt-6"
-        >
+        <header className="relative z-50 pt-4 sm:pt-6">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 sm:py-2">
             <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity -ml-3 sm:-ml-5">
               <Image 
@@ -94,19 +90,17 @@ export default function Home() {
                 width={2071} 
                 height={438}
                 className="h-[24px] sm:h-[38px] md:h-[50px] w-auto"
+                priority
+                loading="eager"
               />
             </Link>
           </div>
-        </motion.header>
+        </header>
 
         {/* Main Content - Center Aligned with Consistent Container */}
         <div className="relative z-50 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 mt-8 md:-mt-16">
         {/* Main Headline */}
-        <motion.div
-          initial={{ opacity: 1, y: 0 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative z-50 mb-6 md:mb-10 max-w-5xl w-full"
-        >
+        <div className="relative z-50 mb-6 md:mb-10 max-w-5xl w-full">
               <h2 className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
                 <span className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
                   Never worry about API costs again
@@ -115,14 +109,10 @@ export default function Home() {
           <p className="relative z-50 text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg">
             Smart monitoring and controls to prevent unexpected API bills
           </p>
-        </motion.div>
+        </div>
 
         {/* Features - Mobile: 1 column, Desktop: 3 top, 2 bottom */}
-        <motion.div
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 1 }}
-          className="relative z-50 mb-8 sm:mb-12 max-w-3xl w-full flex justify-center sm:hidden"
-        >
+        <div className="relative z-50 mb-8 sm:mb-12 max-w-3xl w-full flex justify-center sm:hidden">
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
           <div className="relative z-50 flex flex-col items-start gap-3 text-sm sm:text-base text-zinc-300/90">
             <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
@@ -146,14 +136,10 @@ export default function Home() {
               <span className="relative z-50">Multi-Provider LLM Tracking</span>
             </div>
           </div>
-        </motion.div>
+        </div>
         
         {/* Desktop Features */}
-        <motion.div
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 1 }}
-          className="relative z-50 mb-11 max-w-3xl w-full hidden sm:block"
-        >
+        <div className="relative z-50 mb-11 max-w-3xl w-full hidden sm:block">
           {/* Desktop: 3 top, 2 bottom layout */}
           <div className="flex flex-col items-center gap-6 text-sm sm:text-base text-zinc-300/90">
             {/* First row - 3 items */}
@@ -183,14 +169,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Waitlist Form */}
-        <motion.div
-          initial={{ opacity: 1, scale: 1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="relative z-50 w-full max-w-2xl"
-        >
+        <div className="relative z-50 w-full max-w-2xl">
           {!isSubmitted && !isDuplicate ? (
             <form 
               onSubmit={handleSubmit}
@@ -253,14 +235,10 @@ export default function Home() {
               </p>
             </motion.div>
           )}
-        </motion.div>
+        </div>
 
         {/* Stats */}
-        <motion.div
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 1 }}
-          className="relative z-50 mt-8 md:mt-12 flex justify-center gap-8 sm:gap-12"
-        >
+        <div className="relative z-50 mt-8 md:mt-12 flex justify-center gap-8 sm:gap-12">
           <div className="relative z-50 flex flex-col items-center">
             <div className="relative z-50 text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">300+</div>
             <div className="relative z-50 text-xs sm:text-sm text-zinc-300/90 mt-2">On Waitlist</div>
@@ -275,18 +253,11 @@ export default function Home() {
             </div>
             <div className="relative z-50 text-xs sm:text-sm text-zinc-300/90 mt-2">API Tracking</div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Coming Soon Pill */}
-        <motion.div
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 1 }}
-          className="relative z-50 mt-10 md:mt-14 mb-6"
-        >
-          <motion.div
-            animate={{
-              scale: 1,
-            }}
+        <div className="relative z-50 mt-10 md:mt-14 mb-6">
+          <div
             className="relative z-50 px-6 py-2 rounded-full text-sm font-medium text-purple-300"
             style={{
               background: "rgba(139, 92, 246, 0.15)",
@@ -295,8 +266,8 @@ export default function Home() {
             }}
           >
             <span className="relative z-50">Launching Soon</span>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
       {/* Calculator Section */}
