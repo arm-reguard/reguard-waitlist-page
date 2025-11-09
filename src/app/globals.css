@@ -148,6 +148,9 @@
     -moz-osx-font-smoothing: grayscale;
     /* Optimize scrolling performance */
     -webkit-overflow-scrolling: touch;
+    /* Force GPU acceleration for all content during scroll */
+    transform: translateZ(0);
+    will-change: scroll-position;
   }
   @media (max-width: 768px) {
     html, body {
@@ -258,4 +261,12 @@ nextjs-portal {
 
 .recharts-surface {
   position: relative !important;
+}
+
+/* Force GPU acceleration on all z-50 elements to prevent scroll disappearing */
+.z-50, [class*="z-50"] {
+  transform: translateZ(0) !important;
+  will-change: transform !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
 }

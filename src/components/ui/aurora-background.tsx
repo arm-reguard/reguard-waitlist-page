@@ -92,17 +92,17 @@ export const AuroraBackground = ({
         />
       </div>
 
-      {/* Vignette Overlay */}
+      {/* Vignette Overlay - Less opaque on desktop to show aurora */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none -z-5"
         style={{
-          background: "radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.8) 100%)",
+          background: "radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%)",
         }}
         aria-hidden="true"
       />
 
       {/* Content Layer */}
-      <div className="relative z-10 w-full">
+      <div className="relative z-50 w-full" style={{ isolation: 'isolate' }}>
         {children}
       </div>
     </div>

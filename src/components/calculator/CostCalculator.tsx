@@ -580,22 +580,22 @@ export function CostCalculator() {
       </div>
 
       {/* CTA Section */}
-      <div className="relative z-50 text-center py-12 px-4">
+      <div className="relative z-50 text-center py-12 px-4" style={{ transform: 'translateZ(0)', willChange: 'transform', isolation: 'isolate' }}>
         <h2
           className="relative z-50 text-[19px] sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 whitespace-nowrap overflow-hidden"
-          style={{ fontFamily: 'var(--font-meriva)' }}
+          style={{ fontFamily: 'var(--font-meriva)', transform: 'translateZ(0)' }}
         >
-          <span className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
+          <span className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent" style={{ transform: 'translateZ(0)' }}>
             reGuard tracks all this automatically
           </span>
         </h2>
         
-        <p className="relative z-50 text-base sm:text-lg md:text-lg lg:text-xl text-zinc-300 mb-8 mx-auto">
+        <p className="relative z-50 text-base sm:text-lg md:text-lg lg:text-xl text-zinc-300 mb-8 mx-auto" style={{ transform: 'translateZ(0)' }}>
           Real-time insights, instant alerts, and automated savings - all on autopilot
         </p>
         
         {/* Mobile: Left-aligned in centered container like first fold, Desktop: Flex wrap */}
-        <div className="relative z-50 mb-10 flex justify-center">
+        <div className="relative z-50 mb-10 flex justify-center" style={{ transform: 'translateZ(0)' }}>
           {/* Mobile layout: Left-aligned in centered container (EXACTLY like first fold) */}
           <div className="relative z-50 flex flex-col items-start gap-3 sm:hidden text-sm text-zinc-300/90">
             <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
