@@ -21,19 +21,31 @@ export const AuroraBackground = ({
   useEffect(() => {
     setHasMounted(true);
 
-    const enableAnimation = () =>
-      requestAnimationFrame(() => setIsAnimated(true));
+    if (typeof window === "undefined") return;
 
-    if (typeof window !== "undefined") {
-      if (document.readyState === "complete") {
-        enableAnimation();
-      } else {
-        window.addEventListener("load", enableAnimation, { once: true });
-        return () => window.removeEventListener("load", enableAnimation);
-      }
+    let cancelled = false;
+    let rafId = 0;
+    const startAnimation = () => {
+      if (cancelled) return;
+      rafId = window.requestAnimationFrame(() => {
+        if (!cancelled) setIsAnimated(true);
+      });
+    };
+
+    if (document.readyState === "complete") {
+      startAnimation();
+    } else {
+      window.addEventListener("load", startAnimation, { once: true });
     }
 
-    return undefined;
+    const safetyTimeout = window.setTimeout(startAnimation, 1500);
+
+    return () => {
+      cancelled = true;
+      window.removeEventListener("load", startAnimation);
+      window.cancelAnimationFrame(rafId);
+      window.clearTimeout(safetyTimeout);
+    };
   }, []);
 
   return (
