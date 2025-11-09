@@ -194,32 +194,32 @@ export default function Home() {
           {!isSubmitted && !isDuplicate ? (
             <form 
               onSubmit={handleSubmit}
-              className="space-y-4"
+              className="relative z-50 space-y-4"
             >
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-4">
+              <div className="relative z-50 flex flex-col sm:flex-row gap-4 sm:gap-4">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
                   required
-                  className="email-input w-full rounded-full text-white placeholder-gray-500 focus:outline-none text-base md:text-lg px-6 py-3"
+                  className="relative z-50 email-input w-full rounded-full text-white placeholder-gray-500 focus:outline-none text-base md:text-lg px-6 py-3"
                 />
                 <ReGuardButton 
                   type="submit" 
                   disabled={isLoading}
-                  className="w-full sm:w-auto sm:min-w-[200px]"
+                  className="relative z-50 w-full sm:w-auto sm:min-w-[200px]"
                 >
                   {isLoading ? "Joining..." : "Join Waitlist"}
                 </ReGuardButton>
               </div>
-              <p className="text-xs text-zinc-500">
+              <p className="relative z-50 text-xs text-zinc-500">
                 Be the first to know when we launch. No spam, ever.
               </p>
               <button
                 type="button"
                 onClick={() => document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' })}
-                className="text-sm text-purple-400 hover:text-purple-300 transition-colors mt-2 font-bold cursor-pointer"
+                className="relative z-50 text-sm text-purple-400 hover:text-purple-300 transition-colors mt-2 font-bold cursor-pointer"
               >
                 Try our FREE API Cost Calculator
               </button>
@@ -228,13 +228,13 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 1, scale: 1 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="rounded-lg bg-purple-600/10 backdrop-blur-sm border border-purple-500/30 p-6"
+              className="relative z-50 rounded-lg bg-purple-600/10 backdrop-blur-sm border border-purple-500/30 p-6"
             >
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <span className="text-3xl">✨</span>
-                <h3 className="text-xl font-semibold text-white">Already on the list!</h3>
+              <div className="relative z-50 flex items-center justify-center gap-2 mb-2">
+                <span className="relative z-50 text-3xl">✨</span>
+                <h3 className="relative z-50 text-xl font-semibold text-white">Already on the list!</h3>
               </div>
-              <p className="text-zinc-300">
+              <p className="relative z-50 text-zinc-300">
                 <span className="font-medium text-white">{submittedEmail}</span> is already signed up for the waitlist.
               </p>
             </motion.div>
@@ -242,13 +242,13 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 1, scale: 1 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="rounded-lg bg-purple-600/10 backdrop-blur-sm border border-purple-500/30 p-6"
+              className="relative z-50 rounded-lg bg-purple-600/10 backdrop-blur-sm border border-purple-500/30 p-6"
             >
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <span className="text-3xl">🎉</span>
-                <h3 className="text-xl font-semibold text-white">You're on the waitlist!</h3>
+              <div className="relative z-50 flex items-center justify-center gap-2 mb-2">
+                <span className="relative z-50 text-3xl">🎉</span>
+                <h3 className="relative z-50 text-xl font-semibold text-white">You're on the waitlist!</h3>
               </div>
-              <p className="text-zinc-300">
+              <p className="relative z-50 text-zinc-300">
                 We'll notify you at <span className="font-medium text-white">{submittedEmail}</span> when reGuard launches.
               </p>
             </motion.div>

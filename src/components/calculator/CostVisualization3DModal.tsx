@@ -56,7 +56,7 @@ export function CostVisualization3DModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="!max-w-[98vw] !w-[98vw] !h-[95vh] !p-0 bg-black/95 border-purple-500/30 overflow-hidden" showCloseButton={false}>
+      <DialogContent className="!max-w-[98vw] !w-[98vw] !h-[95vh] !p-0 bg-black/95 border-purple-500/30 overflow-hidden !z-[9999]" showCloseButton={false}>
         {/* Close Button */}
         <button
           onClick={() => onOpenChange(false)}

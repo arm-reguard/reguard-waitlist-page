@@ -595,49 +595,49 @@ export function CostCalculator() {
         </p>
         
         {/* Mobile: Left-aligned in centered container like first fold, Desktop: Flex wrap */}
-        <div className="mb-10 flex justify-center">
+        <div className="relative z-50 mb-10 flex justify-center">
           {/* Mobile layout: Left-aligned in centered container (EXACTLY like first fold) */}
-          <div className="flex flex-col items-start gap-3 sm:hidden text-sm text-zinc-300/90">
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span>Multi-Provider LLM Tracking</span>
+          <div className="relative z-50 flex flex-col items-start gap-3 sm:hidden text-sm text-zinc-300/90">
+            <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span className="relative z-50">Multi-Provider LLM Tracking</span>
             </div>
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span>Flat Pricing Model</span>
+            <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span className="relative z-50">Flat Pricing Model</span>
             </div>
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span>Unlimited API Call Tracking</span>
+            <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span className="relative z-50">Unlimited API Call Tracking</span>
             </div>
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span>Smart Caching (Save 30-50%)</span>
+            <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span className="relative z-50">Smart Caching (Save 30-50%)</span>
             </div>
           </div>
           
           {/* Desktop layout: Horizontal flex wrap */}
-          <div className="hidden sm:flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm sm:text-base text-zinc-300/90">
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span>Multi-Provider LLM Tracking</span>
+          <div className="relative z-50 hidden sm:flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm sm:text-base text-zinc-300/90">
+            <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span className="relative z-50">Multi-Provider LLM Tracking</span>
             </div>
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span>Flat Pricing Model</span>
+            <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span className="relative z-50">Flat Pricing Model</span>
             </div>
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span>Unlimited API Call Tracking</span>
+            <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span className="relative z-50">Unlimited API Call Tracking</span>
             </div>
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span>Smart Caching (Save 30-50%)</span>
+            <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
+              <span className="relative z-50">Smart Caching (Save 30-50%)</span>
             </div>
           </div>
         </div>
         
-        <div className="flex justify-center">
+        <div className="relative z-50 flex justify-center">
           <ReGuardButton onClick={scrollToWaitlist}>
             Join Waitlist - Get Early Access
           </ReGuardButton>
