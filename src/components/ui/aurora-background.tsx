@@ -23,8 +23,8 @@ export const AuroraBackground = ({
       )}
       {...props}
     >
-      {/* Aurora Gradient Background */}
-      <div className="absolute inset-0 overflow-hidden opacity-40 pointer-events-none -z-10" aria-hidden="true">
+      {/* Aurora Gradient Background - DESKTOP ONLY */}
+      <div className="absolute inset-0 overflow-hidden opacity-40 pointer-events-none hidden sm:block" aria-hidden="true" style={{ zIndex: 0 }}>
         <motion.div
           className="absolute inset-[-100%]"
           style={{
@@ -38,10 +38,6 @@ export const AuroraBackground = ({
             `,
             backgroundSize: "300% 100%",
             filter: "blur(60px)",
-            willChange: "transform",
-            transform: "translateZ(0) translate3d(0, 0, 0)",
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
           }}
           animate={{
             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
@@ -53,7 +49,7 @@ export const AuroraBackground = ({
           }}
         />
         <motion.div
-          className="absolute inset-[-10px] hidden sm:block"
+          className="absolute inset-[-10px]"
           style={{
             background: `
               repeating-linear-gradient(100deg, 
@@ -72,10 +68,6 @@ export const AuroraBackground = ({
             backgroundSize: "200%, 100%",
             backgroundPosition: "50% 50%, 50% 50%",
             mixBlendMode: "difference",
-            willChange: "transform",
-            transform: "translateZ(0) translate3d(0, 0, 0)",
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
           }}
           animate={{
             backgroundPosition: [
@@ -92,17 +84,18 @@ export const AuroraBackground = ({
         />
       </div>
 
-      {/* Vignette Overlay - Less opaque on desktop to show aurora */}
+      {/* Vignette Overlay - DESKTOP ONLY */}
       <div
-        className="absolute inset-0 pointer-events-none -z-5"
+        className="absolute inset-0 pointer-events-none hidden sm:block"
         style={{
-          background: "radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%)",
+          background: "radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.5) 100%)",
+          zIndex: 1,
         }}
         aria-hidden="true"
       />
 
       {/* Content Layer */}
-      <div className="relative z-50 w-full" style={{ isolation: 'isolate' }}>
+      <div className="relative w-full" style={{ zIndex: 10 }}>
         {children}
       </div>
     </div>

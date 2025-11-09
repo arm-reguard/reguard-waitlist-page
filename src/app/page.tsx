@@ -195,9 +195,8 @@ export default function Home() {
             <form 
               onSubmit={handleSubmit}
               className="relative z-50 space-y-4"
-              style={{ transform: 'translateZ(0)', willChange: 'transform' }}
             >
-              <div className="relative z-50 flex flex-col sm:flex-row gap-4 sm:gap-4" style={{ transform: 'translateZ(0)' }}>
+              <div className="relative z-50 flex flex-col sm:flex-row gap-4 sm:gap-4">
                 <input
                   type="email"
                   value={email}
@@ -205,7 +204,6 @@ export default function Home() {
                   placeholder="your@email.com"
                   required
                   className="relative z-50 email-input w-full rounded-full text-white placeholder-gray-500 focus:outline-none text-base md:text-lg px-6 py-3"
-                  style={{ transform: 'translateZ(0)', willChange: 'transform' }}
                 />
                 <ReGuardButton 
                   type="submit" 
