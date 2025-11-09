@@ -242,29 +242,48 @@ nextjs-portal {
   position: relative !important;
 }
 
-/* Aurora background animations - Optimized for smooth startup */
+/* Aurora background animations - Fade in smoothly to hide initial blur computation */
 @keyframes aurora-1 {
-  0%, 100% {
+  0% {
     background-position: 0% 50%;
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
   }
   50% {
     background-position: 100% 50%;
+    opacity: 1;
+  }
+  100% {
+    background-position: 0% 50%;
+    opacity: 1;
   }
 }
 
 @keyframes aurora-2 {
-  0%, 100% {
+  0% {
     background-position: 50% 50%, 50% 50%;
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
   }
   50% {
     background-position: 100% 50%, 150% 50%;
+    opacity: 1;
+  }
+  100% {
+    background-position: 50% 50%, 50% 50%;
+    opacity: 1;
   }
 }
 
 .aurora-animate-1 {
   animation: aurora-1 25s ease-in-out infinite;
   animation-play-state: running;
-  animation-delay: 0.05s;
+  /* Start invisible - fade in during animation */
+  opacity: 0;
   /* Ensure GPU layer from start */
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
@@ -273,7 +292,8 @@ nextjs-portal {
 .aurora-animate-2 {
   animation: aurora-2 30s ease-in-out infinite;
   animation-play-state: running;
-  animation-delay: 0.05s;
+  /* Start invisible - fade in during animation */
+  opacity: 0;
   /* Ensure GPU layer from start */
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
