@@ -1,0 +1,22 @@
+{
+  "name": "reGuard - Budget Protection for LLM APIs",
+  "short_name": "reGuard",
+  "description": "Auto-block LLM API spending at budget limits",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "32x32",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#8B5CF6",
+  "background_color": "#0A0A0A",
+  "display": "standalone",
+  "start_url": "/"
+}
+

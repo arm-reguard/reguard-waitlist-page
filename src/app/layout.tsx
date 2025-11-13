@@ -99,6 +99,7 @@ export const metadata: Metadata = {
     shortcut: '/favicon.ico',
     apple: '/favicon.svg',
   },
+  manifest: '/site.webmanifest',
   
   // Theme Colors
   themeColor: [
