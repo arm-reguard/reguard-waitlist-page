@@ -30,8 +30,66 @@ const openSansFont = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "reGuard - Budget Protection for LLM APIs",
-  description: "Protect your LLM API budget with intelligent monitoring and controls",
+  // Primary Meta Tags
+  title: "reGuard - Stop Surprise LLM API Bills | Budget Protection",
+  description: "Auto-block LLM API spending at budget limits. Works with OpenAI, Anthropic, Google + 4 providers. Free API cost calculator. Join 300+ on waitlist.",
+  keywords: [
+    "API budget protection",
+    "LLM API costs",
+    "OpenAI budget limits",
+    "Anthropic cost tracking",
+    "stop API overspending",
+    "API cost calculator",
+    "prevent surprise API bills",
+    "auto-block API spending",
+  ],
+  authors: [{ name: "reGuard" }],
+  creator: "reGuard",
+  publisher: "reGuard",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  metadataBase: new URL('https://reguard-waitlist.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
+  
+  // Open Graph / Facebook
+  openGraph: {
+    type: 'website',
+    url: 'https://reguard-waitlist.vercel.app/',
+    title: 'reGuard - Stop Surprise LLM API Bills | Budget Protection',
+    description: 'Auto-block LLM API spending at budget limits. Works with OpenAI, Anthropic, Google + 4 providers. Free API cost calculator. Join 300+ on waitlist.',
+    siteName: 'reGuard',
+    locale: 'en_US',
+    images: [
+      {
+        url: '/og-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'reGuard - Stop Surprise LLM API Bills',
+      },
+    ],
+  },
+  
+  // Twitter
+  twitter: {
+    card: 'summary_large_image',
+    title: 'reGuard - Stop Surprise LLM API Bills',
+    description: 'Auto-block LLM API spending at budget limits. Works with OpenAI, Anthropic, Google + 4 providers. Free API cost calculator. Join 300+ on waitlist.',
+    images: ['/og-image.svg'],
+    creator: '@reGuardAI',
+  },
+  
+  // Icons & Favicons
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
@@ -40,6 +98,20 @@ export const metadata: Metadata = {
     ],
     shortcut: '/favicon.ico',
     apple: '/favicon.svg',
+  },
+  
+  // Theme Colors
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#8B5CF6' },
+    { media: '(prefers-color-scheme: dark)', color: '#8B5CF6' },
+  ],
+  colorScheme: 'dark',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+  },
+  other: {
+    'msapplication-TileColor': '#8B5CF6',
   },
 };
 
