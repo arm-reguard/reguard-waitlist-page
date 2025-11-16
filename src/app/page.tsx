@@ -107,8 +107,8 @@ export default function Home() {
     <>
       <AuroraBackground className="justify-start md:justify-center">
         {/* Header */}
-        <header className="relative z-50 pt-4 sm:pt-6">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 sm:py-2">
+        <header className="relative z-50 pt-2 sm:pt-3">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-0.5 sm:py-1">
             <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity -ml-3 sm:-ml-5">
               <Image 
                 src="/logos/Group 4.svg" 
@@ -124,7 +124,7 @@ export default function Home() {
         </header>
 
         {/* Main Content - Center Aligned with Consistent Container */}
-        <div className="relative z-50 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 mt-2 sm:mt-3 md:mt-3 md:-mt-16">
+        <div className="relative z-50 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 mt-1 sm:mt-2 md:mt-2 md:-mt-16">
         {/* Main Headline */}
         <div className="relative z-50 mb-6 md:mb-7 max-w-5xl w-full">
               <h2 className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5" style={{ fontFamily: 'var(--font-meriva)' }}>
@@ -164,7 +164,7 @@ export default function Home() {
                   </span>
                 </div>
               </h2>
-          <p className="relative z-50 text-sm text-zinc-300 sm:text-base md:text-base lg:text-base mb-6">
+          <p className="relative z-50 text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg mb-7">
             Smart monitoring and controls to prevent unexpected API bills.
             <br />
             Spiraling costs shouldn't be a $1,000 lesson.
@@ -174,9 +174,9 @@ export default function Home() {
         </div>
 
         {/* Features - Mobile: 1 column, Desktop: 3 top, 2 bottom */}
-        <div className="relative z-50 mb-6 sm:mb-7 max-w-3xl w-full flex justify-center sm:hidden">
+        <div className="relative z-50 mb-7 sm:mb-8 max-w-3xl w-full flex justify-center sm:hidden">
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
-          <div className="relative z-50 flex flex-col items-start gap-3 text-sm sm:text-base text-zinc-300/90">
+          <div className="relative z-50 flex flex-col items-start gap-3.5 text-base sm:text-lg text-zinc-300/90">
             <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
               <span className="relative z-50">Live Cost Monitoring</span>
@@ -201,9 +201,9 @@ export default function Home() {
         </div>
         
         {/* Desktop Features */}
-        <div className="relative z-50 mb-7 max-w-3xl w-full hidden sm:block">
+        <div className="relative z-50 mb-8 max-w-3xl w-full hidden sm:block">
           {/* Desktop: 3 top, 2 bottom layout */}
-          <div className="flex flex-col items-center gap-6 text-sm sm:text-base text-zinc-300/90">
+          <div className="flex flex-col items-center gap-7 text-base sm:text-lg text-zinc-300/90">
             {/* First row - 3 items */}
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
               <div className="flex items-center gap-2 whitespace-nowrap">
