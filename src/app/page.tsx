@@ -174,7 +174,7 @@ export default function Home() {
         </div>
 
         {/* Features - Mobile: 1 column, Desktop: 3 top, 2 bottom */}
-        <div className="relative z-50 mb-5 sm:mb-6 max-w-3xl w-full flex justify-center sm:hidden">
+        <div className="relative z-50 mb-4 sm:mb-5 max-w-3xl w-full flex justify-center sm:hidden">
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
           <div className="relative z-50 flex flex-col items-start gap-3.5 text-base sm:text-lg text-zinc-300/90">
             <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
@@ -201,7 +201,7 @@ export default function Home() {
         </div>
         
         {/* Desktop Features */}
-        <div className="relative z-50 mb-6 max-w-3xl w-full hidden sm:block">
+        <div className="relative z-50 mb-5 max-w-3xl w-full hidden sm:block">
           {/* Desktop: 3 top, 2 bottom layout */}
           <div className="flex flex-col items-center gap-7 text-base sm:text-lg text-zinc-300/90">
             {/* First row - 3 items */}
