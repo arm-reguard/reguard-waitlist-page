@@ -27,7 +27,7 @@ export default function Home() {
   const [phraseIndex, setPhraseIndex] = useState(0);
 
   const phrases = useMemo(
-    () => ["API costs again", "AI spending again", "LLM expenses again", "vibing code again"],
+    () => ["API costs again", "AI spending again", "LLM expenses again", "vibe coding again"],
     []
   );
 
@@ -130,11 +130,18 @@ export default function Home() {
               <h2 className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
                 <span className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
                   Never worry about{" "}
-                  <span className="relative inline-block overflow-hidden">
+                  <span className="relative inline-block overflow-hidden align-baseline">
                     {phrases.map((phrase, index) => (
                       <motion.span
                         key={index}
-                        className="absolute left-0 font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap"
+                        className="absolute left-0 top-0 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap"
+                        style={{ 
+                          fontFamily: 'var(--font-meriva)',
+                          fontWeight: 'inherit',
+                          fontSize: 'inherit',
+                          lineHeight: 'inherit',
+                          letterSpacing: 'inherit'
+                        }}
                         initial={{ opacity: 0, y: "100%" }}
                         transition={{ type: "spring", stiffness: 50 }}
                         animate={
@@ -144,7 +151,7 @@ export default function Home() {
                                 opacity: 1,
                               }
                             : {
-                                y: phraseIndex > index ? -150 : 150,
+                                y: -150,
                                 opacity: 0,
                               }
                         }
@@ -152,7 +159,7 @@ export default function Home() {
                         {phrase}
                       </motion.span>
                     ))}
-                    {/* Invisible spacer to maintain width */}
+                    {/* Invisible spacer to maintain width and height */}
                     <span className="invisible whitespace-nowrap">{phrases[phraseIndex]}</span>
                   </span>
                 </span>
