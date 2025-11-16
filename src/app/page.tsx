@@ -128,9 +128,9 @@ export default function Home() {
         {/* Main Headline */}
         <div className="relative z-50 mb-6 md:mb-10 max-w-5xl w-full">
               <h2 className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
-                <span className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent inline-grid" style={{ gridTemplateColumns: 'auto 1fr', alignItems: 'baseline', gap: '0.5rem' }}>
-                  <span className="whitespace-nowrap">Never worry about</span>
-                  <span className="relative overflow-hidden" style={{ minWidth: 'max-content' }}>
+                <span className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent inline-flex items-baseline" style={{ gap: '0.75rem' }}>
+                  <span className="whitespace-nowrap flex-shrink-0">Never worry about</span>
+                  <span className="relative overflow-hidden flex-shrink-0" style={{ minWidth: 'max-content' }}>
                     {phrases.map((phrase, index) => (
                       <motion.span
                         key={index}
