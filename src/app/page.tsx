@@ -107,7 +107,7 @@ export default function Home() {
     <>
       <AuroraBackground className="justify-start md:justify-center">
         {/* Header */}
-        <header className="relative z-50 pt-3 sm:pt-4">
+        <header className="relative z-50 pt-4 sm:pt-5">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-0.5 sm:py-1">
             <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity -ml-3 sm:-ml-5">
               <Image 
@@ -164,7 +164,7 @@ export default function Home() {
                   </span>
                 </div>
               </h2>
-          <p className="relative z-50 text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg mb-7">
+          <p className="relative z-50 text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg mb-5">
             Smart monitoring and controls to prevent unexpected API bills.
             <br />
             Spiraling costs shouldn't be a $1,000 lesson.
@@ -174,7 +174,7 @@ export default function Home() {
         </div>
 
         {/* Features - Mobile: 1 column, Desktop: 3 top, 2 bottom */}
-        <div className="relative z-50 mb-6 sm:mb-7 max-w-3xl w-full flex justify-center sm:hidden">
+        <div className="relative z-50 mb-5 sm:mb-6 max-w-3xl w-full flex justify-center sm:hidden">
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
           <div className="relative z-50 flex flex-col items-start gap-3.5 text-base sm:text-lg text-zinc-300/90">
             <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
@@ -201,7 +201,7 @@ export default function Home() {
         </div>
         
         {/* Desktop Features */}
-        <div className="relative z-50 mb-7 max-w-3xl w-full hidden sm:block">
+        <div className="relative z-50 mb-6 max-w-3xl w-full hidden sm:block">
           {/* Desktop: 3 top, 2 bottom layout */}
           <div className="flex flex-col items-center gap-7 text-base sm:text-lg text-zinc-300/90">
             {/* First row - 3 items */}
@@ -318,7 +318,7 @@ export default function Home() {
         </div>
 
         {/* Coming Soon Pill */}
-        <div className="relative z-50 mt-4 md:mt-5 mb-6">
+        <div className="relative z-50 mt-5 md:mt-6 mb-6">
           <div
             className="relative z-50 px-6 py-2 rounded-full text-sm font-medium text-purple-300"
             style={{
