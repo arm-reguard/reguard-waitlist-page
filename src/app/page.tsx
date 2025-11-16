@@ -128,13 +128,13 @@ export default function Home() {
         {/* Main Headline */}
         <div className="relative z-50 mb-6 md:mb-10 max-w-5xl w-full">
               <h2 className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
-                <span className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
-                  Never worry about{" "}
-                  <span className="relative inline-block overflow-hidden">
+                <span className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent inline-flex items-baseline">
+                  <span className="whitespace-nowrap">Never worry about</span>
+                  <span className="relative inline-block overflow-hidden ml-1" style={{ minWidth: 'max-content' }}>
                     {phrases.map((phrase, index) => (
                       <motion.span
                         key={index}
-                        className="absolute left-0 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap"
+                        className="absolute left-0 font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap"
                         style={{ 
                           fontFamily: 'var(--font-meriva)',
                           fontWeight: 'bold',
@@ -159,8 +159,8 @@ export default function Home() {
                         {phrase}
                       </motion.span>
                     ))}
-                    {/* Invisible spacer to maintain width and baseline - same styling as animated text */}
-                    <span className="invisible whitespace-nowrap bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent" style={{ fontFamily: 'var(--font-meriva)', fontWeight: 'bold' }}>{phrases[phraseIndex]}</span>
+                    {/* Invisible spacer with exact same styling to maintain baseline and width */}
+                    <span className="invisible whitespace-nowrap bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent" style={{ fontFamily: 'var(--font-meriva)', fontWeight: 'bold', fontSize: 'inherit', lineHeight: 'inherit', letterSpacing: 'inherit' }}>{phrases[phraseIndex]}</span>
                   </span>
                 </span>
               </h2>
