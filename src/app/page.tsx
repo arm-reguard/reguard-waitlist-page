@@ -124,9 +124,9 @@ export default function Home() {
         </header>
 
         {/* Main Content - Center Aligned with Consistent Container */}
-        <div className="relative z-50 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 mt-6 sm:mt-8 md:mt-8 md:-mt-16">
+        <div className="relative z-50 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 mt-4 sm:mt-5 md:mt-5 md:-mt-16">
         {/* Main Headline */}
-        <div className="relative z-50 mb-4 md:mb-6 max-w-5xl w-full">
+        <div className="relative z-50 mb-5 md:mb-6 max-w-5xl w-full">
               <h2 className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-4" style={{ fontFamily: 'var(--font-meriva)' }}>
                 <div className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent flex flex-col items-center gap-2">
                   <span className="whitespace-nowrap">Never worry about</span>
@@ -174,9 +174,9 @@ export default function Home() {
         </div>
 
         {/* Features - Mobile: 1 column, Desktop: 3 top, 2 bottom */}
-        <div className="relative z-50 mb-6 sm:mb-8 max-w-3xl w-full flex justify-center sm:hidden">
+        <div className="relative z-50 mb-5 sm:mb-6 max-w-3xl w-full flex justify-center sm:hidden">
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
-          <div className="relative z-50 flex flex-col items-start gap-2 text-xs sm:text-sm text-zinc-300/90">
+          <div className="relative z-50 flex flex-col items-start gap-2.5 text-xs sm:text-sm text-zinc-300/90">
             <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
               <span className="relative z-50">Live Cost Monitoring</span>
@@ -201,9 +201,9 @@ export default function Home() {
         </div>
         
         {/* Desktop Features */}
-        <div className="relative z-50 mb-8 max-w-3xl w-full hidden sm:block">
+        <div className="relative z-50 mb-6 max-w-3xl w-full hidden sm:block">
           {/* Desktop: 3 top, 2 bottom layout */}
-          <div className="flex flex-col items-center gap-4 text-xs sm:text-sm text-zinc-300/90">
+          <div className="flex flex-col items-center gap-5 text-xs sm:text-sm text-zinc-300/90">
             {/* First row - 3 items */}
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
               <div className="flex items-center gap-2 whitespace-nowrap">
