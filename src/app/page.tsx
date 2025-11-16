@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { ReGuardButton } from "@/components/ui/reguard-button";
@@ -24,6 +24,23 @@ export default function Home() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isDuplicate, setIsDuplicate] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [phraseIndex, setPhraseIndex] = useState(0);
+
+  const phrases = useMemo(
+    () => ["API costs again", "AI spending again", "LLM expenses again", "vibing code again"],
+    []
+  );
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (phraseIndex === phrases.length - 1) {
+        setPhraseIndex(0);
+      } else {
+        setPhraseIndex(phraseIndex + 1);
+      }
+    }, 3000);
+    return () => clearTimeout(timeoutId);
+  }, [phraseIndex, phrases]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -112,7 +129,32 @@ export default function Home() {
         <div className="relative z-50 mb-6 md:mb-10 max-w-5xl w-full">
               <h2 className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
                 <span className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
-                  Never worry about API costs again
+                  Never worry about{" "}
+                  <span className="relative inline-block overflow-hidden">
+                    {phrases.map((phrase, index) => (
+                      <motion.span
+                        key={index}
+                        className="absolute left-0 font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap"
+                        initial={{ opacity: 0, y: "100%" }}
+                        transition={{ type: "spring", stiffness: 50 }}
+                        animate={
+                          phraseIndex === index
+                            ? {
+                                y: 0,
+                                opacity: 1,
+                              }
+                            : {
+                                y: phraseIndex > index ? -150 : 150,
+                                opacity: 0,
+                              }
+                        }
+                      >
+                        {phrase}
+                      </motion.span>
+                    ))}
+                    {/* Invisible spacer to maintain width */}
+                    <span className="invisible whitespace-nowrap">{phrases[phraseIndex]}</span>
+                  </span>
                 </span>
               </h2>
           <p className="relative z-50 text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg">
