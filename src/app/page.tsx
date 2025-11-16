@@ -130,19 +130,19 @@ export default function Home() {
               <h2 className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
                 <span className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
                   Never worry about{" "}
-                  <span className="relative inline-block overflow-hidden align-baseline">
+                  <span className="relative inline-block overflow-hidden">
                     {phrases.map((phrase, index) => (
                       <motion.span
                         key={index}
-                        className="absolute left-0 top-0 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap"
+                        className="absolute left-0 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap"
                         style={{ 
                           fontFamily: 'var(--font-meriva)',
-                          fontWeight: 'inherit',
+                          fontWeight: 'bold',
                           fontSize: 'inherit',
                           lineHeight: 'inherit',
                           letterSpacing: 'inherit'
                         }}
-                        initial={{ opacity: 0, y: "100%" }}
+                        initial={index === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: "100%" }}
                         transition={{ type: "spring", stiffness: 50 }}
                         animate={
                           phraseIndex === index
@@ -159,8 +159,8 @@ export default function Home() {
                         {phrase}
                       </motion.span>
                     ))}
-                    {/* Invisible spacer to maintain width and height */}
-                    <span className="invisible whitespace-nowrap">{phrases[phraseIndex]}</span>
+                    {/* Invisible spacer to maintain width and baseline - same styling as animated text */}
+                    <span className="invisible whitespace-nowrap bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent" style={{ fontFamily: 'var(--font-meriva)', fontWeight: 'bold' }}>{phrases[phraseIndex]}</span>
                   </span>
                 </span>
               </h2>
