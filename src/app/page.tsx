@@ -174,7 +174,7 @@ export default function Home() {
         </div>
 
         {/* Features - Mobile: 1 column, Desktop: 3 top, 2 bottom */}
-        <div className="relative z-50 mb-4 sm:mb-5 max-w-3xl w-full flex justify-center sm:hidden">
+        <div className="relative z-50 mb-3 sm:mb-4 max-w-3xl w-full flex justify-center sm:hidden">
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
           <div className="relative z-50 flex flex-col items-start gap-3.5 text-base sm:text-lg text-zinc-300/90">
             <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
@@ -201,7 +201,7 @@ export default function Home() {
         </div>
         
         {/* Desktop Features */}
-        <div className="relative z-50 mb-5 max-w-3xl w-full hidden sm:block">
+        <div className="relative z-50 mb-4 max-w-3xl w-full hidden sm:block">
           {/* Desktop: 3 top, 2 bottom layout */}
           <div className="flex flex-col items-center gap-7 text-base sm:text-lg text-zinc-300/90">
             {/* First row - 3 items */}
@@ -263,7 +263,7 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' })}
-                className="relative z-50 text-sm text-purple-400 hover:text-purple-300 transition-colors mt-2 font-bold cursor-pointer"
+                className="relative z-50 text-sm text-purple-400 hover:text-purple-300 transition-colors mt-3 mb-2 font-bold cursor-pointer"
               >
                 Try our FREE API Cost Calculator
               </button>
@@ -300,7 +300,7 @@ export default function Home() {
         </div>
 
         {/* Stats */}
-        <div className="relative z-50 mt-5 md:mt-6 flex justify-center gap-8 sm:gap-12">
+        <div className="relative z-50 mt-6 md:mt-7 flex justify-center gap-8 sm:gap-12">
           <div className="relative z-50 flex flex-col items-center">
             <div className="relative z-50 text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">300+</div>
             <div className="relative z-50 text-xs sm:text-sm text-zinc-300/90 mt-2">On Waitlist</div>
@@ -318,7 +318,7 @@ export default function Home() {
         </div>
 
         {/* Coming Soon Pill */}
-        <div className="relative z-50 mt-5 md:mt-6 mb-6">
+        <div className="relative z-50 mt-6 md:mt-7 mb-6">
           <div
             className="relative z-50 px-6 py-2 rounded-full text-sm font-medium text-purple-300"
             style={{
