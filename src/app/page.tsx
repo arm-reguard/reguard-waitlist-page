@@ -127,14 +127,14 @@ export default function Home() {
         <div className="relative z-50 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 mt-8 md:-mt-16">
         {/* Main Headline */}
         <div className="relative z-50 mb-6 md:mb-10 max-w-5xl w-full">
-              <h2 className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5 sm:whitespace-nowrap" style={{ fontFamily: 'var(--font-meriva)' }}>
-                <span className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent inline-flex items-baseline" style={{ gap: '0.75rem' }}>
-                  <span className="whitespace-nowrap flex-shrink-0">Never worry about</span>
-                  <span className="relative overflow-hidden flex-shrink-0" style={{ minWidth: 'max-content' }}>
+              <h2 className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5" style={{ fontFamily: 'var(--font-meriva)' }}>
+                <div className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent flex flex-col items-center">
+                  <span className="whitespace-nowrap">Never worry about</span>
+                  <span className="relative overflow-hidden" style={{ minWidth: 'max-content', minHeight: '1.2em' }}>
                     {phrases.map((phrase, index) => (
                       <motion.span
                         key={index}
-                        className="absolute left-0 font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap"
+                        className="absolute left-1/2 -translate-x-1/2 font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap"
                         style={{ 
                           fontFamily: 'var(--font-meriva)',
                           fontWeight: 'bold',
@@ -162,10 +162,14 @@ export default function Home() {
                     {/* Invisible spacer with exact same styling to maintain baseline and width */}
                     <span className="invisible whitespace-nowrap bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent" style={{ fontFamily: 'var(--font-meriva)', fontWeight: 'bold', fontSize: 'inherit', lineHeight: 'inherit', letterSpacing: 'inherit' }}>{phrases[phraseIndex]}</span>
                   </span>
-                </span>
+                </div>
               </h2>
           <p className="relative z-50 text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg">
-            Smart monitoring and controls to prevent unexpected API bills
+            Smart monitoring and controls to prevent unexpected API bills.
+            <br />
+            Spiraling costs shouldn't be a $1,000 lesson.
+            <br />
+            Set your budget, we'll enforce it.
           </p>
         </div>
 
