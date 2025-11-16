@@ -124,12 +124,12 @@ export default function Home() {
         </header>
 
         {/* Main Content - Center Aligned with Consistent Container */}
-        <div className="relative z-50 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 mt-8 md:-mt-16">
+        <div className="relative z-50 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 mt-16 sm:mt-20 md:mt-12 md:-mt-16">
         {/* Main Headline */}
         <div className="relative z-50 mb-6 md:mb-10 max-w-5xl w-full">
               <h2 className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5" style={{ fontFamily: 'var(--font-meriva)' }}>
-                <div className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent flex flex-col items-center">
-                  <span className="whitespace-nowrap">Never worry about</span>
+                <div className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent flex flex-col items-center gap-2">
+                  <span className="whitespace-nowrap" style={{ marginTop: '1.2em' }}>Never worry about</span>
                   <span className="relative overflow-hidden" style={{ minWidth: 'max-content', minHeight: '1.2em' }}>
                     {phrases.map((phrase, index) => (
                       <motion.span
@@ -164,7 +164,7 @@ export default function Home() {
                   </span>
                 </div>
               </h2>
-          <p className="relative z-50 text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg">
+          <p className="relative z-50 text-sm text-zinc-300 sm:text-base md:text-base lg:text-base">
             Smart monitoring and controls to prevent unexpected API bills.
             <br />
             Spiraling costs shouldn't be a $1,000 lesson.
