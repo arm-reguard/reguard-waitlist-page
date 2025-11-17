@@ -124,10 +124,10 @@ export default function Home() {
         </header>
 
         {/* Main Content - Center Aligned with Consistent Container */}
-        <div className="relative z-50 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 mt-1 sm:mt-2 md:mt-2 md:-mt-16">
+        <div className="relative z-50 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 mt-3 sm:mt-2 md:mt-2 md:-mt-16">
         {/* Main Headline */}
-        <div className="relative z-50 mb-6 md:mb-7 max-w-5xl w-full">
-              <h2 className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-5" style={{ fontFamily: 'var(--font-meriva)' }}>
+        <div className="relative z-50 mb-4 sm:mb-6 md:mb-7 max-w-5xl w-full">
+              <h2 className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-4 sm:mb-5" style={{ fontFamily: 'var(--font-meriva)' }}>
                 <div className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent flex flex-col items-center gap-2">
                   <span className="whitespace-nowrap">Never worry about</span>
                   <span className="relative overflow-hidden" style={{ minWidth: 'max-content', minHeight: '1.2em' }}>
@@ -164,9 +164,9 @@ export default function Home() {
                   </span>
                 </div>
               </h2>
-          <p className="relative z-50 text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg mb-5">
-            Smart monitoring and controls to prevent unexpected API bills.
-            <br />
+          <p className="relative z-50 text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg mb-4 sm:mb-5">
+            <span className="hidden sm:inline">Smart monitoring and controls to prevent unexpected API bills.
+            <br /></span>
             Spiraling costs shouldn't be a $1,000 lesson.
             <br />
             Set your budget, we'll enforce it.
@@ -174,7 +174,7 @@ export default function Home() {
         </div>
 
         {/* Features - Mobile: 1 column, Desktop: 3 top, 2 bottom */}
-        <div className="relative z-50 mb-3 sm:mb-4 max-w-3xl w-full flex justify-center sm:hidden">
+        <div className="relative z-50 mb-2 sm:mb-4 max-w-3xl w-full flex justify-center sm:hidden">
           {/* Mobile: Vertical stack - Centered container with left-aligned items */}
           <div className="relative z-50 flex flex-col items-start gap-3.5 text-base sm:text-lg text-zinc-300/90">
             <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
@@ -238,7 +238,7 @@ export default function Home() {
           {!isSubmitted && !isDuplicate ? (
             <form 
               onSubmit={handleSubmit}
-              className="relative z-50 space-y-4"
+              className="relative z-50 space-y-3 sm:space-y-4"
             >
               <div className="relative z-50 flex flex-col sm:flex-row gap-4 sm:gap-4">
                 <input
@@ -300,7 +300,7 @@ export default function Home() {
         </div>
 
         {/* Stats */}
-        <div className="relative z-50 mt-6 md:mt-7 flex justify-center gap-8 sm:gap-12">
+        <div className="relative z-50 mt-4 sm:mt-6 md:mt-7 flex justify-center gap-8 sm:gap-12">
           <div className="relative z-50 flex flex-col items-center">
             <div className="relative z-50 text-2xl sm:text-3xl font-bold text-white h-[40px] flex items-center justify-center">300+</div>
             <div className="relative z-50 text-xs sm:text-sm text-zinc-300/90 mt-2">On Waitlist</div>
@@ -318,7 +318,7 @@ export default function Home() {
         </div>
 
         {/* Coming Soon Pill */}
-        <div className="relative z-50 mt-6 md:mt-7 mb-6">
+        <div className="relative z-50 mt-4 sm:mt-6 md:mt-7 mb-6">
           <div
             className="relative z-50 px-6 py-2 rounded-full text-sm font-medium text-purple-300"
             style={{
