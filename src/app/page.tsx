@@ -129,7 +129,7 @@ export default function Home() {
         <div className="relative z-50 mb-4 sm:mb-6 md:mb-7 max-w-5xl w-full">
               <h2 className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-4 sm:mb-5" style={{ fontFamily: 'var(--font-meriva)' }}>
                 <div className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent flex flex-col items-center gap-2">
-                  <span className="whitespace-nowrap">Never worry about</span>
+                  <span className="whitespace-nowrap bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">Never worry about</span>
                   <span className="relative overflow-hidden" style={{ minWidth: 'max-content', minHeight: '1.2em' }}>
                     {phrases.map((phrase, index) => (
                       <motion.span
