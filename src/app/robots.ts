@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://reguard-waitlist.vercel.app/sitemap.xml',
+    sitemap: 'https://reguard.dev/sitemap.xml',
   }
 }
 

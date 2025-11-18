@@ -57,7 +57,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  metadataBase: new URL('https://reguard-waitlist.vercel.app'),
+  metadataBase: new URL('https://reguard.dev'),
   alternates: {
     canonical: '/',
   },
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   // Open Graph / Facebook
   openGraph: {
     type: 'website',
-    url: 'https://reguard-waitlist.vercel.app/',
+    url: 'https://reguard.dev/',
     title: 'reGuard - Stop Surprise LLM API Bills | Budget Protection',
     description: 'Auto-block LLM API spending at budget limits. Works with OpenAI, Anthropic, Google + 4 providers. Free API cost calculator. Join 300+ on waitlist.',
     siteName: 'reGuard',
