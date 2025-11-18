@@ -124,7 +124,7 @@ export default function Home() {
         </header>
 
         {/* Main Content - Center Aligned with Consistent Container */}
-        <div className="relative z-50 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 mt-4 sm:mt-2 md:mt-2 md:-mt-16">
+        <div className="relative z-50 flex flex-col items-center justify-start md:justify-center h-auto md:min-h-screen px-4 text-center pb-8 md:pb-0 mt-5 sm:mt-2 md:mt-2 md:-mt-16">
         {/* Main Headline */}
         <div className="relative z-50 mb-2 sm:mb-6 md:mb-7 max-w-5xl w-full">
               <h2 className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-4 sm:mb-5" style={{ fontFamily: 'var(--font-meriva)' }}>
