@@ -79,6 +79,10 @@ export const AuroraBackground = ({
                   : { duration: 0 }
               }
               style={{
+                width: '300%',
+                height: '300%',
+                contain: 'layout',
+                willChange: 'transform',
                 background: `
                   repeating-linear-gradient(100deg, 
                     #8b5cf6 10%, 
