@@ -1,14 +1,8 @@
+/** @jsxImportSource react */
 import { ImageResponse } from 'next/og'
+import React from 'react'
 
-// Image metadata
-export const size = {
-  width: 128,
-  height: 128,
-}
-export const contentType = 'image/png'
-
-// Image generation
-export default function Icon() {
+export async function GET() {
   return new ImageResponse(
     (
       <div
@@ -19,13 +13,13 @@ export default function Icon() {
           alignItems: 'center',
           justifyContent: 'center',
           background: 'linear-gradient(135deg, #1a0033 0%, #2d0052 50%, #1a0033 100%)',
-          padding: '4px',
+          padding: '2px',
         }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="120"
-          height="120"
+          width="28"
+          height="28"
           viewBox="0 0 1024 1024"
           style={{
             width: '100%',
@@ -121,7 +115,8 @@ export default function Icon() {
       </div>
     ),
     {
-      ...size,
+      width: 32,
+      height: 32,
     }
   )
 }

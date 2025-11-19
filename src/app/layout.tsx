@@ -92,12 +92,13 @@ export const metadata: Metadata = {
   // Icons & Favicons
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
-      { url: '/icon.svg', sizes: '32x32', type: 'image/svg+xml' },
-      { url: '/favicon.svg', sizes: 'any', type: 'image/svg+xml' },
+      { url: 'https://reguard.dev/icon', sizes: '128x128', type: 'image/png' },
+      { url: 'https://reguard.dev/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
+      { url: 'https://reguard.dev/icon.svg', sizes: 'any', type: 'image/svg+xml' },
+      { url: 'https://reguard.dev/favicon.svg', sizes: 'any', type: 'image/svg+xml' },
     ],
-    shortcut: '/favicon.ico',
-    apple: '/favicon.svg',
+    shortcut: 'https://reguard.dev/favicon.ico',
+    apple: 'https://reguard.dev/icon',
   },
   manifest: '/site.webmanifest',
   
