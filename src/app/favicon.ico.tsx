@@ -1,8 +1,14 @@
-/** @jsxImportSource react */
 import { ImageResponse } from 'next/og'
-import React from 'react'
 
-export async function GET() {
+// Image metadata
+export const size = {
+  width: 32,
+  height: 32,
+}
+export const contentType = 'image/x-icon'
+
+// Image generation
+export default function Favicon() {
   return new ImageResponse(
     (
       <div
@@ -13,13 +19,13 @@ export async function GET() {
           alignItems: 'center',
           justifyContent: 'center',
           background: 'linear-gradient(135deg, #1a0033 0%, #2d0052 50%, #1a0033 100%)',
-          padding: '1px',
+          padding: '0px',
         }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
+          width="32"
+          height="32"
           viewBox="0 0 1024 1024"
           style={{
             width: '100%',
@@ -115,8 +121,7 @@ export async function GET() {
       </div>
     ),
     {
-      width: 32,
-      height: 32,
+      ...size,
     }
   )
 }
