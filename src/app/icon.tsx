@@ -19,13 +19,13 @@ export default function Icon() {
           alignItems: 'center',
           justifyContent: 'center',
           background: 'linear-gradient(135deg, #1a0033 0%, #2d0052 50%, #1a0033 100%)',
-          padding: '4px',
+          padding: '2px',
         }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="120"
-          height="120"
+          width="124"
+          height="124"
           viewBox="0 0 1024 1024"
           style={{
             width: '100%',

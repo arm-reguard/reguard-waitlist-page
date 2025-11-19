@@ -13,13 +13,13 @@ export async function GET() {
           alignItems: 'center',
           justifyContent: 'center',
           background: 'linear-gradient(135deg, #1a0033 0%, #2d0052 50%, #1a0033 100%)',
-          padding: '2px',
+          padding: '1px',
         }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
+          width="30"
+          height="30"
           viewBox="0 0 1024 1024"
           style={{
             width: '100%',
