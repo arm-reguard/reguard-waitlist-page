@@ -1,14 +1,10 @@
+/** @jsxImportSource react */
 import { ImageResponse } from 'next/og'
+import React from 'react'
 
-// Image metadata
-export const size = {
-  width: 32,
-  height: 32,
-}
-export const contentType = 'image/x-icon'
+export const runtime = 'edge'
 
-// Image generation
-export default function Favicon() {
+export async function GET() {
   return new ImageResponse(
     (
       <div
@@ -121,8 +117,10 @@ export default function Favicon() {
       </div>
     ),
     {
-      ...size,
+      width: 32,
+      height: 32,
     }
   )
 }
 
+export const dynamic = 'force-dynamic'
