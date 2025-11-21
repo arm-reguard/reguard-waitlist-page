@@ -23,10 +23,10 @@ interface ProviderModelSelection {
 }
 
 export function CostCalculator() {
-  const [useCase, setUseCase] = useState<UseCase>("content-generation");
-  const [callsPerMonth, setCallsPerMonth] = useState(50000);
-  const [inputTokens, setInputTokens] = useState(500);
-  const [outputTokens, setOutputTokens] = useState(1500);
+  const [useCase, setUseCase] = useState<UseCase>("code-assistant");
+  const [callsPerMonth, setCallsPerMonth] = useState(500000);
+  const [inputTokens, setInputTokens] = useState(1500);
+  const [outputTokens, setOutputTokens] = useState(2500);
   const [selectedProviders, setSelectedProviders] = useState<Set<string>>(new Set());
   const [selectedModels, setSelectedModels] = useState<ProviderModelSelection[]>([]);
   const [show3DModal, setShow3DModal] = useState(false);
@@ -256,11 +256,11 @@ export function CostCalculator() {
           style={{ fontFamily: 'var(--font-meriva)' }}
         >
           <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
-            Calculate your LLM API costs
+            Calculate your spiraling LLM API costs
           </span>
         </h2>
         <p className="text-base sm:text-lg md:text-lg text-zinc-300 max-w-2xl mx-auto">
-          Adjust parameters to see real-time cost comparisons across providers
+          See how unexpected AI bills add up—and discover how much you could save
         </p>
       </div>
 
