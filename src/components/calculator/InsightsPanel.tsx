@@ -48,7 +48,7 @@ export function InsightsPanel({ models, inputs, useCase, selectedProviders, sele
       {/* ROW 2: Provider Optimization + Routing Strategy (when 2+ providers) OR just Provider Opt (when 1 provider) */}
       {selectedProviders.length >= 2 && providerRecommendations.length > 0 ? (
         // 2+ providers: Show both side by side
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {/* Provider-Specific Optimization */}
           <div className="rounded-lg p-4 border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95">
             <h3 className="text-base font-semibold text-white mb-1.5">
@@ -382,7 +382,7 @@ export function InsightsPanel({ models, inputs, useCase, selectedProviders, sele
 
       {/* ROW 3: Smart Recommendations + Annual Projection (Side by Side) */}
       {smartRecommendations.length > 0 && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {/* Smart Recommendations */}
           <div className="rounded-lg p-4 border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95">
             <h3 className="text-base font-semibold text-white mb-1.5">
