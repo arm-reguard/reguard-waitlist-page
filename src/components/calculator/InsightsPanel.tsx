@@ -548,20 +548,24 @@ export function InsightsPanel({ models, inputs, useCase, selectedProviders, sele
         </div>
       )}
 
-      {/* ROW 4: Usage Optimization Tips (Full Width, Always Rendered to Prevent Layout Shift) */}
+      {/* ROW 4: Usage Optimization Tips (Full Width, Always Rendered with Fixed Height to Prevent Layout Shift) */}
       <div 
         className="rounded-lg border border-zinc-700/50 hover:border-purple-500/50 bg-zinc-900/95"
         style={{ 
           padding: '1.25rem',
-          minHeight: '200px', // Fixed min-height to prevent layout shifts
+          height: '250px', // Fixed height - always reserves exact same space
           overflow: 'hidden',
-          visibility: hasHighVolume || hasLargeContext ? 'visible' : 'hidden',
-          opacity: hasHighVolume || hasLargeContext ? 1 : 0,
-          transition: 'opacity 0.2s ease-in-out, visibility 0s linear 0.2s',
-          pointerEvents: hasHighVolume || hasLargeContext ? 'auto' : 'none'
+          position: 'relative'
         }}
       >
-        <div>
+        <div
+          style={{
+            opacity: hasHighVolume || hasLargeContext ? 1 : 0,
+            visibility: hasHighVolume || hasLargeContext ? 'visible' : 'hidden',
+            transition: 'opacity 0.2s ease-in-out',
+            pointerEvents: hasHighVolume || hasLargeContext ? 'auto' : 'none'
+          }}
+        >
           <h3 className="text-lg font-semibold text-white mb-1.5">Usage Optimization Tips</h3>
           <p className="text-xs text-zinc-300 mb-3">
             Automatic optimizations that reduce costs without manual switching
