@@ -57,7 +57,7 @@ export const AuroraBackground = ({
       {...props}
     >
       {/* Aurora Gradient Background - DESKTOP ONLY */}
-      <div className="absolute inset-0 overflow-hidden opacity-40 pointer-events-none hidden sm:block" aria-hidden="true" style={{ zIndex: 0 }}>
+      <div className="absolute inset-0 overflow-hidden opacity-60 pointer-events-none hidden sm:block" aria-hidden="true" style={{ zIndex: 0 }}>
         {hasMounted && (
           <>
             <motion.div
