@@ -553,11 +553,11 @@ export function InsightsPanel({ models, inputs, useCase, selectedProviders, sele
         className="rounded-lg border border-zinc-700/50 hover:border-purple-500/50 bg-zinc-900/95"
         style={{ 
           padding: '1.25rem',
+          minHeight: '200px', // Fixed min-height to prevent layout shifts
           overflow: 'hidden',
           visibility: hasHighVolume || hasLargeContext ? 'visible' : 'hidden',
           opacity: hasHighVolume || hasLargeContext ? 1 : 0,
-          maxHeight: hasHighVolume || hasLargeContext ? '500px' : '0px',
-          transition: 'opacity 0.2s ease-in-out, max-height 0.2s ease-in-out, visibility 0s linear 0.2s',
+          transition: 'opacity 0.2s ease-in-out, visibility 0s linear 0.2s',
           pointerEvents: hasHighVolume || hasLargeContext ? 'auto' : 'none'
         }}
       >
@@ -567,26 +567,32 @@ export function InsightsPanel({ models, inputs, useCase, selectedProviders, sele
             Automatic optimizations that reduce costs without manual switching
           </p>
           <div className="space-y-2 text-sm text-zinc-300">
-            {hasHighVolume && (
-              <p className="flex items-start gap-2">
-                <span className="text-yellow-500 mt-0.5">🔥</span>
-                <span>
-                  <strong className="text-white">High volume detected:</strong> With{' '}
-                  {inputs.callsPerMonth.toLocaleString()} calls/month, caching can save you
-                  30-50% automatically. Consider enterprise pricing for additional discounts.
-                </span>
-              </p>
-            )}
-            {hasLargeContext && (
-              <p className="flex items-start gap-2">
-                <span className="text-blue-500 mt-0.5">📝</span>
-                <span>
-                  <strong className="text-white">Large context windows:</strong> Consider prompt
-                  optimization to reduce token usage, or use a hybrid approach with cheaper models
-                  for simple tasks.
-                </span>
-              </p>
-            )}
+            <p 
+              className="flex items-start gap-2"
+              style={{
+                display: hasHighVolume ? 'flex' : 'none'
+              }}
+            >
+              <span className="text-yellow-500 mt-0.5">🔥</span>
+              <span>
+                <strong className="text-white">High volume detected:</strong> With{' '}
+                {inputs.callsPerMonth.toLocaleString()} calls/month, caching can save you
+                30-50% automatically. Consider enterprise pricing for additional discounts.
+              </span>
+            </p>
+            <p 
+              className="flex items-start gap-2"
+              style={{
+                display: hasLargeContext ? 'flex' : 'none'
+              }}
+            >
+              <span className="text-blue-500 mt-0.5">📝</span>
+              <span>
+                <strong className="text-white">Large context windows:</strong> Consider prompt
+                optimization to reduce token usage, or use a hybrid approach with cheaper models
+                for simple tasks.
+              </span>
+            </p>
             <p className="flex items-start gap-2">
               <span className="text-purple-500 mt-0.5">💡</span>
               <span>
