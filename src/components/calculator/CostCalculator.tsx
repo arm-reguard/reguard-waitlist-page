@@ -228,10 +228,10 @@ export function CostCalculator() {
       return acc;
     }, {} as Record<string, ProviderModelSelection>);
 
-    // Calculate cost for each unique selection
+    // Calculate cost for each unique selection (exclude non-token models like Sora)
     Object.values(uniqueSelections).forEach((selection) => {
       const model = pricingData.find((m) => m.id === selection.modelId);
-      if (model) {
+      if (model && !model.excludeFromTokenCalculator) {
         const calculated = calculateCost(model, inputs);
         total += calculated.totalCost;
         breakdown.push({
