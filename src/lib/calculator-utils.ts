@@ -78,20 +78,27 @@ export function getSmartRecommendations(
   const baselineCost = currentCost || calculatedModels[0].totalCost;
   
   // Helper function to get best model from a tier, prioritizing provider diversity
-  const getBestFromTier = (tierModels: string[], usedProviders: string[]): CalculatedModel | null => {
-    const availableModels = calculatedModels.filter(m => tierModels.includes(m.id));
+  const getBestFromTier = (tierModels: string[], usedProviders: string[], minCost?: number): CalculatedModel | null => {
+    let availableModels = calculatedModels.filter(m => tierModels.includes(m.id));
+    
+    // Filter out models cheaper than minCost (ensures tier ordering: budget < balanced < premium)
+    if (minCost !== undefined) {
+      availableModels = availableModels.filter(m => m.totalCost > minCost);
+    }
+    
+    if (availableModels.length === 0) return null;
     
     // First try to find a model from a provider we haven't used yet
     const unusedProviderModel = availableModels.find(m => !usedProviders.includes(m.provider));
     if (unusedProviderModel) return unusedProviderModel;
     
     // Otherwise return the cheapest available model
-    return availableModels.length > 0 ? availableModels[0] : null;
+    return availableModels[0];
   };
   
   const usedProviders: string[] = [];
   
-  // Budget/Best Value recommendation
+  // Budget/Best Value recommendation (cheapest overall)
   const budgetModel = getBestFromTier(qualityTiers.budget, usedProviders);
   if (budgetModel) {
     usedProviders.push(budgetModel.provider);
@@ -108,8 +115,8 @@ export function getSmartRecommendations(
     });
   }
   
-  // Balanced recommendation
-  const balancedModel = getBestFromTier(qualityTiers.balanced, usedProviders);
+  // Balanced recommendation (must be MORE EXPENSIVE than Best Value)
+  const balancedModel = getBestFromTier(qualityTiers.balanced, usedProviders, budgetModel?.totalCost);
   if (balancedModel && balancedModel.id !== budgetModel?.id) {
     usedProviders.push(balancedModel.provider);
     const savings = baselineCost - balancedModel.totalCost;
@@ -125,8 +132,8 @@ export function getSmartRecommendations(
     });
   }
   
-  // Premium recommendation
-  const premiumModel = getBestFromTier(qualityTiers.premium, usedProviders);
+  // Premium recommendation (must be MORE EXPENSIVE than Balanced)
+  const premiumModel = getBestFromTier(qualityTiers.premium, usedProviders, balancedModel?.totalCost || budgetModel?.totalCost);
   if (premiumModel && premiumModel.id !== balancedModel?.id && premiumModel.id !== budgetModel?.id) {
     const savings = baselineCost - premiumModel.totalCost;
     const savingsPercentage = baselineCost > 0 ? (savings / baselineCost) * 100 : 0;
