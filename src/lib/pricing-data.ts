@@ -161,11 +161,28 @@ export const pricingData: ModelPricing[] = [
 
   // Google Gemini
   {
+    id: "google-gemini-3-pro-preview",
+    name: "Gemini 3 Pro Preview",
+    provider: "Google",
+    inputCostPerMillion: 2.00, // <=200k tokens pricing
+    outputCostPerMillion: 12.00, // <=200k tokens pricing
+    color: "#4285f4",
+    popular: true
+  },
+  {
+    id: "google-gemini-3-pro-image-preview",
+    name: "Gemini 3 Pro Image Preview",
+    provider: "Google",
+    inputCostPerMillion: 2.00, // Text input pricing
+    outputCostPerMillion: 12.00, // Text output pricing
+    color: "#4285f4"
+  },
+  {
     id: "google-gemini-25-pro",
     name: "Gemini 2.5 Pro",
     provider: "Google",
-    inputCostPerMillion: 1.25,
-    outputCostPerMillion: 5.00,
+    inputCostPerMillion: 1.25, // <=200k tokens pricing (verified)
+    outputCostPerMillion: 10.00, // <=200k tokens pricing (verified)
     color: "#4285f4",
     popular: true
   },
@@ -173,18 +190,133 @@ export const pricingData: ModelPricing[] = [
     id: "google-gemini-25-flash",
     name: "Gemini 2.5 Flash",
     provider: "Google",
-    inputCostPerMillion: 0.50,
-    outputCostPerMillion: 2.00,
+    inputCostPerMillion: 0.30, // Text/image/video pricing (verified)
+    outputCostPerMillion: 2.50, // Verified
     color: "#4285f4",
     popular: true
+  },
+  {
+    id: "google-gemini-25-flash-preview",
+    name: "Gemini 2.5 Flash Preview",
+    provider: "Google",
+    inputCostPerMillion: 0.30, // Text/image/video pricing
+    outputCostPerMillion: 2.50,
+    color: "#4285f4"
+  },
+  {
+    id: "google-gemini-25-flash-lite",
+    name: "Gemini 2.5 Flash-Lite",
+    provider: "Google",
+    inputCostPerMillion: 0.10, // Text/image/video pricing
+    outputCostPerMillion: 0.40,
+    color: "#4285f4"
+  },
+  {
+    id: "google-gemini-25-flash-lite-preview",
+    name: "Gemini 2.5 Flash-Lite Preview",
+    provider: "Google",
+    inputCostPerMillion: 0.10, // Text/image/video pricing
+    outputCostPerMillion: 0.40,
+    color: "#4285f4"
   },
   {
     id: "google-gemini-20-flash",
     name: "Gemini 2.0 Flash",
     provider: "Google",
-    inputCostPerMillion: 0.50,
-    outputCostPerMillion: 2.00,
+    inputCostPerMillion: 0.50, // Verified
+    outputCostPerMillion: 2.00, // Verified
     color: "#4285f4"
+  },
+  {
+    id: "google-gemini-20-flash-lite",
+    name: "Gemini 2.0 Flash-Lite",
+    provider: "Google",
+    inputCostPerMillion: 0.075,
+    outputCostPerMillion: 0.30,
+    color: "#4285f4"
+  },
+  // Google Imagen (Image Generation) - Excluded from token calculator
+  {
+    id: "google-imagen-4-fast",
+    name: "Imagen 4 Fast",
+    provider: "Google",
+    inputCostPerMillion: 0, // Not applicable - priced per image ($0.02/image)
+    outputCostPerMillion: 0, // Not applicable - priced per image
+    color: "#4285f4",
+    excludeFromTokenCalculator: true
+  },
+  {
+    id: "google-imagen-4-standard",
+    name: "Imagen 4 Standard",
+    provider: "Google",
+    inputCostPerMillion: 0, // Not applicable - priced per image ($0.04/image)
+    outputCostPerMillion: 0, // Not applicable - priced per image
+    color: "#4285f4",
+    excludeFromTokenCalculator: true
+  },
+  {
+    id: "google-imagen-4-ultra",
+    name: "Imagen 4 Ultra",
+    provider: "Google",
+    inputCostPerMillion: 0, // Not applicable - priced per image ($0.06/image)
+    outputCostPerMillion: 0, // Not applicable - priced per image
+    color: "#4285f4",
+    excludeFromTokenCalculator: true
+  },
+  {
+    id: "google-imagen-3",
+    name: "Imagen 3",
+    provider: "Google",
+    inputCostPerMillion: 0, // Not applicable - priced per image ($0.03/image)
+    outputCostPerMillion: 0, // Not applicable - priced per image
+    color: "#4285f4",
+    excludeFromTokenCalculator: true
+  },
+  // Google Veo (Video Generation) - Excluded from token calculator
+  {
+    id: "google-veo-31-standard",
+    name: "Veo 3.1 Standard",
+    provider: "Google",
+    inputCostPerMillion: 0, // Not applicable - priced per second ($0.40/sec)
+    outputCostPerMillion: 0, // Not applicable - priced per second
+    color: "#4285f4",
+    excludeFromTokenCalculator: true
+  },
+  {
+    id: "google-veo-31-fast",
+    name: "Veo 3.1 Fast",
+    provider: "Google",
+    inputCostPerMillion: 0, // Not applicable - priced per second ($0.15/sec)
+    outputCostPerMillion: 0, // Not applicable - priced per second
+    color: "#4285f4",
+    excludeFromTokenCalculator: true
+  },
+  {
+    id: "google-veo-3-standard",
+    name: "Veo 3 Standard",
+    provider: "Google",
+    inputCostPerMillion: 0, // Not applicable - priced per second ($0.40/sec)
+    outputCostPerMillion: 0, // Not applicable - priced per second
+    color: "#4285f4",
+    excludeFromTokenCalculator: true
+  },
+  {
+    id: "google-veo-3-fast",
+    name: "Veo 3 Fast",
+    provider: "Google",
+    inputCostPerMillion: 0, // Not applicable - priced per second ($0.15/sec)
+    outputCostPerMillion: 0, // Not applicable - priced per second
+    color: "#4285f4",
+    excludeFromTokenCalculator: true
+  },
+  {
+    id: "google-veo-2",
+    name: "Veo 2",
+    provider: "Google",
+    inputCostPerMillion: 0, // Not applicable - priced per second ($0.35/sec)
+    outputCostPerMillion: 0, // Not applicable - priced per second
+    color: "#4285f4",
+    excludeFromTokenCalculator: true
   },
 
   // Mistral
@@ -375,39 +507,39 @@ export type QualityTier = 'premium' | 'balanced' | 'budget';
 // Define which models are suitable for each use case and quality tier
 export const useCaseQualityMap: Record<string, Record<QualityTier, string[]>> = {
   "content-generation": {
-    premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-opus-41", "anthropic-sonnet-45", "google-gemini-25-pro"],
+    premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-opus-41", "anthropic-sonnet-45", "google-gemini-3-pro-preview", "google-gemini-25-pro"],
     balanced: ["openai-gpt5-mini", "openai-gpt41", "anthropic-haiku-45", "google-gemini-25-flash"],
-    budget: ["openai-gpt5-nano", "anthropic-haiku-45", "google-gemini-25-flash", "mistral-medium"]
+    budget: ["openai-gpt5-nano", "anthropic-haiku-45", "google-gemini-25-flash-lite", "google-gemini-25-flash", "mistral-medium"]
   },
   "chatbot": {
-    premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-sonnet-45", "google-gemini-25-pro"],
+    premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-sonnet-45", "google-gemini-3-pro-preview", "google-gemini-25-pro"],
     balanced: ["openai-gpt5-mini", "anthropic-haiku-45", "google-gemini-25-flash", "openai-gpt41-mini"],
-    budget: ["openai-gpt5-nano", "google-gemini-20-flash", "mistral-small", "groq-llama4-scout"]
+    budget: ["openai-gpt5-nano", "google-gemini-25-flash-lite", "google-gemini-20-flash", "google-gemini-20-flash-lite", "mistral-small", "groq-llama4-scout"]
   },
   "code-assistant": {
-    premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-sonnet-45", "anthropic-opus-41", "google-gemini-25-pro"],
+    premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-sonnet-45", "anthropic-opus-41", "google-gemini-3-pro-preview", "google-gemini-25-pro"],
     balanced: ["openai-gpt5-mini", "openai-gpt41", "openai-o4-mini", "anthropic-haiku-45", "google-gemini-25-flash"],
-    budget: ["openai-gpt41-mini", "anthropic-haiku-45", "mistral-medium"]
+    budget: ["openai-gpt41-mini", "anthropic-haiku-45", "google-gemini-25-flash-lite", "mistral-medium"]
   },
   "data-analysis": {
-    premium: ["openai-o4-mini", "openai-gpt5", "openai-gpt5-pro", "anthropic-opus-41", "anthropic-sonnet-45", "google-gemini-25-pro"],
+    premium: ["openai-o4-mini", "openai-gpt5", "openai-gpt5-pro", "anthropic-opus-41", "anthropic-sonnet-45", "google-gemini-3-pro-preview", "google-gemini-25-pro"],
     balanced: ["openai-gpt5-mini", "openai-gpt41", "anthropic-haiku-45", "google-gemini-25-flash"],
-    budget: ["openai-gpt41-mini", "google-gemini-25-flash", "mistral-large"]
+    budget: ["openai-gpt41-mini", "google-gemini-25-flash-lite", "google-gemini-25-flash", "mistral-large"]
   },
   "general": {
-    premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-sonnet-45", "google-gemini-25-pro"],
+    premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-sonnet-45", "google-gemini-3-pro-preview", "google-gemini-25-pro"],
     balanced: ["openai-gpt5-mini", "anthropic-haiku-45", "google-gemini-25-flash"],
-    budget: ["openai-gpt5-nano", "google-gemini-20-flash", "mistral-small"]
+    budget: ["openai-gpt5-nano", "google-gemini-25-flash-lite", "google-gemini-20-flash", "google-gemini-20-flash-lite", "mistral-small"]
   },
   "translation": {
-    premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-sonnet-45", "google-gemini-25-pro"],
+    premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-sonnet-45", "google-gemini-3-pro-preview", "google-gemini-25-pro"],
     balanced: ["openai-gpt5-mini", "google-gemini-25-flash", "anthropic-haiku-45"],
-    budget: ["openai-gpt41-nano", "mistral-small", "google-gemini-20-flash", "groq-llama31-8b"]
+    budget: ["openai-gpt41-nano", "mistral-small", "google-gemini-25-flash-lite", "google-gemini-20-flash", "google-gemini-20-flash-lite", "groq-llama31-8b"]
   },
   "summarization": {
-    premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-sonnet-45", "google-gemini-25-pro"],
+    premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-sonnet-45", "google-gemini-3-pro-preview", "google-gemini-25-pro"],
     balanced: ["openai-gpt5-nano", "anthropic-haiku-45", "google-gemini-25-flash"],
-    budget: ["openai-gpt41-nano", "mistral-small", "groq-llama31-8b", "together-llama31-8b-turbo"]
+    budget: ["openai-gpt41-nano", "mistral-small", "google-gemini-25-flash-lite", "google-gemini-20-flash-lite", "groq-llama31-8b", "together-llama31-8b-turbo"]
   }
 };
 
