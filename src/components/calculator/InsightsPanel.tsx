@@ -596,7 +596,7 @@ export function InsightsPanel({ models, inputs, useCase, selectedProviders, sele
                     <p className="flex items-start gap-2">
                       <span className="text-green-500 mt-0.5">✨</span>
                       <span>
-                        <strong className="text-white">GPT-5 / GPT-5 pro:</strong> Best for marketing copy, technical documentation, structured content, and data analysis. Excels at following specific formatting instructions.
+                        <strong className="text-white">GPT-5.1 / GPT-5 pro:</strong> Best for marketing copy, technical documentation, structured content, and data analysis. Excels at following specific formatting instructions.
                       </span>
                     </p>
                   )}

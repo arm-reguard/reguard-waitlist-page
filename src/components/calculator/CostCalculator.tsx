@@ -126,6 +126,9 @@ export function CostCalculator() {
       models = models.filter((m) => selectedProviders.has(m.provider));
     }
 
+    // Exclude models that shouldn't be in token-based calculator (e.g., Sora video models)
+    models = models.filter((m) => !m.excludeFromTokenCalculator);
+
     // Calculate costs and sort by total cost
     return models
       .map((model) => calculateCost(model, inputs))
@@ -148,9 +151,9 @@ export function CostCalculator() {
     const qualityTiers = useCaseQualityMap[useCase] || useCaseQualityMap['general'];
     const budgetModelIds = qualityTiers.budget;
     
-    // Filter to only budget-tier models for this use case
+    // Filter to only budget-tier models for this use case, excluding non-token models
     const budgetModels = pricingData
-      .filter((m) => budgetModelIds.includes(m.id))
+      .filter((m) => budgetModelIds.includes(m.id) && !m.excludeFromTokenCalculator)
       .map((model) => calculateCost(model, inputs))
       .sort((a, b) => a.totalCost - b.totalCost);
 

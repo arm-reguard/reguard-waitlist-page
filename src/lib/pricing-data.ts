@@ -6,13 +6,14 @@ export interface ModelPricing {
   outputCostPerMillion: number; // Cost per 1M output tokens
   color: string; // Brand color for the provider
   popular?: boolean; // Flag popular models
+  excludeFromTokenCalculator?: boolean; // Exclude from token-based cost calculations (e.g., Sora video models)
 }
 
 export const pricingData: ModelPricing[] = [
   // OpenAI
   {
     id: "openai-gpt5",
-    name: "GPT-5",
+    name: "GPT-5.1",
     provider: "OpenAI",
     inputCostPerMillion: 1.25,
     outputCostPerMillion: 10.00,
@@ -83,6 +84,51 @@ export const pricingData: ModelPricing[] = [
     inputCostPerMillion: 0.50,
     outputCostPerMillion: 1.50,
     color: "#10a37f"
+  },
+  // OpenAI Image Generation API
+  {
+    id: "openai-gpt-image-1",
+    name: "GPT-image-1",
+    provider: "OpenAI",
+    inputCostPerMillion: 5.00, // Text input pricing
+    outputCostPerMillion: 40.00, // Image output pricing
+    color: "#10a37f"
+  },
+  {
+    id: "openai-gpt-image-1-mini",
+    name: "GPT-image-1-mini",
+    provider: "OpenAI",
+    inputCostPerMillion: 2.00, // Text input pricing
+    outputCostPerMillion: 8.00, // Image output pricing
+    color: "#10a37f"
+  },
+  // OpenAI Sora Video API (excluded from token calculator)
+  {
+    id: "openai-sora-2",
+    name: "Sora 2",
+    provider: "OpenAI",
+    inputCostPerMillion: 0, // Not applicable - priced per second
+    outputCostPerMillion: 0, // Not applicable - priced per second
+    color: "#10a37f",
+    excludeFromTokenCalculator: true
+  },
+  {
+    id: "openai-sora-2-pro-720p",
+    name: "Sora 2 Pro (720p)",
+    provider: "OpenAI",
+    inputCostPerMillion: 0, // Not applicable - priced per second ($0.30/sec)
+    outputCostPerMillion: 0, // Not applicable - priced per second
+    color: "#10a37f",
+    excludeFromTokenCalculator: true
+  },
+  {
+    id: "openai-sora-2-pro-1024p",
+    name: "Sora 2 Pro (1024p)",
+    provider: "OpenAI",
+    inputCostPerMillion: 0, // Not applicable - priced per second ($0.50/sec)
+    outputCostPerMillion: 0, // Not applicable - priced per second
+    color: "#10a37f",
+    excludeFromTokenCalculator: true
   },
 
   // Anthropic Claude
