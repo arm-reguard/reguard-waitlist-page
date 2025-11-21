@@ -548,9 +548,20 @@ export function InsightsPanel({ models, inputs, useCase, selectedProviders, sele
         </div>
       )}
 
-      {/* ROW 4: Usage Optimization Tips (Full Width, Conditional) */}
-      {(hasHighVolume || hasLargeContext) && (
-        <div className="rounded-lg p-5 border border-zinc-700/50 hover:border-purple-500/50 transition-colors bg-zinc-900/95">
+      {/* ROW 4: Usage Optimization Tips (Full Width, Always Rendered to Prevent Layout Shift) */}
+      <div 
+        className="rounded-lg border border-zinc-700/50 hover:border-purple-500/50 bg-zinc-900/95"
+        style={{ 
+          padding: '1.25rem',
+          overflow: 'hidden',
+          visibility: hasHighVolume || hasLargeContext ? 'visible' : 'hidden',
+          opacity: hasHighVolume || hasLargeContext ? 1 : 0,
+          maxHeight: hasHighVolume || hasLargeContext ? '500px' : '0px',
+          transition: 'opacity 0.2s ease-in-out, max-height 0.2s ease-in-out, visibility 0s linear 0.2s',
+          pointerEvents: hasHighVolume || hasLargeContext ? 'auto' : 'none'
+        }}
+      >
+        <div>
           <h3 className="text-lg font-semibold text-white mb-1.5">Usage Optimization Tips</h3>
           <p className="text-xs text-zinc-300 mb-3">
             Automatic optimizations that reduce costs without manual switching
@@ -613,7 +624,7 @@ export function InsightsPanel({ models, inputs, useCase, selectedProviders, sele
             })()}
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }
