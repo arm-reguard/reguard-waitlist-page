@@ -38,7 +38,7 @@ export function InsightsPanel({ models, inputs, useCase, selectedProviders, sele
     ? getProviderRecommendations(selectedProviders, models, useCase, selectedModels)
     : [];
 
-  const hasHighVolume = inputs.callsPerMonth > 100000;
+  const hasHighVolume = inputs.callsPerMonth >= 100000;
   const hasLargeContext = (inputs.inputTokensPerCall + inputs.outputTokensPerCall) > 1500;
 
   return (
