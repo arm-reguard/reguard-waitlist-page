@@ -503,7 +503,7 @@ export const useCaseQualityMap: Record<string, Record<QualityTier, string[]>> = 
   "code-assistant": {
     premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-sonnet-45", "anthropic-opus-41", "google-gemini-3-pro-preview", "google-gemini-25-pro"],
     balanced: ["openai-gpt5-mini", "openai-gpt41", "openai-o4-mini", "anthropic-haiku-45", "google-gemini-25-flash"],
-    budget: ["openai-gpt41-mini", "anthropic-haiku-45", "google-gemini-25-flash-lite", "mistral-medium"]
+    budget: ["openai-gpt41-mini", "anthropic-haiku-45"]
   },
   "data-analysis": {
     premium: ["openai-o4-mini", "openai-gpt5", "openai-gpt5-pro", "anthropic-opus-41", "anthropic-sonnet-45", "google-gemini-3-pro-preview", "google-gemini-25-pro"],
