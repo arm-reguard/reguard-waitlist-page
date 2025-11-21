@@ -133,7 +133,18 @@ export function getSmartRecommendations(
   }
   
   // Premium recommendation (must be MORE EXPENSIVE than Balanced)
-  const premiumModel = getBestFromTier(qualityTiers.premium, usedProviders, balancedModel?.totalCost || budgetModel?.totalCost);
+  // Prioritize Anthropic Sonnet 4.5 for default view
+  const minPremiumCost = balancedModel?.totalCost || budgetModel?.totalCost;
+  let premiumModel = getBestFromTier(qualityTiers.premium, usedProviders, minPremiumCost);
+  
+  // If Sonnet 4.5 is available and meets cost requirements, prefer it for Premium
+  if (premiumModel) {
+    const sonnet45 = calculatedModels.find(m => m.id === 'anthropic-sonnet-45' && qualityTiers.premium.includes(m.id));
+    if (sonnet45 && sonnet45.totalCost > (minPremiumCost || 0) && sonnet45.id !== balancedModel?.id && sonnet45.id !== budgetModel?.id) {
+      premiumModel = sonnet45;
+    }
+  }
+  
   if (premiumModel && premiumModel.id !== balancedModel?.id && premiumModel.id !== budgetModel?.id) {
     const savings = baselineCost - premiumModel.totalCost;
     const savingsPercentage = baselineCost > 0 ? (savings / baselineCost) * 100 : 0;
