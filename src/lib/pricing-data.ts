@@ -196,24 +196,8 @@ export const pricingData: ModelPricing[] = [
     popular: true
   },
   {
-    id: "google-gemini-25-flash-preview",
-    name: "Gemini 2.5 Flash Preview",
-    provider: "Google",
-    inputCostPerMillion: 0.30, // Text/image/video pricing
-    outputCostPerMillion: 2.50,
-    color: "#4285f4"
-  },
-  {
     id: "google-gemini-25-flash-lite",
     name: "Gemini 2.5 Flash-Lite",
-    provider: "Google",
-    inputCostPerMillion: 0.10, // Text/image/video pricing
-    outputCostPerMillion: 0.40,
-    color: "#4285f4"
-  },
-  {
-    id: "google-gemini-25-flash-lite-preview",
-    name: "Gemini 2.5 Flash-Lite Preview",
     provider: "Google",
     inputCostPerMillion: 0.10, // Text/image/video pricing
     outputCostPerMillion: 0.40,
