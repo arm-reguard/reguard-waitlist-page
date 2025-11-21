@@ -553,15 +553,16 @@ export function InsightsPanel({ models, inputs, useCase, selectedProviders, sele
         className="rounded-lg border border-zinc-700/50 hover:border-purple-500/50 bg-zinc-900/95"
         style={{ 
           padding: '1.25rem',
-          height: '250px', // Fixed height - always reserves exact same space
+          height: '280px', // Fixed height - ALWAYS reserves same space to prevent layout shifts
           overflow: 'hidden',
-          position: 'relative'
+          boxSizing: 'border-box'
         }}
       >
         <div
           style={{
             opacity: hasHighVolume || hasLargeContext ? 1 : 0,
-            visibility: hasHighVolume || hasLargeContext ? 'visible' : 'hidden',
+            height: hasHighVolume || hasLargeContext ? 'auto' : '0px',
+            overflow: 'hidden',
             transition: 'opacity 0.2s ease-in-out',
             pointerEvents: hasHighVolume || hasLargeContext ? 'auto' : 'none'
           }}
