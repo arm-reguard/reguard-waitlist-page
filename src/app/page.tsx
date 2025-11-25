@@ -179,23 +179,23 @@ export default function Home() {
           <div className="relative z-50 flex flex-col items-start gap-3.5 text-base sm:text-lg text-zinc-300/90">
             <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span className="relative z-50">Live Cost Monitoring</span>
+              <span className="relative z-50">Auto-Blocks at Budget</span>
             </div>
             <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span className="relative z-50">Instant Budget Alerts</span>
+              <span className="relative z-50">Smart Request Caching</span>
             </div>
             <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span className="relative z-50">3D Cost Visualization</span>
+              <span className="relative z-50">Cost per Customer</span>
             </div>
             <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span className="relative z-50">Intelligent Request Caching</span>
+              <span className="relative z-50">Test Before Production</span>
             </div>
             <div className="relative z-50 flex items-center gap-2 whitespace-nowrap">
               <CheckCircle2 className="relative z-50 h-4 w-4 text-purple-400 flex-shrink-0" />
-              <span className="relative z-50">Multi-Provider LLM Tracking</span>
+              <span className="relative z-50">One Proxy, All Providers</span>
             </div>
           </div>
         </div>
@@ -208,26 +208,26 @@ export default function Home() {
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
               <div className="flex items-center gap-2 whitespace-nowrap">
                 <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span>Live Cost Monitoring</span>
+                <span>Auto-Blocks at Budget</span>
               </div>
               <div className="flex items-center gap-2 whitespace-nowrap">
                 <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span>Instant Budget Alerts</span>
+                <span>Smart Request Caching</span>
               </div>
               <div className="flex items-center gap-2 whitespace-nowrap">
                 <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span>3D Cost Visualization</span>
+                <span>Cost per Customer</span>
               </div>
             </div>
             {/* Second row - 2 items */}
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
               <div className="flex items-center gap-2 whitespace-nowrap">
                 <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span>Intelligent Request Caching</span>
+                <span>Test Before Production</span>
               </div>
               <div className="flex items-center gap-2 whitespace-nowrap">
                 <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span>Multi-Provider LLM Tracking</span>
+                <span>One Proxy, All Providers</span>
               </div>
             </div>
           </div>
