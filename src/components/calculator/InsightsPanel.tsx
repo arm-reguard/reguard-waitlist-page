@@ -43,7 +43,7 @@ export function InsightsPanel({ models, inputs, useCase, selectedProviders, sele
   
   // Check if there are model-specific tips to show
   const hasGPT5 = selectedModels?.some(m => m.modelId === 'openai-gpt5' || m.modelId === 'openai-gpt5-pro');
-  const hasOpus = selectedModels?.some(m => m.modelId === 'anthropic-opus-41');
+  const hasOpus = selectedModels?.some(m => m.modelId === 'anthropic-opus-45');
   const hasModelSpecificTips = hasGPT5 || hasOpus;
   
   // Only show Usage Optimization Tips if there's actual content to display
@@ -608,7 +608,7 @@ export function InsightsPanel({ models, inputs, useCase, selectedProviders, sele
               <p className="flex items-start gap-2">
                 <span className="text-purple-400 mt-0.5">✨</span>
                 <span>
-                  <strong className="text-white">Claude Opus 4.1:</strong> Best for long-form prose, creative writing, blog posts, and storytelling. Superior at maintaining consistent voice and narrative flow.
+                      <strong className="text-white">Claude Opus 4.5:</strong> Best for long-form prose, creative writing, blog posts, and storytelling. Superior at maintaining consistent voice and narrative flow.
                 </span>
               </p>
             )}

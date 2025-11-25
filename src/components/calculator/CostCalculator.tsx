@@ -432,6 +432,8 @@ export function CostCalculator() {
             {/* Compact Note */}
             <div className="pt-3 border-t border-zinc-800/50">
               <p className="text-[10px] text-zinc-300 leading-relaxed">
+                * Track Claude Opus 4.5 costs
+                <br />
                 * Track Gemini 3 Pro API costs
                 <br />
                 * Track GPT 5.1 API costs

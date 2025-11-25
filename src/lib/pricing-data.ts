@@ -133,11 +133,11 @@ export const pricingData: ModelPricing[] = [
 
   // Anthropic Claude
   {
-    id: "anthropic-opus-41",
-    name: "Opus 4.1",
+    id: "anthropic-opus-45",
+    name: "Opus 4.5",
     provider: "Anthropic",
-    inputCostPerMillion: 15.00,
-    outputCostPerMillion: 75.00,
+    inputCostPerMillion: 5.00,
+    outputCostPerMillion: 25.00,
     color: "#D97757",
     popular: true
   },
@@ -491,7 +491,7 @@ export type QualityTier = 'premium' | 'balanced' | 'budget';
 // Define which models are suitable for each use case and quality tier
 export const useCaseQualityMap: Record<string, Record<QualityTier, string[]>> = {
   "content-generation": {
-    premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-opus-41", "anthropic-sonnet-45", "google-gemini-3-pro-preview", "google-gemini-25-pro"],
+    premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-opus-45", "anthropic-sonnet-45", "google-gemini-3-pro-preview", "google-gemini-25-pro"],
     balanced: ["openai-gpt5-mini", "openai-gpt41", "anthropic-haiku-45", "google-gemini-25-flash"],
     budget: ["openai-gpt5-nano", "anthropic-haiku-45", "google-gemini-25-flash-lite", "google-gemini-25-flash", "mistral-medium"]
   },
@@ -501,12 +501,12 @@ export const useCaseQualityMap: Record<string, Record<QualityTier, string[]>> = 
     budget: ["openai-gpt5-nano", "google-gemini-25-flash-lite", "google-gemini-20-flash", "google-gemini-20-flash-lite", "mistral-small", "groq-llama4-scout"]
   },
   "code-assistant": {
-    premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-sonnet-45", "anthropic-opus-41", "google-gemini-3-pro-preview", "google-gemini-25-pro"],
+    premium: ["openai-gpt5", "openai-gpt5-pro", "anthropic-sonnet-45", "anthropic-opus-45", "google-gemini-3-pro-preview", "google-gemini-25-pro"],
     balanced: ["openai-gpt5-mini", "openai-gpt41", "openai-o4-mini", "anthropic-haiku-45", "google-gemini-25-flash"],
     budget: ["openai-gpt41-mini", "anthropic-haiku-45"]
   },
   "data-analysis": {
-    premium: ["openai-o4-mini", "openai-gpt5", "openai-gpt5-pro", "anthropic-opus-41", "anthropic-sonnet-45", "google-gemini-3-pro-preview", "google-gemini-25-pro"],
+    premium: ["openai-o4-mini", "openai-gpt5", "openai-gpt5-pro", "anthropic-opus-45", "anthropic-sonnet-45", "google-gemini-3-pro-preview", "google-gemini-25-pro"],
     balanced: ["openai-gpt5-mini", "openai-gpt41", "anthropic-haiku-45", "google-gemini-25-flash"],
     budget: ["openai-gpt41-mini", "google-gemini-25-flash-lite", "google-gemini-25-flash", "mistral-large"]
   },
