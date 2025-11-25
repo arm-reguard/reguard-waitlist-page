@@ -40,6 +40,14 @@ export function InsightsPanel({ models, inputs, useCase, selectedProviders, sele
 
   const hasHighVolume = inputs.callsPerMonth >= 100000;
   const hasLargeContext = (inputs.inputTokensPerCall + inputs.outputTokensPerCall) > 1500;
+  
+  // Check if there are model-specific tips to show
+  const hasGPT5 = selectedModels?.some(m => m.modelId === 'openai-gpt5' || m.modelId === 'openai-gpt5-pro');
+  const hasOpus = selectedModels?.some(m => m.modelId === 'anthropic-opus-41');
+  const hasModelSpecificTips = hasGPT5 || hasOpus;
+  
+  // Only show Usage Optimization Tips if there's actual content to display
+  const hasUsageTipsContent = hasHighVolume || hasLargeContext || hasModelSpecificTips;
 
   return (
     <>
@@ -548,94 +556,65 @@ export function InsightsPanel({ models, inputs, useCase, selectedProviders, sele
         </div>
       )}
 
-      {/* ROW 4: Usage Optimization Tips (Full Width, Always Rendered with Fixed Height to Prevent Layout Shift) */}
-      <div 
-        className="rounded-lg border border-zinc-700/50 hover:border-purple-500/50 bg-zinc-900/95"
-        style={{ 
-          padding: '1.25rem',
-          height: '280px', // Fixed height - ALWAYS reserves same space to prevent layout shifts
-          overflow: 'hidden',
-          boxSizing: 'border-box'
-        }}
-      >
-        <div
-          style={{
-            opacity: hasHighVolume || hasLargeContext ? 1 : 0,
-            height: hasHighVolume || hasLargeContext ? 'auto' : '0px',
-            overflow: 'hidden',
-            transition: 'opacity 0.2s ease-in-out',
-            pointerEvents: hasHighVolume || hasLargeContext ? 'auto' : 'none'
-          }}
-        >
+      {/* ROW 4: Usage Optimization Tips (Only render if there's content to show) */}
+      {hasUsageTipsContent && (
+        <div className="rounded-lg p-5 border border-zinc-700/50 hover:border-purple-500/50 bg-zinc-900/95">
           <h3 className="text-lg font-semibold text-white mb-1.5">Usage Optimization Tips</h3>
           <p className="text-xs text-zinc-300 mb-3">
             Automatic optimizations that reduce costs without manual switching
           </p>
           <div className="space-y-2 text-sm text-zinc-300">
-            <p 
-              className="flex items-start gap-2"
-              style={{
-                display: hasHighVolume ? 'flex' : 'none'
-              }}
-            >
-              <span className="text-yellow-500 mt-0.5">🔥</span>
-              <span>
-                <strong className="text-white">High volume detected:</strong> With{' '}
-                {inputs.callsPerMonth.toLocaleString()} calls/month, caching can save you
-                30-50% automatically. Consider enterprise pricing for additional discounts.
-              </span>
-            </p>
-            <p 
-              className="flex items-start gap-2"
-              style={{
-                display: hasLargeContext ? 'flex' : 'none'
-              }}
-            >
-              <span className="text-blue-500 mt-0.5">📝</span>
-              <span>
-                <strong className="text-white">Large context windows:</strong> Consider prompt
-                optimization to reduce token usage, or use a hybrid approach with cheaper models
-                for simple tasks.
-              </span>
-            </p>
-            <p className="flex items-start gap-2">
-              <span className="text-purple-500 mt-0.5">💡</span>
-              <span>
-                <strong className="text-white">Pro tip:</strong> Use a multi-tier strategy -
-                premium models for 20% of high-value tasks, balanced models for 60% of routine work,
-                and budget models for 20% of simple tasks.
-              </span>
-            </p>
+            {hasHighVolume && (
+              <p className="flex items-start gap-2">
+                <span className="text-yellow-500 mt-0.5">🔥</span>
+                <span>
+                  <strong className="text-white">High volume detected:</strong> With{' '}
+                  {inputs.callsPerMonth.toLocaleString()} calls/month, caching can save you
+                  30-50% automatically. Consider enterprise pricing for additional discounts.
+                </span>
+              </p>
+            )}
+            {hasLargeContext && (
+              <p className="flex items-start gap-2">
+                <span className="text-blue-500 mt-0.5">📝</span>
+                <span>
+                  <strong className="text-white">Large context windows:</strong> Consider prompt
+                  optimization to reduce token usage, or use a hybrid approach with cheaper models
+                  for simple tasks.
+                </span>
+              </p>
+            )}
+            {(hasHighVolume || hasLargeContext) && (
+              <p className="flex items-start gap-2">
+                <span className="text-purple-500 mt-0.5">💡</span>
+                <span>
+                  <strong className="text-white">Pro tip:</strong> Use a multi-tier strategy -
+                  premium models for 20% of high-value tasks, balanced models for 60% of routine work,
+                  and budget models for 20% of simple tasks.
+                </span>
+              </p>
+            )}
             
             {/* Model-specific usage guidance */}
-            {(() => {
-              const hasGPT5 = selectedModels?.some(m => m.modelId === 'openai-gpt5' || m.modelId === 'openai-gpt5-pro');
-              const hasOpus = selectedModels?.some(m => m.modelId === 'anthropic-opus-41');
-              
-              return (
-                <>
-                  {hasGPT5 && (
-                    <p className="flex items-start gap-2">
-                      <span className="text-green-500 mt-0.5">✨</span>
-                      <span>
-                        <strong className="text-white">GPT-5.1 / GPT-5 pro:</strong> Best for marketing copy, technical documentation, structured content, and data analysis. Excels at following specific formatting instructions.
-                      </span>
-                    </p>
-                  )}
-                  {hasOpus && (
-                    <p className="flex items-start gap-2">
-                      <span className="text-purple-400 mt-0.5">✨</span>
-                      <span>
-                        <strong className="text-white">Claude Opus 4.1:</strong> Best for long-form prose, creative writing, blog posts, and storytelling. Superior at maintaining consistent voice and narrative flow.
-                      </span>
-                    </p>
-                  )}
-                </>
-              );
-            })()}
+            {hasGPT5 && (
+              <p className="flex items-start gap-2">
+                <span className="text-green-500 mt-0.5">✨</span>
+                <span>
+                  <strong className="text-white">GPT-5.1 / GPT-5 pro:</strong> Best for marketing copy, technical documentation, structured content, and data analysis. Excels at following specific formatting instructions.
+                </span>
+              </p>
+            )}
+            {hasOpus && (
+              <p className="flex items-start gap-2">
+                <span className="text-purple-400 mt-0.5">✨</span>
+                <span>
+                  <strong className="text-white">Claude Opus 4.1:</strong> Best for long-form prose, creative writing, blog posts, and storytelling. Superior at maintaining consistent voice and narrative flow.
+                </span>
+              </p>
+            )}
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
