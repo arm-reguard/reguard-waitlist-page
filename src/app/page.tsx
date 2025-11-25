@@ -165,9 +165,9 @@ export default function Home() {
                 </div>
               </h2>
           <p className="relative z-50 text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg mb-4 sm:mb-5">
-            <span className="hidden sm:inline">Smart monitoring and controls to prevent unexpected API bills.
-            <br /></span>
-            Spiraling costs shouldn't be a $1,000 lesson.
+            Hard spending limits that physically stop API calls.
+            <br />
+            Not alerts. Not warnings. Real protection.
             <br />
             Set your budget, we'll enforce it.
           </p>
