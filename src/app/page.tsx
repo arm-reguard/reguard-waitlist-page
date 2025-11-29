@@ -453,16 +453,16 @@ export default function Home() {
 
       {/* Get exclusive beta access Section */}
       <section className="relative z-50 pt-0 sm:pt-1 pb-16 sm:pb-20 md:pb-24 px-4">
-        <div className="w-full max-w-6xl mx-auto z-10 flex flex-col items-center">
+        <div className="relative z-50 flex flex-col items-center text-center">
           <h1 
-            className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] text-center mb-4 sm:mb-5"
+            className="relative z-50 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] mb-4 sm:mb-5 max-w-5xl w-full"
             style={{ fontFamily: 'var(--font-meriva)' }}
           >
             <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
               Get exclusive beta access
             </span>
           </h1>
-          <p className="text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg text-center mb-4 sm:mb-5">
+          <p className="relative z-50 text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg mb-4 sm:mb-5 max-w-5xl w-full">
             Be among the first developers to<br className="sm:hidden" /> test reGuard in production.
           </p>
           
@@ -522,7 +522,7 @@ export default function Home() {
             )}
           </div>
           
-          <p className="text-sm text-zinc-400 text-center mt-4">
+          <p className="relative z-50 text-sm text-zinc-400 text-center mt-4">
             Limited spots. Launching Q1 2026.
           </p>
         </div>
