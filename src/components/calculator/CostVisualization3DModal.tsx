@@ -8,7 +8,6 @@ import {
   DialogClose,
 } from '@/components/ui/dialog';
 import { X, CheckCircle2 } from 'lucide-react';
-import { ReGuardButton } from '@/components/ui/reguard-button';
 import type { CalculatedModel } from '@/lib/calculator-utils';
 
 // Lazy load the 3D component (no SSR)
@@ -81,13 +80,6 @@ export function CostVisualization3DModal({
     }
   }, [isMobile, open]);
 
-  // Scroll to waitlist
-  const scrollToWaitlist = () => {
-    onOpenChange(false); // Close modal first
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 300);
-  };
 
   if (!mounted) return null;
 
@@ -182,11 +174,6 @@ export function CostVisualization3DModal({
                 </div>
               </div>
 
-              <div className="flex justify-center scale-75">
-                <ReGuardButton onClick={scrollToWaitlist}>
-                  Join Waitlist - Get Early Access
-                </ReGuardButton>
-              </div>
             </div>
           </div>
         </div>
@@ -227,9 +214,9 @@ export function CostVisualization3DModal({
           </div>
 
           {/* CTA Section - Generous spacing for readability */}
-          <div className="flex-shrink-0 pt-4 text-center">
+          <div className="flex-shrink-0 pt-4 w-full">
             <h4 
-              className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight mb-5"
+              className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight mb-5 text-center w-full"
               style={{ fontFamily: 'var(--font-meriva)' }}
             >
               <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
@@ -237,8 +224,8 @@ export function CostVisualization3DModal({
               </span>
             </h4>
             
-            {/* Mobile: 2 column grid (3-3), Desktop: Flex wrap */}
-            <div className="mb-6 max-w-md mx-auto">
+            {/* Mobile: 2 column grid (3-3), Desktop: 2 columns grid centered */}
+            <div className="mb-6 w-full flex justify-center">
               {/* Mobile layout: 2 columns, 3 rows */}
               <div className="grid grid-cols-2 gap-x-4 gap-y-3 sm:hidden text-xs text-zinc-300/90">
                 <div className="flex items-start gap-2">
@@ -267,40 +254,35 @@ export function CostVisualization3DModal({
                 </div>
               </div>
               
-              {/* Desktop layout: Horizontal flex wrap */}
-              <div className="hidden sm:flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-zinc-300/90">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                  <span>Real-Time Tracking</span>
+              {/* Desktop layout: 2 columns grid centered */}
+              <div className="hidden sm:grid grid-cols-[auto_auto] gap-x-8 gap-y-3 text-sm text-zinc-300/90 justify-center">
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-left whitespace-nowrap">Real-Time Tracking</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                  <span>Intelligent Clustering</span>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-left whitespace-nowrap">Intelligent Clustering</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                  <span>Anomaly Detection</span>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-left whitespace-nowrap">Anomaly Detection</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                  <span>Heat Zones</span>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-left whitespace-nowrap">Heat Zones</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                  <span>AI-Powered Insights</span>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-left whitespace-nowrap">AI-Powered Insights</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                  <span>AI Cost Recommendations</span>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-purple-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-left whitespace-nowrap">AI Cost Recommendations</span>
                 </div>
               </div>
             </div>
             
-            <div className="flex justify-center scale-90">
-              <ReGuardButton onClick={scrollToWaitlist}>
-                Join Waitlist - Get Early Access
-              </ReGuardButton>
-            </div>
           </div>
         </div>
       </DialogContent>

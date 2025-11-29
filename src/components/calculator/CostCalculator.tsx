@@ -9,6 +9,7 @@ import { InsightsPanel } from "./InsightsPanel";
 import { CostVisualization3DModal } from "./CostVisualization3DModal";
 import { ReGuardButton } from "@/components/ui/reguard-button";
 import { CheckCircle2, ChevronDown, ChevronUp } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 // Lazy load the heavy chart component to improve initial page load
 const CostChart = dynamic(() => import("./CostChart").then(mod => ({ default: mod.CostChart })), {
@@ -23,6 +24,7 @@ interface ProviderModelSelection {
 }
 
 export function CostCalculator() {
+  const router = useRouter();
   const [useCase, setUseCase] = useState<UseCase>("code-assistant");
   const [callsPerMonth, setCallsPerMonth] = useState(500000);
   const [inputTokens, setInputTokens] = useState(1500);
@@ -245,10 +247,6 @@ export function CostCalculator() {
     return { total, breakdown };
   }, [selectedModels, inputTokens, outputTokens, callsPerMonth]);
 
-  // Scroll to waitlist
-  const scrollToWaitlist = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   return (
     <div className="relative z-50 w-full max-w-7xl mx-auto px-4">
@@ -697,20 +695,10 @@ export function CostCalculator() {
         </div>
         
         <div className="relative z-50 flex justify-center">
-          <ReGuardButton onClick={scrollToWaitlist}>
+          <ReGuardButton onClick={() => router.push('/')}>
             Join Waitlist - Get Early Access
           </ReGuardButton>
         </div>
-      </div>
-
-      {/* Divider */}
-      <div className="relative z-50 w-full border-t border-zinc-800/30 my-6"></div>
-
-      {/* Copyright */}
-      <div className="relative z-50 text-center pt-4 pb-8">
-        <p className="relative z-50 text-sm text-zinc-500">
-          © 2025 reGuard. All rights reserved.
-        </p>
       </div>
 
       {/* 3D Visualization Modal */}

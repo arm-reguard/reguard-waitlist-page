@@ -31,8 +31,8 @@ const openSansFont = localFont({
 
 export const metadata: Metadata = {
   // Primary Meta Tags
-  title: "reGuard - Stop Surprise LLM API Bills | Budget Protection",
-  description: "Auto-block LLM API spending at budget limits. Works with OpenAI, Anthropic, Google + 4 providers. Free API cost calculator. Join 300+ on waitlist.",
+  title: "reGuard - LLM API Budget Protection | Stop Surprise Bills",
+  description: "Automatically block LLM API calls when budget limits are reached. Track costs per customer and per feature, enforce hard spending caps, and prevent surprise bills across all LLM providers.",
   keywords: [
     "API budget protection",
     "LLM API costs",
@@ -46,6 +46,7 @@ export const metadata: Metadata = {
   authors: [{ name: "reGuard" }],
   creator: "reGuard",
   publisher: "reGuard",
+  applicationName: "reGuard",
   robots: {
     index: true,
     follow: true,
@@ -62,31 +63,34 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   
-  // Open Graph / Facebook
+  // Open Graph / Facebook - Comprehensive Tags
   openGraph: {
     type: 'website',
     url: 'https://reguard.dev/',
-    title: 'reGuard - Stop Surprise LLM API Bills | Budget Protection',
-    description: 'Auto-block LLM API spending at budget limits. Works with OpenAI, Anthropic, Google + 4 providers. Free API cost calculator. Join 300+ on waitlist.',
+    title: 'reGuard - LLM API Budget Protection | Stop Surprise Bills',
+    description: 'Automatically block LLM API calls when budget limits are reached. Track costs per customer and per feature, enforce hard spending caps, and prevent surprise bills across all LLM providers.',
     siteName: 'reGuard',
     locale: 'en_US',
+    alternateLocale: ['en_US'],
     images: [
       {
-        url: '/og-image.svg',
+        url: 'https://reguard.dev/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'reGuard - Stop Surprise LLM API Bills',
+        alt: 'reGuard - LLM API Budget Protection | Stop Surprise Bills',
+        type: 'image/png',
       },
     ],
   },
   
-  // Twitter
+  // Twitter Card - Comprehensive Tags
   twitter: {
     card: 'summary_large_image',
-    title: 'reGuard - Stop Surprise LLM API Bills',
-    description: 'Auto-block LLM API spending at budget limits. Works with OpenAI, Anthropic, Google + 4 providers. Free API cost calculator. Join 300+ on waitlist.',
-    images: ['/og-image.svg'],
+    title: 'reGuard - LLM API Budget Protection | Stop Surprise Bills',
+    description: 'Automatically block LLM API calls when budget limits are reached. Track costs per customer and per feature, enforce hard spending caps, and prevent surprise bills across all LLM providers.',
+    images: ['https://reguard.dev/og-image.png'],
     creator: '@reGuardAI',
+    site: '@reGuardAI',
   },
   
   // Icons & Favicons
@@ -111,9 +115,14 @@ export const metadata: Metadata = {
   viewport: {
     width: 'device-width',
     initialScale: 1,
+    maximumScale: 5,
   },
   other: {
     'msapplication-TileColor': '#8B5CF6',
+    'apple-mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-status-bar-style': 'black-translucent',
+    'apple-mobile-web-app-title': 'reGuard',
+    'format-detection': 'telephone=no',
   },
 };
 
@@ -127,6 +136,13 @@ export default function RootLayout({
       <head>
         {/* Google Search Console Verification */}
         <meta name="google-site-verification" content="GB8KV6SBWWtnKi4fx6iNnSL7AF-9IKWOpeZ4c3VQ96U" />
+        
+        {/* Additional Open Graph Tags (not in Metadata API) */}
+        <meta property="og:image:secure_url" content="https://reguard.dev/og-image.png" />
+        
+        {/* Additional Meta Tags (not in Metadata API) */}
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-config" content="/site.webmanifest" />
       </head>
       <body className="antialiased" style={{ fontFamily: 'var(--font-open-sans)' }}>
         <ErrorReporter />

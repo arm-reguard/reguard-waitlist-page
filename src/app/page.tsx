@@ -1,22 +1,15 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import dynamic from "next/dynamic";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { ReGuardButton } from "@/components/ui/reguard-button";
+import { CyberneticBentoGrid } from "@/components/ui/bento-grid";
+import { Footer } from "@/components/ui/footer";
+import { FAQSection } from "@/components/ui/faq-section";
 import { motion } from "framer-motion";
 import { CheckCircle2, Infinity } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-
-// Lazy load the calculator (includes Recharts) - not needed on first fold
-const CostCalculator = dynamic(
-  () => import("@/components/calculator/CostCalculator").then((mod) => ({ default: mod.CostCalculator })),
-  { 
-    ssr: false,
-    loading: () => <div className="min-h-screen w-full" /> // Ensure page is scrollable during load
-  }
-);
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -25,6 +18,13 @@ export default function Home() {
   const [isDuplicate, setIsDuplicate] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [phraseIndex, setPhraseIndex] = useState(0);
+  
+  // Beta access form state
+  const [betaEmail, setBetaEmail] = useState("");
+  const [betaSubmittedEmail, setBetaSubmittedEmail] = useState("");
+  const [betaIsSubmitted, setBetaIsSubmitted] = useState(false);
+  const [betaIsDuplicate, setBetaIsDuplicate] = useState(false);
+  const [betaIsLoading, setBetaIsLoading] = useState(false);
 
   const phrases = useMemo(
     () => ["API costs again", "AI spending again", "LLM expenses again", "vibe coding again"],
@@ -103,23 +103,91 @@ export default function Home() {
     }
   };
 
+  const handleBetaSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!betaEmail) return;
+    
+    setBetaIsLoading(true);
+    setBetaSubmittedEmail(betaEmail);
+    const submittedEmailCopy = betaEmail;
+    
+    // Wait 0.75 seconds before showing result (feels more natural)
+    setTimeout(() => {
+      setBetaIsLoading(false);
+      setBetaIsSubmitted(true);
+      setBetaIsDuplicate(false);
+      setBetaEmail('');
+    }, 750);
+    
+    // Handle submission in background
+    try {
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: submittedEmailCopy }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        if (response.status === 409) {
+          // Duplicate email detected - update to show duplicate message
+          setTimeout(() => {
+            setBetaIsSubmitted(false);
+            setBetaIsDuplicate(true);
+            setBetaIsLoading(false);
+          }, 750);
+        } else {
+          // Revert and show error
+          setTimeout(() => {
+            setBetaIsSubmitted(false);
+            setBetaEmail(submittedEmailCopy);
+            setBetaIsLoading(false);
+            alert(data.error || 'Something went wrong. Please try again.');
+          }, 750);
+        }
+      }
+      // If response.ok, success is already shown after 0.75 seconds
+    } catch (error) {
+      console.error('Error:', error);
+      // Revert and show error
+      setTimeout(() => {
+        setBetaIsSubmitted(false);
+        setBetaEmail(submittedEmailCopy);
+        setBetaIsLoading(false);
+        alert('Something went wrong. Please try again.');
+      }, 750);
+    }
+  };
+
   return (
     <>
       <AuroraBackground className="justify-start md:justify-center">
-        {/* Header */}
+        {/* Header with Navigation */}
         <header className="relative z-50 pt-4 sm:pt-5">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-0.5 sm:py-1">
-            <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity -ml-3 sm:-ml-5">
-              <Image 
-                src="/logos/Group 4.svg" 
-                alt="reGuard Logo" 
-                width={2071} 
-                height={438}
-                className="h-[20px] sm:h-[38px] md:h-[50px] w-auto"
-                priority
-                loading="eager"
-              />
-            </Link>
+            <nav className="flex items-center justify-between">
+              <Link href="/" className="flex items-center w-fit hover:opacity-80 transition-opacity -ml-3 sm:-ml-5">
+                <Image 
+                  src="/logos/Group 4.svg" 
+                  alt="reGuard Logo" 
+                  width={2071} 
+                  height={438}
+                  className="h-[20px] sm:h-[32px] md:h-[40px] w-auto"
+                  priority
+                  loading="eager"
+                />
+              </Link>
+              <Link 
+                href="/calculator"
+                className="relative z-50 px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-semibold text-white hover:text-white transition-all border-2 border-purple-500/50 hover:border-purple-400 bg-gradient-to-r from-purple-600/80 to-violet-600/80 hover:from-purple-500 hover:to-violet-500 backdrop-blur-sm whitespace-nowrap shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40"
+              >
+                <span className="sm:hidden">API Calculator</span>
+                <span className="hidden sm:inline">API Cost Calculator</span>
+              </Link>
+            </nav>
           </div>
         </header>
 
@@ -260,13 +328,12 @@ export default function Home() {
               <p className="relative z-50 text-xs text-zinc-500">
                 Be the first to know when we launch. No spam, ever.
               </p>
-              <button
-                type="button"
-                onClick={() => document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' })}
-                className="relative z-50 text-sm text-purple-400 hover:text-purple-300 transition-colors mt-3 mb-2 font-bold cursor-pointer"
+              <Link
+                href="/calculator"
+                className="relative z-50 text-sm text-purple-400 hover:text-purple-300 transition-colors mt-3 mb-2 font-bold cursor-pointer inline-block"
               >
                 Try our FREE API Cost Calculator
-              </button>
+              </Link>
             </form>
           ) : isDuplicate ? (
             <motion.div
@@ -318,7 +385,7 @@ export default function Home() {
         </div>
 
         {/* Coming Soon Pill */}
-        <div className="relative z-50 mt-4 sm:mt-6 md:mt-7 mb-6">
+        <div className="relative z-50 mt-4 sm:mt-6 md:mt-7 mb-2 sm:mb-3">
           <div
             className="relative z-50 px-6 py-2 rounded-full text-sm font-medium text-purple-300"
             style={{
@@ -332,10 +399,138 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Calculator Section */}
-      <section id="calculator" className="relative z-50 mt-4 pb-20 px-4">
-        <CostCalculator />
+      {/* Bento Grid Section */}
+      <section id="features" className="relative z-50 pt-0 sm:pt-1 pb-16 sm:pb-20 md:pb-24 px-4 -mt-4 sm:-mt-8">
+        <CyberneticBentoGrid />
       </section>
+
+      {/* Built from real developer pain Section */}
+      <section className="relative z-50 pt-0 sm:pt-1 pb-8 sm:pb-12 px-4">
+        <div className="w-full max-w-6xl mx-auto z-10">
+          <h1 
+            className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] text-center mb-4 sm:mb-5"
+            style={{ fontFamily: 'var(--font-meriva)' }}
+          >
+            <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
+              Built from real developer pain
+            </span>
+          </h1>
+          <p className="text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg text-center mb-4 sm:mb-5">
+            We researched developers who've been hit with surprise API bills. These are their stories.
+          </p>
+          <div className="mt-8 sm:mt-12 flex items-center justify-center">
+            <div className="relative w-full max-w-4xl">
+              <Image
+                src="/Painpoint_new.png"
+                alt="Developer pain points"
+                width={1200}
+                height={900}
+                className="w-full h-auto rounded-lg"
+                priority
+              />
+            </div>
+          </div>
+          
+          {/* CTA Section */}
+          <div className="mt-8 sm:mt-10 text-center">
+            <p className="text-base text-zinc-300 sm:text-lg mb-3">
+              Tired of surprise API bills? Help us fix it.
+            </p>
+            <a 
+              href="https://reguard.fillout.com/survey" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-white hover:text-white transition-all border-2 border-purple-500/50 hover:border-purple-400 bg-gradient-to-r from-purple-600/80 to-violet-600/80 hover:from-purple-500 hover:to-violet-500 backdrop-blur-sm whitespace-nowrap shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40"
+            >
+              <span>Take 2-Minute Survey</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <FAQSection />
+
+      {/* Get exclusive beta access Section */}
+      <section className="relative z-50 pt-0 sm:pt-1 pb-16 sm:pb-20 md:pb-24 px-4">
+        <div className="w-full max-w-6xl mx-auto z-10">
+          <h1 
+            className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] text-center mb-4 sm:mb-5"
+            style={{ fontFamily: 'var(--font-meriva)' }}
+          >
+            <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
+              Get exclusive beta access
+            </span>
+          </h1>
+          <p className="text-base text-zinc-300 sm:text-lg md:text-lg lg:text-lg text-center mb-4 sm:mb-5">
+            Be among the first developers to<br className="sm:hidden" /> test reGuard in production.
+          </p>
+          
+          {/* Waitlist Form */}
+          <div className="relative z-50 w-full max-w-2xl mx-auto">
+            {!betaIsSubmitted && !betaIsDuplicate ? (
+              <form 
+                onSubmit={handleBetaSubmit}
+                className="relative z-50 space-y-3 sm:space-y-4 flex flex-col items-center sm:items-stretch"
+              >
+                <div className="relative z-50 flex flex-col sm:flex-row gap-4 sm:gap-4 w-full items-center sm:items-stretch">
+                  <input
+                    type="email"
+                    value={betaEmail}
+                    onChange={(e) => setBetaEmail(e.target.value)}
+                    placeholder="your@email.com"
+                    required
+                    className="relative z-50 email-input w-full sm:w-auto sm:flex-1 rounded-full text-white placeholder-gray-500 focus:outline-none text-base md:text-lg px-6 py-3"
+                  />
+                  <ReGuardButton 
+                    type="submit" 
+                    disabled={betaIsLoading}
+                    className="relative z-50 w-full sm:w-auto sm:min-w-[200px]"
+                  >
+                    {betaIsLoading ? "Joining..." : "Join Waitlist"}
+                  </ReGuardButton>
+                </div>
+              </form>
+            ) : betaIsDuplicate ? (
+              <motion.div
+                initial={{ opacity: 1, scale: 1 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="relative z-50 rounded-lg bg-purple-600/10 backdrop-blur-sm border border-purple-500/30 p-6"
+              >
+                <div className="relative z-50 flex items-center justify-center gap-2 mb-2">
+                  <span className="relative z-50 text-3xl">✨</span>
+                  <h3 className="relative z-50 text-xl font-semibold text-white">Already on the list!</h3>
+                </div>
+                <p className="relative z-50 text-zinc-300">
+                  <span className="font-medium text-white">{betaSubmittedEmail}</span> is already signed up for the waitlist.
+                </p>
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 1, scale: 1 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="relative z-50 rounded-lg bg-purple-600/10 backdrop-blur-sm border border-purple-500/30 p-6"
+              >
+                <div className="relative z-50 flex items-center justify-center gap-2 mb-2">
+                  <span className="relative z-50 text-3xl">🎉</span>
+                  <h3 className="relative z-50 text-xl font-semibold text-white">You're on the waitlist!</h3>
+                </div>
+                <p className="relative z-50 text-zinc-300">
+                  We'll notify you at <span className="font-medium text-white">{betaSubmittedEmail}</span> when reGuard launches.
+                </p>
+              </motion.div>
+            )}
+          </div>
+          
+          <p className="text-sm text-zinc-400 text-center mt-4">
+            Limited spots. Launching Q1 2026.
+          </p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <Footer />
+
       </AuroraBackground>
     </>
   );

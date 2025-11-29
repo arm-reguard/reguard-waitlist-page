@@ -241,3 +241,129 @@ nextjs-portal {
 .recharts-surface {
   position: relative !important;
 }
+
+/* Bento Grid Styles */
+.main-container {
+  width: 100%;
+  padding: 2rem 1rem;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bento-item {
+  position: relative;
+  padding: 1.5rem;
+  background: rgba(26, 26, 46, 0.6);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.bento-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(139, 92, 246, 0.15),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bento-item:hover::before {
+  opacity: 1;
+}
+
+.bento-item:hover {
+  border-color: rgba(139, 92, 246, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+}
+
+.bento-item > * {
+  position: relative;
+  z-index: 2;
+}
+
+.bento-item.col-span-2 {
+  grid-column: span 2;
+}
+
+.bento-item.row-span-2 {
+  grid-row: span 2;
+}
+
+@media (max-width: 768px) {
+  .bento-item.col-span-2 {
+    grid-column: span 2;
+  }
+  
+  .bento-item.row-span-2 {
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .bento-item.col-span-2 {
+    grid-column: span 1;
+  }
+}
+
+/* Smooth Accordion Animations */
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.animate-accordion-down {
+  animation: accordion-down 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform-origin: top;
+}
+
+.animate-accordion-up {
+  animation: accordion-up 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform-origin: top;
+}
