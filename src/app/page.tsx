@@ -182,7 +182,7 @@ export default function Home() {
               </Link>
               <Link 
                 href="/calculator"
-                className="relative z-50 px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-semibold text-white hover:text-white transition-all border-2 border-purple-500/50 hover:border-purple-400 bg-gradient-to-r from-purple-600/80 to-violet-600/80 hover:from-purple-500 hover:to-violet-500 backdrop-blur-sm whitespace-nowrap shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40"
+                className="relative z-50 px-3 py-1.5 sm:px-6 sm:py-3 rounded-full text-[10px] sm:text-sm font-semibold text-white hover:text-white transition-all border-2 border-purple-500/50 hover:border-purple-400 bg-gradient-to-r from-purple-600/80 to-violet-600/80 hover:from-purple-500 hover:to-violet-500 backdrop-blur-sm whitespace-nowrap shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40"
               >
                 <span className="sm:hidden">API Calculator</span>
                 <span className="hidden sm:inline">API Cost Calculator</span>
@@ -471,16 +471,16 @@ export default function Home() {
             {!betaIsSubmitted && !betaIsDuplicate ? (
               <form 
                 onSubmit={handleBetaSubmit}
-                className="relative z-50 space-y-3 sm:space-y-4 flex flex-col items-center sm:items-stretch"
+                className="relative z-50 space-y-3 sm:space-y-4"
               >
-                <div className="relative z-50 flex flex-col sm:flex-row gap-4 sm:gap-4 w-full items-center sm:items-stretch">
+                <div className="relative z-50 flex flex-col sm:flex-row gap-4 sm:gap-4">
                   <input
                     type="email"
                     value={betaEmail}
                     onChange={(e) => setBetaEmail(e.target.value)}
                     placeholder="your@email.com"
                     required
-                    className="relative z-50 email-input w-full sm:w-auto sm:flex-1 rounded-full text-white placeholder-gray-500 focus:outline-none text-base md:text-lg px-6 py-3"
+                    className="relative z-50 email-input w-full rounded-full text-white placeholder-gray-500 focus:outline-none text-base md:text-lg px-6 py-3"
                   />
                   <ReGuardButton 
                     type="submit" 
