@@ -97,6 +97,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: 'https://reguard.dev/icon', sizes: '128x128', type: 'image/png' },
+      { url: 'https://reguard.dev/icon-192', sizes: '192x192', type: 'image/png' },
       { url: 'https://reguard.dev/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
       { url: 'https://reguard.dev/icon.svg', sizes: 'any', type: 'image/svg+xml' },
       { url: 'https://reguard.dev/favicon.svg', sizes: 'any', type: 'image/svg+xml' },
@@ -139,6 +140,7 @@ export default function RootLayout({
         
         {/* Additional Open Graph Tags (not in Metadata API) */}
         <meta property="og:image:secure_url" content="https://reguard.dev/og-image.png" />
+        <meta property="og:logo" content="https://reguard.dev/icon" />
         
         {/* Additional Meta Tags (not in Metadata API) */}
         <meta name="mobile-web-app-capable" content="yes" />
