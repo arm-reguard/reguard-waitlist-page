@@ -21,7 +21,7 @@ export function Footer() {
                 priority
               />
             </Link>
-            <p className="text-[10px] sm:text-sm text-zinc-400 mb-2 sm:mb-4 leading-tight">
+            <p className="text-xs sm:text-sm text-zinc-400 mb-2 sm:mb-4 leading-tight">
               Stop overspending. Start building.
             </p>
             <div className="flex items-center gap-2 sm:gap-4 mt-auto pt-2 sm:pt-4">
@@ -68,7 +68,7 @@ export function Footer() {
                 <li>
                   <Link 
                     href="/#features" 
-                    className="text-[10px] sm:text-sm text-zinc-400 hover:text-white transition-colors"
+                    className="text-xs sm:text-sm text-zinc-400 hover:text-white transition-colors"
                   >
                     Features
                   </Link>
@@ -76,7 +76,7 @@ export function Footer() {
                 <li>
                   <Link 
                     href="/calculator" 
-                    className="text-[10px] sm:text-sm text-zinc-400 hover:text-white transition-colors"
+                    className="text-xs sm:text-sm text-zinc-400 hover:text-white transition-colors"
                   >
                     API Calculator
                   </Link>
@@ -93,7 +93,7 @@ export function Footer() {
                     href="https://reguard.fillout.com/survey" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[10px] sm:text-sm text-zinc-400 hover:text-white transition-colors"
+                    className="text-xs sm:text-sm text-zinc-400 hover:text-white transition-colors"
                   >
                     Survey
                   </a>

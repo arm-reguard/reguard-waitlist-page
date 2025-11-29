@@ -453,7 +453,7 @@ export default function Home() {
 
       {/* Get exclusive beta access Section */}
       <section className="relative z-50 pt-0 sm:pt-1 pb-16 sm:pb-20 md:pb-24 px-4">
-        <div className="w-full max-w-6xl mx-auto z-10">
+        <div className="w-full max-w-6xl mx-auto z-10 flex flex-col items-center">
           <h1 
             className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-[2.75rem] text-center mb-4 sm:mb-5"
             style={{ fontFamily: 'var(--font-meriva)' }}
@@ -467,7 +467,7 @@ export default function Home() {
           </p>
           
           {/* Waitlist Form */}
-          <div className="relative z-50 w-full max-w-2xl mx-auto">
+          <div className="relative z-50 w-full max-w-2xl">
             {!betaIsSubmitted && !betaIsDuplicate ? (
               <form 
                 onSubmit={handleBetaSubmit}
