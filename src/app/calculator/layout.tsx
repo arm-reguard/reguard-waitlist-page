@@ -88,7 +88,7 @@ const faqSchema = {
       "name": "Which LLM providers are supported?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Our calculator supports OpenAI (GPT-5.1, GPT-4.5), Anthropic (Claude Opus 4.5, Sonnet 4.5), Google (Gemini 3 Pro), Mistral, Groq, Together AI, Cohere, and more. We regularly update pricing data to reflect the latest rates."
+        "text": "Our calculator supports OpenAI (GPT-5.2, GPT-4.5), Anthropic (Claude Opus 4.5, Sonnet 4.5), Google (Gemini 3 Pro), Mistral, Groq, Together AI, Cohere, and more. We regularly update pricing data to reflect the latest rates."
       }
     },
     {

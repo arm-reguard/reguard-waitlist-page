@@ -13,10 +13,10 @@ export const pricingData: ModelPricing[] = [
   // OpenAI
   {
     id: "openai-gpt5",
-    name: "GPT-5.1",
+    name: "GPT-5.2",
     provider: "OpenAI",
-    inputCostPerMillion: 1.25,
-    outputCostPerMillion: 10.00,
+    inputCostPerMillion: 1.75,
+    outputCostPerMillion: 14.00,
     color: "#10a37f",
     popular: true
   },
@@ -39,10 +39,10 @@ export const pricingData: ModelPricing[] = [
   },
   {
     id: "openai-gpt5-pro",
-    name: "GPT-5 pro",
+    name: "GPT-5.2 pro",
     provider: "OpenAI",
-    inputCostPerMillion: 15.00,
-    outputCostPerMillion: 120.00,
+    inputCostPerMillion: 21.00,
+    outputCostPerMillion: 168.00,
     color: "#10a37f"
   },
   {
