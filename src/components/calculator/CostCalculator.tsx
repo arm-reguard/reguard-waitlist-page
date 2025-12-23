@@ -434,7 +434,7 @@ export function CostCalculator() {
                 <br />
                 * Track Gemini 3 Pro API costs
                 <br />
-                * Track GPT 5.1 API costs
+                * Track GPT 5.2 API costs
                 <br />
                 * More providers coming soon
               </p>

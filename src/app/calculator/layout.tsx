@@ -70,37 +70,6 @@ const calculatorSchema = {
   "screenshot": "https://reguard.dev/og-image.png"
 };
 
-// FAQPage Schema for potential rich results
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How do I calculate LLM API costs?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Use our free calculator to estimate costs. Select your LLM provider (OpenAI, Anthropic, Google, etc.), enter your expected monthly API calls, and specify average input/output tokens per call. The calculator shows estimated monthly costs across all providers."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Which LLM providers are supported?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Our calculator supports OpenAI (GPT-5.2, GPT-4.5), Anthropic (Claude Opus 4.5, Sonnet 4.5), Google (Gemini 3 Pro), Mistral, Groq, Together AI, Cohere, and more. We regularly update pricing data to reflect the latest rates."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is the API cost calculator free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, the LLM API cost calculator is completely free to use. No signup required. Calculate and compare costs across all major providers instantly."
-      }
-    }
-  ]
-};
 
 export default function CalculatorLayout({
   children,
@@ -113,11 +82,6 @@ export default function CalculatorLayout({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(calculatorSchema) }}
-      />
-      {/* FAQ Schema for rich results */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       {children}
     </>
