@@ -1,14 +1,14 @@
 import { ImageResponse } from 'next/og'
 
-// Image metadata - 512x512 for standard icon
+// Image metadata - Apple touch icon should be 180x180
 export const size = {
-  width: 512,
-  height: 512,
+  width: 180,
+  height: 180,
 }
 export const contentType = 'image/png'
 
 // Image generation
-export default function Icon() {
+export default function AppleIcon() {
   return new ImageResponse(
     (
       <div
@@ -24,8 +24,8 @@ export default function Icon() {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="512"
-          height="512"
+          width="180"
+          height="180"
           viewBox="0 0 369 438"
           style={{
             width: '100%',
@@ -48,3 +48,4 @@ export default function Icon() {
     }
   )
 }
+

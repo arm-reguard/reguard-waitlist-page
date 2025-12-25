@@ -6,6 +6,7 @@ import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 // Load only the fonts we actually use (removed 7 unused fonts for faster load)
 const merivaFont = localFont({
@@ -31,8 +32,8 @@ const openSansFont = localFont({
 
 export const metadata: Metadata = {
   // Primary Meta Tags
-  title: "reGuard - LLM API Budget Protection | Stop Surprise Bills",
-  description: "Automatically block LLM API calls when budget limits are reached. Track costs per customer and per feature, enforce hard spending caps, and prevent surprise bills across all LLM providers.",
+  title: "LLM API Cost Control | Hard Spending Limits | reGuard",
+  description: "Control LLM API costs with hard budget limits that actually STOP spending. Track costs per customer and feature. Prevent surprise bills across OpenAI, Anthropic, Google, and more.",
   keywords: [
     "API budget protection",
     "LLM API costs",
@@ -67,8 +68,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: 'https://reguard.dev/',
-    title: 'reGuard - LLM API Budget Protection | Stop Surprise Bills',
-    description: 'Automatically block LLM API calls when budget limits are reached. Track costs per customer and per feature, enforce hard spending caps, and prevent surprise bills across all LLM providers.',
+    title: 'LLM API Cost Control | Hard Spending Limits | reGuard',
+    description: 'Control LLM API costs with hard budget limits that actually STOP spending. Track costs per customer and feature. Prevent surprise bills across OpenAI, Anthropic, Google, and more.',
     siteName: 'reGuard',
     locale: 'en_US',
     alternateLocale: ['en_US'],
@@ -77,7 +78,7 @@ export const metadata: Metadata = {
         url: 'https://reguard.dev/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'reGuard - LLM API Budget Protection | Stop Surprise Bills',
+        alt: 'LLM API Cost Control | Hard Spending Limits | reGuard',
         type: 'image/png',
       },
     ],
@@ -86,8 +87,8 @@ export const metadata: Metadata = {
   // Twitter Card - Comprehensive Tags
   twitter: {
     card: 'summary_large_image',
-    title: 'reGuard - LLM API Budget Protection | Stop Surprise Bills',
-    description: 'Automatically block LLM API calls when budget limits are reached. Track costs per customer and per feature, enforce hard spending caps, and prevent surprise bills across all LLM providers.',
+    title: 'LLM API Cost Control | Hard Spending Limits | reGuard',
+    description: 'Control LLM API costs with hard budget limits that actually STOP spending. Track costs per customer and feature. Prevent surprise bills across OpenAI, Anthropic, Google, and more.',
     images: ['https://reguard.dev/og-image.png'],
     creator: '@reGuardAI',
     site: '@reGuardAI',
@@ -203,7 +204,7 @@ export default function RootLayout({
               "name": "reGuard",
               "applicationCategory": "DeveloperApplication",
               "operatingSystem": "Web",
-              "description": "Automatically block LLM API calls when budget limits are reached. Track costs per customer and per feature, enforce hard spending caps, and prevent surprise bills across OpenAI, Anthropic, Google, and more.",
+              "description": "Control LLM API costs with hard budget limits that actually STOP spending. Track costs per customer and feature. Prevent surprise bills across OpenAI, Anthropic, Google, and more.",
               "offers": {
                 "@type": "Offer",
                 "price": "0",
@@ -285,6 +286,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased" style={{ fontFamily: 'var(--font-open-sans)' }}>
+        <GoogleAnalytics />
         <ErrorReporter />
         <Script
           src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts//route-messenger.js"
