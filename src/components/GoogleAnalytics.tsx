@@ -2,17 +2,13 @@
 
 import Script from 'next/script'
 
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+// Hardcoded fallback to ensure it always works
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-R5XYMCXD29'
 
 export default function GoogleAnalytics() {
-  // Only load in production
-  if (process.env.NODE_ENV !== 'production' || !GA_MEASUREMENT_ID) {
-    return null
-  }
-
   return (
     <>
-      {/* Google tag (gtag.js) */}
+      {/* Google tag (gtag.js) - Exact format from Google */}
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
         strategy="afterInteractive"
@@ -21,21 +17,8 @@ export default function GoogleAnalytics() {
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
-          
-          // GDPR Consent Mode - Default to denied, update when user consents
-          gtag('consent', 'default', {
-            'analytics_storage': 'granted',
-            'ad_storage': 'denied',
-            'ad_user_data': 'denied',
-            'ad_personalization': 'denied',
-            'wait_for_update': 500
-          });
-          
           gtag('js', new Date());
-          gtag('config', '${GA_MEASUREMENT_ID}', {
-            page_path: window.location.pathname,
-            anonymize_ip: true
-          });
+          gtag('config', '${GA_MEASUREMENT_ID}');
         `}
       </Script>
     </>
