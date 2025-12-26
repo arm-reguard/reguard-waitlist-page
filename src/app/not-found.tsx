@@ -40,7 +40,7 @@ function TypedJSON() {
   useEffect(() => {
     let animationId: number;
     let startTime: number | null = null;
-    const duration = 1800; // Total animation duration in ms
+    const duration = 1500; // Total animation duration in ms
     const totalChars = fullText.length;
 
     const animate = (timestamp: number) => {
@@ -48,11 +48,8 @@ function TypedJSON() {
       const elapsed = timestamp - startTime;
       const progress = Math.min(elapsed / duration, 1);
       
-      // Easing function for smoother animation
-      const easeOutQuad = (t: number) => t * (2 - t);
-      const easedProgress = easeOutQuad(progress);
-      
-      const chars = Math.floor(easedProgress * totalChars);
+      // Linear progress for consistent typing speed
+      const chars = Math.floor(progress * totalChars);
       setVisibleChars(chars);
 
       if (progress < 1) {
@@ -62,12 +59,10 @@ function TypedJSON() {
       }
     };
 
-    const startDelay = setTimeout(() => {
-      animationId = requestAnimationFrame(animate);
-    }, 400);
+    // Start immediately with minimal delay
+    animationId = requestAnimationFrame(animate);
 
     return () => {
-      clearTimeout(startDelay);
       if (animationId) cancelAnimationFrame(animationId);
     };
   }, [fullText]);
