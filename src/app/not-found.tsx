@@ -7,64 +7,97 @@ import Link from "next/link";
 import Image from "next/image";
 
 // JSON content for typing effect
-const jsonContent = `{
-  "status": 404,
-  "error": "EndpointNotFound",
-  "message": "This API endpoint doesn't exist 😅",
-  "cost": "$0.00",
-  "suggestion": "Try these routes instead:"
-}`;
+const jsonLines = [
+  '{',
+  '  "status": 404,',
+  '  "error": "EndpointNotFound",',
+  '  "message": "This API endpoint doesn\'t exist 😅",',
+  '  "cost": "$0.00",',
+  '  "suggestion": "Try these routes instead:"',
+  '}'
+];
 
-// Syntax highlighted JSON with typing effect
+// Syntax highlight a single line
+function highlightLine(line: string): string {
+  let highlighted = line;
+  // Highlight keys (purple)
+  highlighted = highlighted.replace(/"([^"]+)":/g, '<span class="text-purple-400">"$1"</span>:');
+  // Highlight string values (green)
+  highlighted = highlighted.replace(/: "([^"]+)"/g, ': <span class="text-emerald-400">"$1"</span>');
+  // Highlight numbers (amber)
+  highlighted = highlighted.replace(/: (\d+)/g, ': <span class="text-amber-400">$1</span>');
+  // Highlight braces (gray)
+  highlighted = highlighted.replace(/([{}])/g, '<span class="text-gray-400">$1</span>');
+  return highlighted;
+}
+
+// Syntax highlighted JSON with smooth typing effect
 function TypedJSON() {
-  const [displayedText, setDisplayedText] = useState("");
+  const [visibleChars, setVisibleChars] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const fullText = jsonLines.join('\n');
 
   useEffect(() => {
-    let currentIndex = 0;
-    const typingSpeed = 15;
+    let animationId: number;
+    let startTime: number | null = null;
+    const duration = 1800; // Total animation duration in ms
+    const totalChars = fullText.length;
 
-    const typeNextChar = () => {
-      if (currentIndex < jsonContent.length) {
-        setDisplayedText(jsonContent.slice(0, currentIndex + 1));
-        currentIndex++;
-        setTimeout(typeNextChar, typingSpeed);
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function for smoother animation
+      const easeOutQuad = (t: number) => t * (2 - t);
+      const easedProgress = easeOutQuad(progress);
+      
+      const chars = Math.floor(easedProgress * totalChars);
+      setVisibleChars(chars);
+
+      if (progress < 1) {
+        animationId = requestAnimationFrame(animate);
       } else {
         setIsComplete(true);
       }
     };
 
-    const startDelay = setTimeout(typeNextChar, 500);
-    return () => clearTimeout(startDelay);
-  }, []);
+    const startDelay = setTimeout(() => {
+      animationId = requestAnimationFrame(animate);
+    }, 400);
 
-  // Render with syntax highlighting
-  const renderHighlighted = () => {
-    const lines = displayedText.split('\n');
-    return lines.map((line, lineIndex) => {
-      let highlighted = line;
+    return () => {
+      clearTimeout(startDelay);
+      if (animationId) cancelAnimationFrame(animationId);
+    };
+  }, [fullText]);
+
+  // Render the fixed-size container with typed content
+  const renderContent = () => {
+    const displayedText = fullText.slice(0, visibleChars);
+    const displayedLines = displayedText.split('\n');
+
+    return jsonLines.map((fullLine, lineIndex) => {
+      const displayedLine = displayedLines[lineIndex] || '';
+      const isCurrentLine = lineIndex === displayedLines.length - 1 && !isComplete;
       
-      // Highlight keys (purple)
-      highlighted = highlighted.replace(/"([^"]+)":/g, '<span class="text-purple-400">"$1"</span>:');
-      // Highlight string values (green) - after keys
-      highlighted = highlighted.replace(/: "([^"]+)"/g, ': <span class="text-emerald-400">"$1"</span>');
-      // Highlight numbers (amber)
-      highlighted = highlighted.replace(/: (\d+)/g, ': <span class="text-amber-400">$1</span>');
-      // Highlight braces (gray)
-      highlighted = highlighted.replace(/([{}])/g, '<span class="text-gray-400">$1</span>');
+      // Show highlighted content for displayed portion
+      const highlighted = displayedLine ? highlightLine(displayedLine) : '';
       
       return (
-        <div key={lineIndex} dangerouslySetInnerHTML={{ __html: highlighted || '&nbsp;' }} />
+        <div key={lineIndex} className="leading-relaxed h-6 sm:h-7">
+          <span dangerouslySetInnerHTML={{ __html: highlighted || '&nbsp;' }} />
+          {isCurrentLine && !isComplete && (
+            <span className="inline-block w-[2px] h-4 sm:h-5 bg-purple-400 ml-0.5 align-middle animate-pulse" />
+          )}
+        </div>
       );
     });
   };
 
   return (
     <code className="font-mono text-xs sm:text-sm md:text-base block text-gray-400">
-      {renderHighlighted()}
-      {!isComplete && (
-        <span className="inline-block w-2 h-4 sm:h-5 bg-purple-400 ml-0.5 animate-pulse" />
-      )}
+      {renderContent()}
     </code>
   );
 }
