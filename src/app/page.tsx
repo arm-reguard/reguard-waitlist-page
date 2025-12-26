@@ -177,7 +177,7 @@ export default function Home() {
                   height={438}
                   className="h-[20px] sm:h-[32px] md:h-[40px] w-auto"
                   priority
-                  quality={95}
+                  loading="eager"
                 />
               </Link>
               <Link 
@@ -422,12 +422,11 @@ export default function Home() {
             <div className="relative w-full max-w-4xl">
               <Image
                 src="/Painpoint_new.png"
-                alt="Developer pain points - API cost surprises faced by developers"
+                alt="Developer pain points"
                 width={1200}
                 height={900}
                 className="w-full h-auto rounded-lg"
-                quality={85}
-                loading="lazy"
+                priority
               />
             </div>
           </div>
