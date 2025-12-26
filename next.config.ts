@@ -4,6 +4,12 @@ import path from "node:path";
 const LOADER = path.resolve(__dirname, 'src/visual-edits/component-tagger-loader.js');
 
 const nextConfig: NextConfig = {
+  // Compress responses for better performance
+  compress: true,
+  
+  // Disable source maps in production for smaller bundles
+  productionBrowserSourceMaps: false,
+  
   images: {
     remotePatterns: [
       {

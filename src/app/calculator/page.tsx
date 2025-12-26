@@ -21,7 +21,7 @@ export default function CalculatorPage() {
                 height={438}
                 className="h-[20px] sm:h-[32px] md:h-[40px] w-auto"
                 priority
-                loading="eager"
+                quality={95}
               />
             </Link>
             <Link 

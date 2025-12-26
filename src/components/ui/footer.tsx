@@ -18,7 +18,8 @@ export function Footer() {
                 width={2071} 
                 height={438}
                 className="h-[20px] sm:h-[24px] w-auto"
-                priority
+                quality={95}
+                loading="lazy"
               />
             </Link>
             <p className="text-xs sm:text-sm text-zinc-400 mb-2 sm:mb-4 leading-tight">

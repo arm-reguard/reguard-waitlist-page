@@ -1,0 +1,16 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.reguard.dev"
+        }
+      ],
+      "destination": "https://reguard.dev/:path*",
+      "permanent": true
+    }
+  ]
+}
+
