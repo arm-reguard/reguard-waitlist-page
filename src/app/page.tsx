@@ -334,6 +334,9 @@ export default function Home() {
               <div className="relative z-50 flex flex-col sm:flex-row gap-4 sm:gap-4">
                 <input
                   type="email"
+                  id="waitlist-email"
+                  name="email"
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
@@ -499,6 +502,9 @@ export default function Home() {
                 <div className="relative z-50 flex flex-col sm:flex-row gap-4 sm:gap-4">
                   <input
                     type="email"
+                    id="beta-email"
+                    name="email"
+                    autoComplete="email"
                     value={betaEmail}
                     onChange={(e) => setBetaEmail(e.target.value)}
                     placeholder="your@email.com"

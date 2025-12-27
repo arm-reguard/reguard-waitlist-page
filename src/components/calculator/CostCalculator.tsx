@@ -295,6 +295,8 @@ export function CostCalculator() {
               </label>
               <input
                 type="number"
+                id="monthly-api-calls"
+                name="monthly-api-calls"
                 value={callsPerMonth}
                 onChange={(e) => setCallsPerMonth(Math.max(1, parseInt(e.target.value) || 1))}
                 min="1"
@@ -311,6 +313,8 @@ export function CostCalculator() {
                 </label>
                 <input
                   type="number"
+                  id="input-tokens"
+                  name="input-tokens"
                   value={inputTokens}
                   onChange={(e) => setInputTokens(Math.max(1, parseInt(e.target.value) || 1))}
                   min="1"
@@ -324,6 +328,8 @@ export function CostCalculator() {
                 </label>
                 <input
                   type="number"
+                  id="output-tokens"
+                  name="output-tokens"
                   value={outputTokens}
                   onChange={(e) => setOutputTokens(Math.max(1, parseInt(e.target.value) || 1))}
                   min="1"
@@ -340,6 +346,8 @@ export function CostCalculator() {
               </label>
               <input
                 type="range"
+                id="calls-slider"
+                name="calls-slider"
                 min="1000"
                 max="500000"
                 step="1000"
@@ -370,6 +378,8 @@ export function CostCalculator() {
                       <label className="flex items-center gap-2 cursor-pointer">
                         <input
                           type="checkbox"
+                          id={`provider-${provider.toLowerCase().replace(/\s+/g, '-')}`}
+                          name={`provider-${provider.toLowerCase().replace(/\s+/g, '-')}`}
                           checked={isSelected}
                           onChange={() => toggleProvider(provider)}
                           className="w-3.5 h-3.5 rounded border-zinc-600 text-purple-600 focus:ring-purple-500 focus:ring-offset-0 bg-zinc-800"
