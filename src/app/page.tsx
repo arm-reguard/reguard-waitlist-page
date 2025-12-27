@@ -18,6 +18,7 @@ export default function Home() {
   const [isDuplicate, setIsDuplicate] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [phraseIndex, setPhraseIndex] = useState(0);
+  const [hasMounted, setHasMounted] = useState(false);
   
   // Beta access form state
   const [betaEmail, setBetaEmail] = useState("");
@@ -30,6 +31,11 @@ export default function Home() {
     () => ["API costs again", "AI spending again", "LLM expenses again", "vibe coding again"],
     []
   );
+
+  // Prevent hydration mismatch by waiting for client mount
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -199,9 +205,39 @@ export default function Home() {
                 <div className="relative z-50 bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent flex flex-col items-center gap-2">
                   <span className="whitespace-nowrap bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">Never worry about</span>
                   <span className="relative overflow-hidden" style={{ minWidth: 'max-content', minHeight: '1.2em' }}>
-                    {phrases.map((phrase, index) => (
-                      <motion.span
-                        key={index}
+                    {hasMounted ? (
+                      // Animated version - only renders after client mount to prevent hydration mismatch
+                      phrases.map((phrase, index) => (
+                        <motion.span
+                          key={index}
+                          className="absolute left-1/2 -translate-x-1/2 font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap"
+                          style={{ 
+                            fontFamily: 'var(--font-meriva)',
+                            fontWeight: 'bold',
+                            fontSize: 'inherit',
+                            lineHeight: 'inherit',
+                            letterSpacing: 'inherit'
+                          }}
+                          initial={index === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: "100%" }}
+                          transition={{ type: "spring", stiffness: 50 }}
+                          animate={
+                            phraseIndex === index
+                              ? {
+                                  y: 0,
+                                  opacity: 1,
+                                }
+                              : {
+                                  y: -150,
+                                  opacity: 0,
+                                }
+                          }
+                        >
+                          {phrase}
+                        </motion.span>
+                      ))
+                    ) : (
+                      // Static fallback for SSR - prevents hydration mismatch
+                      <span 
                         className="absolute left-1/2 -translate-x-1/2 font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap"
                         style={{ 
                           fontFamily: 'var(--font-meriva)',
@@ -210,25 +246,12 @@ export default function Home() {
                           lineHeight: 'inherit',
                           letterSpacing: 'inherit'
                         }}
-                        initial={index === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: "100%" }}
-                        transition={{ type: "spring", stiffness: 50 }}
-                        animate={
-                          phraseIndex === index
-                            ? {
-                                y: 0,
-                                opacity: 1,
-                              }
-                            : {
-                                y: -150,
-                                opacity: 0,
-                              }
-                        }
                       >
-                        {phrase}
-                      </motion.span>
-                    ))}
+                        {phrases[0]}
+                      </span>
+                    )}
                     {/* Invisible spacer with exact same styling to maintain baseline and width */}
-                    <span className="invisible whitespace-nowrap bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent" style={{ fontFamily: 'var(--font-meriva)', fontWeight: 'bold', fontSize: 'inherit', lineHeight: 'inherit', letterSpacing: 'inherit' }}>{phrases[phraseIndex]}</span>
+                    <span className="invisible whitespace-nowrap bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400 bg-clip-text text-transparent" style={{ fontFamily: 'var(--font-meriva)', fontWeight: 'bold', fontSize: 'inherit', lineHeight: 'inherit', letterSpacing: 'inherit' }}>{phrases[hasMounted ? phraseIndex : 0]}</span>
                   </span>
                 </div>
               </h2>
