@@ -171,6 +171,30 @@ export default function Home() {
   return (
     <>
       <AuroraBackground className="justify-start md:justify-center">
+        {/* Announcement Banner */}
+        <div className="relative z-50 w-full flex justify-center pt-2.5 sm:pt-4 px-3 sm:px-4">
+          <a 
+            href="https://reguard.fillout.com/survey"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 sm:gap-3 px-3 sm:px-6 py-1.5 sm:py-2.5 rounded-full border border-zinc-700/80 hover:border-purple-500/50 bg-zinc-900/60 hover:bg-zinc-900/80 backdrop-blur-sm transition-all duration-300 group cursor-pointer"
+          >
+            <span className="text-purple-400 text-[10px] sm:text-sm">✦</span>
+            <p className="text-[10px] sm:text-sm text-center">
+              <span className="text-purple-400 font-medium">Limited Beta Access:</span>
+              <span className="text-zinc-300 ml-1">6 Months FREE + 20% Off Forever</span>
+              <span className="text-zinc-600 mx-1 sm:mx-2">•</span>
+              <span className="text-zinc-400 group-hover:text-purple-400 transition-colors inline-flex items-center gap-0.5 sm:gap-1">
+                Claim Offer
+                <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </p>
+            <span className="text-purple-400 text-[10px] sm:text-sm">✦</span>
+          </a>
+        </div>
+
         {/* Header with Navigation */}
         <header className="relative z-50 pt-4 sm:pt-5">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-0.5 sm:py-1">
@@ -351,9 +375,14 @@ export default function Home() {
                   {isLoading ? "Joining..." : "Join Waitlist"}
                 </ReGuardButton>
               </div>
-              <p className="relative z-50 text-xs text-zinc-500">
-                Be the first to know when we launch. No spam, ever.
-              </p>
+              <div className="relative z-50 space-y-1">
+                <p className="text-xs sm:text-sm text-purple-400 font-medium">
+                  Waitlist Bonus: Get 20% off for life on all plans
+                </p>
+                <p className="text-xs text-zinc-500">
+                  Be the first to know when we launch. No spam, ever.
+                </p>
+              </div>
               <Link
                 href="/calculator"
                 className="relative z-50 text-sm text-purple-400 hover:text-purple-300 transition-colors mt-3 mb-2 font-bold cursor-pointer inline-block"
