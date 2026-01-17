@@ -138,7 +138,9 @@ export default function RootLayout({
     <html lang="en" className={`dark ${merivaFont.variable} ${sourceSans3Font.variable} ${openSansFont.variable}`}>
       <head>
         {/* Google Tag Manager - Must be as high in head as possible */}
+        {/* data-cfasync="false" prevents Cloudflare Rocket Loader from deferring this script */}
         <script
+          data-cfasync="false"
           dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
