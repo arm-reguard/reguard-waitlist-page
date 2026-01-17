@@ -137,6 +137,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={`dark ${merivaFont.variable} ${sourceSans3Font.variable} ${openSansFont.variable}`}>
       <head>
+        {/* Google Tag Manager - Must be as high in head as possible */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5F4WVP8J');`
+          }}
+        />
+        
         {/* Google Search Console Verification */}
         <meta name="google-site-verification" content="GB8KV6SBWWtnKi4fx6iNnSL7AF-9IKWOpeZ4c3VQ96U" />
         
@@ -286,6 +297,16 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased" style={{ fontFamily: 'var(--font-open-sans)' }}>
+        {/* Google Tag Manager (noscript) - Must be immediately after opening body tag */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5F4WVP8J"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        
         <GoogleAnalytics />
         <ErrorReporter />
         <Script
