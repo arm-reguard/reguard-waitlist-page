@@ -137,19 +137,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={`dark ${merivaFont.variable} ${sourceSans3Font.variable} ${openSansFont.variable}`}>
       <head>
-        {/* Google Tag Manager */}
+        {/* Google Tag Manager - Initialize dataLayer */}
+        <Script
+          id="gtm-init"
+          strategy="beforeInteractive"
+        >
+          {`window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});`}
+        </Script>
+        {/* Google Tag Manager - Load GTM script */}
         <Script
           id="gtm-script"
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-5F4WVP8J"
           strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-5F4WVP8J');
-            `,
-          }}
         />
         
         {/* Google Search Console Verification */}
