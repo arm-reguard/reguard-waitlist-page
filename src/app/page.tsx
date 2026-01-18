@@ -11,6 +11,13 @@ import { CheckCircle2, Infinity } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
+// GTM dataLayer type declaration
+declare global {
+  interface Window {
+    dataLayer: Record<string, unknown>[];
+  }
+}
+
 export default function Home() {
   const [email, setEmail] = useState("");
   const [submittedEmail, setSubmittedEmail] = useState("");
@@ -95,8 +102,14 @@ export default function Home() {
             alert(data.error || 'Something went wrong. Please try again.');
           }, 750);
         }
+      } else {
+        // Success! Fire GTM event for Reddit Pixel tracking
+        if (typeof window !== 'undefined' && window.dataLayer) {
+          window.dataLayer.push({
+            event: 'waitlist_signup'
+          });
+        }
       }
-      // If response.ok, success is already shown after 0.75 seconds
     } catch (error) {
       console.error('Error:', error);
       // Revert and show error
@@ -154,8 +167,14 @@ export default function Home() {
             alert(data.error || 'Something went wrong. Please try again.');
           }, 750);
         }
+      } else {
+        // Success! Fire GTM event for Reddit Pixel tracking
+        if (typeof window !== 'undefined' && window.dataLayer) {
+          window.dataLayer.push({
+            event: 'waitlist_signup'
+          });
+        }
       }
-      // If response.ok, success is already shown after 0.75 seconds
     } catch (error) {
       console.error('Error:', error);
       // Revert and show error
