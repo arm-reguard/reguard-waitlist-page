@@ -1,4 +1,53 @@
 import { NextRequest, NextResponse } from 'next/server';
+import crypto from 'crypto';
+
+// Reddit Conversions API configuration
+const REDDIT_PIXEL_ID = 'a2_i4z8xr3cum4o';
+const REDDIT_CAPI_TOKEN = process.env.REDDIT_CAPI_TOKEN;
+const REDDIT_TEST_ID = 't2_215dq8xyxg'; // Remove after testing is verified
+
+// Hash email for Reddit CAPI (SHA-256, lowercase, trimmed)
+function hashEmail(email: string): string {
+  const normalized = email.toLowerCase().trim();
+  return crypto.createHash('sha256').update(normalized).digest('hex');
+}
+
+// Send Lead event to Reddit Conversions API
+async function sendRedditLeadEvent(email: string) {
+  if (!REDDIT_CAPI_TOKEN) {
+    console.log('Reddit CAPI token not configured, skipping');
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `https://ads-api.reddit.com/api/v2.0/conversions/events/${REDDIT_PIXEL_ID}`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${REDDIT_CAPI_TOKEN}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          events: [{
+            event_at: new Date().toISOString(),
+            event_type: { tracking_type: 'Lead' },
+            user: { 
+              email: hashEmail(email)
+            },
+            test_id: REDDIT_TEST_ID // Remove this line after testing is verified
+          }]
+        })
+      }
+    );
+
+    const result = await response.json();
+    console.log('Reddit CAPI response:', response.status, result);
+  } catch (error) {
+    console.error('Reddit CAPI error:', error);
+    // Don't throw - CAPI failure shouldn't block the signup
+  }
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -43,6 +92,9 @@ export async function POST(request: NextRequest) {
 
     // Return success if Google Sheets worked (main requirement)
     if (googleResult.success) {
+      // Send Lead event to Reddit Conversions API (server-side tracking)
+      sendRedditLeadEvent(email);
+      
       return NextResponse.json({ 
         success: true,
         serialNumber: googleResult.serialNumber 
